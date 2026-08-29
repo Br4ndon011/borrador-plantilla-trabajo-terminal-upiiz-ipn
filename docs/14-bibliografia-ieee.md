@@ -106,6 +106,20 @@ El compilador generará automáticamente los corchetes numerados: `[1]`, `[2], [
 
 ---
 
-## 5. Próximo Paso
+## 5. Usar Mendeley como Gestor Bibliográfico
+
+Si manejas decenas de artículos, puedes utilizar **Mendeley Reference Manager** para automatizar la captura y exportación de citas BibTeX:
+
+1. **Mendeley:** Organiza tus lecturas y verifica que los metadatos (autores, año, revista, DOI) sean correctos.
+2. **Exportar:** Exporta las entradas seleccionadas a un archivo `.bib` (*File $\rightarrow$ Export $\rightarrow$ BibTeX*).
+3. **Integrar:** Copia el bloque generado dentro de `bibliografia/referencias.bib`.
+4. **Citar:** Usa `\cite{clave}` en cualquier capítulo.
+5. **Compilar:** `latexmk main.tex` aplica automáticamente el estilo oficial IEEE.
+
+👉 **Consulta la guía detallada:** [Guía 14a: Uso de Mendeley como Gestor Bibliográfico](14a-mendeley.md).
+
+---
+
+## 6. Próximo Paso
 
 Continúa con la [Guía 15: Apéndices, Planos y Datasheets](15-apendices.md).

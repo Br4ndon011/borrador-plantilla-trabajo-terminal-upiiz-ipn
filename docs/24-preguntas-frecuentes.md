@@ -49,3 +49,10 @@ Puedes crear archivos adicionales dentro de la carpeta `capitulos/` (por ejemplo
 1. Compila tu proyecto para generar `main.pdf`.
 2. Envía únicamente el archivo `main.pdf` generado por correo electrónico o comparte el enlace de tu repositorio de GitHub si tu asesor tiene cuenta en la plataforma.
 3. Recuerda que no debes subir `main.pdf` a Git (el `.gitignore` lo ignora automáticamente para evitar inflar el historial).
+
+---
+
+### ¿Es obligatorio usar Mendeley?
+**No.** Mendeley Reference Manager es un gestor bibliográfico recomendado que facilita organizar lecturas, guardar PDFs y exportar entradas en formato BibTeX, pero su uso es **completamente opcional**.
+
+El único requisito técnico indispensable para compilar la bibliografía en la plantilla es disponer de entradas válidas en el archivo **`bibliografia/referencias.bib`**. Puedes editar este archivo a mano o utilizar cualquier otro gestor compatible con BibTeX (como Zotero o JabRef). Para más información, consulta la [Guía 14a: Uso de Mendeley](14a-mendeley.md).

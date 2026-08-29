@@ -24,7 +24,7 @@ def test_line(line_code, tipo_doc="PROTOCOLO"):
             f.write(test_content)
 
         print(f"Probando TipoDocumento={tipo_doc}, LineaTrabajo={line_code}...")
-        cmd = ["latexmk", "-xelatex", "-silent", "main.tex"]
+        cmd = ["latexmk", "-silent", "main.tex"]
         res = subprocess.run(cmd, cwd=repo_dir, capture_output=True, text=True)
 
         if res.returncode != 0:

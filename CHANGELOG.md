@@ -4,6 +4,19 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/), y este proyecto se adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 
+## [1.1.2] - 2026-08-29
+
+### Agregado
+- Archivo `CITATION.cff` para citación formal del repositorio en GitHub con identificadores ORCID verificados.
+- Sección de autoría y mantenimiento institucional en `README.md`, `LICENSE`, `main.tex` y `docs/profesor/mantenimiento.md`.
+- Guía 14a (`docs/14a-mendeley.md`) para instalación, captura de metadatos y exportación BibTeX con Mendeley Reference Manager.
+
+### Corregido
+- Se unifica LuaLaTeX como motor principal de compilación oficial.
+- Se alinea la configuración de `latexmkrc` ($pdf_mode = 4), VS Code (`.vscode/settings.json`) y GitHub Actions.
+- Se actualiza la documentación del tipo de documento y Línea de Trabajo en el `README.md`.
+- Se simplifica la compilación para estudiantes mediante la instrucción estándar `latexmk main.tex`.
+
 ## [1.1.1] - 2026-08-29
 
 ### Corregido

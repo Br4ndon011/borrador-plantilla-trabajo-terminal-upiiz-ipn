@@ -1,8 +1,8 @@
 # Plantilla Institucional de Trabajo Terminal (UPIIZ - IPN)
 ### Programa Académico de Ingeniería Mecatrónica
 
-[![Validar Compilación LaTeX](https://github.com/REPOSITORIO_OFICIAL/Plantilla_Trabajo_Terminal/actions/workflows/latex.yml/badge.svg)](https://github.com/REPOSITORIO_OFICIAL/Plantilla_Trabajo_Terminal/actions/workflows/latex.yml)
-[![Versión](https://img.shields.io/badge/versión-1.1.1-blue.svg)](CHANGELOG.md)
+[![Validar Compilación LaTeX](https://github.com/rrevelesm/plantilla-trabajo-terminal-upiiz-ipn/actions/workflows/latex.yml/badge.svg)](https://github.com/rrevelesm/plantilla-trabajo-terminal-upiiz-ipn/actions/workflows/latex.yml)
+[![Versión](https://img.shields.io/badge/versión-1.1.2-blue.svg)](CHANGELOG.md)
 [![Licencia: MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
 [![Motor: LuaLaTeX](https://img.shields.io/badge/Motor-LuaLaTeX-orange.svg)](https://lualatex.org/)
 
@@ -42,6 +42,7 @@ Para compilar la plantilla en tu computadora necesitas:
 2. **Editor recomendado:** [Visual Studio Code](https://code.visualstudio.com/) con la extensión **LaTeX Workshop**.
 3. **Control de versiones:** [Git](https://git-scm.com/) y una cuenta en [GitHub](https://github.com/).
 4. **Tipografía:** Fuente **Arial** (instalada por defecto en Windows y macOS; disponible en Linux mediante `ttf-mscorefonts-installer` o Liberation Sans como respaldo automático).
+5. **Gestor bibliográfico recomendado (opcional):** [Mendeley Reference Manager](https://www.mendeley.com/download-reference-manager/) para organizar citas y exportar a BibTeX (ver [Guía 14a](docs/14a-mendeley.md)).
 
 ---
 
@@ -54,12 +55,12 @@ Para compilar la plantilla en tu computadora necesitas:
    git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
    ```
 3. **Configurar tus datos:**
-   Abre la carpeta en VS Code y edita el archivo `config/datos.tex` con tus datos personales, los de tus compañeros, asesores y título del proyecto.
+   Abre la carpeta en VS Code y edita el archivo `config/datos.tex` con el tipo de documento, línea de trabajo, datos personales, asesores y título del proyecto.
 4. **Compilar:**
    - Desde VS Code: Presiona `Ctrl + Alt + B` (o guarda `main.tex`).
    - Desde la terminal:
      ```bash
-     latexmk -lualatex main.tex
+     latexmk main.tex
      ```
    El archivo generado será **`main.pdf`**.
 
@@ -72,9 +73,10 @@ Plantilla_Trabajo_Terminal/
 ├── main.tex                 <- Archivo raíz maestro (incluye los módulos)
 ├── latexmkrc                <- Configuración de compilación con LuaLaTeX
 ├── config/
-│   ├── datos.tex            <- EDITA AQUÍ: Modalidad (TT1/TT2), autores, asesores, jurado
+│   ├── datos.tex            <- EDITA AQUÍ: tipo de documento (PROTOCOLO / TTI / TTII), Línea de Trabajo, título, alumnos, asesores, jurado y demás datos del proyecto.
+│   ├── lineas-trabajo.tex   <- Catálogo oficial inmutable de Líneas de Trabajo (Anexo 1)
 │   ├── formato.tex          <- Parámetros institucionales (Arial, 1.5, márgenes)
-│   └── comandos.tex         <- Macros y comandos mecatrónicos auxiliares
+│   └── comandos.tex         <- Macros, validaciones y comandos mecatrónicos auxiliares
 ├── frontmatter/             <- Portada, portada interna, resumen, abstract
 ├── capitulos/               <- Capítulos 01 al 10 (un archivo .tex por sección)
 ├── apendices/               <- Cálculos, planos, esquemáticos y cronograma
@@ -108,6 +110,7 @@ Hemos preparado manuales detallados paso a paso clasificados por tema:
 - [12. Creación de Tablas Formales](docs/12-tablas.md)
 - [13. Escritura de Ecuaciones y Unidades SI](docs/13-ecuaciones.md)
 - [14. Manejo de Bibliografía en Formato IEEE](docs/14-bibliografia-ieee.md)
+- [14a. Uso de Mendeley como Gestor Bibliográfico](docs/14a-mendeley.md)
 - [15. Apéndices, Planos y Datasheets](docs/15-apendices.md)
 - [16. Cómo Compilar y Generar el PDF](docs/16-compilar.md)
 
@@ -140,6 +143,20 @@ Hemos preparado manuales detallados paso a paso clasificados por tema:
 | **Márgenes** | Sup: 2.5cm, Inf: 2.5cm, Der: 2.5cm, Izq: 3.0cm | `geometry` |
 | **Alineación** | Justificado | Por defecto |
 | **Citas y Referencias** | Formato IEEE | `IEEEtran.bst` |
+
+---
+
+## 👥 Autores y Mantenimiento de la Plantilla
+
+Esta plantilla institucional ha sido desarrollada y es mantenida por profesores de la academia de Ingeniería Mecatrónica:
+
+- **M. en C. Rafael Reveles Martínez** — [ORCID: 0000-0001-6075-1242](https://orcid.org/0000-0001-6075-1242)
+- **M. en C. Flabio Darío Mirelez Delgado** — [ORCID: 0000-0003-3547-9739](https://orcid.org/0000-0003-3547-9739)
+- **M. en C. Umanel Azazael Hernández González** — [ORCID: 0000-0002-4109-1776](https://orcid.org/0000-0002-4109-1776)
+
+**Instituto Politécnico Nacional**  
+Unidad Profesional Interdisciplinaria de Ingeniería Campus Zacatecas (UPIIZ)  
+Programa Académico de Ingeniería Mecatrónica
 
 ---
 

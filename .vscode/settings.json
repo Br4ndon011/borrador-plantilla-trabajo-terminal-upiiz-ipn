@@ -1,22 +1,9 @@
 {
   "latex-workshop.latex.tools": [
     {
-      "name": "latexmk-xelatex",
+      "name": "latexmk",
       "command": "latexmk",
       "args": [
-        "-xelatex",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "%DOC%"
-      ],
-      "env": {}
-    },
-    {
-      "name": "latexmk-lualatex",
-      "command": "latexmk",
-      "args": [
-        "-lualatex",
         "-synctex=1",
         "-interaction=nonstopmode",
         "-file-line-error",
@@ -36,15 +23,9 @@
   ],
   "latex-workshop.latex.recipes": [
     {
-      "name": "XeLaTeX (latexmk)",
-      "tools": [
-        "latexmk-xelatex"
-      ]
-    },
-    {
       "name": "LuaLaTeX (latexmk)",
       "tools": [
-        "latexmk-lualatex"
+        "latexmk"
       ]
     }
   ],

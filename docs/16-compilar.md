@@ -12,7 +12,7 @@ Esta guía explica cómo ejecutar la compilación del proyecto desde Visual Stud
    ```text
    Ctrl + Alt + B
    ```
-4. O en la barra lateral izquierda, haz clic en el ícono de la $\TeX$ $\rightarrow$ **Build LaTeX project** $\rightarrow$ **Recipe: XeLaTeX (latexmk)** (o **LuaLaTeX (latexmk)**).
+4. O en la barra lateral izquierda, haz clic en el ícono de la $\TeX$ $\rightarrow$ **Build LaTeX project** $\rightarrow$ **Recipe: LuaLaTeX (latexmk)**.
 5. Para abrir la vista previa del PDF al lado de tu código, presiona:
    ```text
    Ctrl + Alt + V
@@ -22,23 +22,13 @@ Esta guía explica cómo ejecutar la compilación del proyecto desde Visual Stud
 
 ## 2. Compilación desde la Terminal de Comandos
 
-Abre la terminal en la raíz de tu proyecto y ejecuta `latexmk`:
+Abre la terminal en la raíz de tu proyecto y ejecuta simplemente:
 
 ```bash
 latexmk main.tex
 ```
 
-`latexmk` es una herramienta inteligente que detecta automáticamente los cambios en bibliografía (`bibtex`) e índices (`tableofcontents`), realizando las pasadas necesarias hasta que todas las referencias cruzadas queden resueltas.
-
-### Opciones avanzadas de compilación en terminal:
-- Forzar motor XeLaTeX:
-  ```bash
-  latexmk -xelatex main.tex
-  ```
-- Forzar motor LuaLaTeX:
-  ```bash
-  latexmk -lualatex main.tex
-  ```
+Gracias al archivo de configuración `latexmkrc` incluido en la plantilla, `latexmk` compila automáticamente con el motor oficial **LuaLaTeX**, detecta los cambios en bibliografía (`bibtex`) e índices (`tableofcontents`), y realiza las pasadas necesarias hasta que todas las referencias queden resueltas.
 
 ---
 

@@ -2,10 +2,10 @@
 # Configuración de latexmk para Plantilla Institucional Trabajo Terminal UPIIZ-IPN
 # ==============================================================================
 
-# Motor de compilación por defecto: XeLaTeX (modo 5) o LuaLaTeX (modo 4)
-# Ambos motores soportan de forma nativa la tipografía institucional Arial y UTF-8.
-$pdf_mode = 5;
-$xelatex = 'xelatex -interaction=nonstopmode -synctex=1 %O %S';
+# Motor de compilación oficial por defecto: LuaLaTeX (modo 4)
+# Soporta de forma nativa la tipografía institucional Arial y codificación UTF-8.
+$pdf_mode = 4;
+$postscript_mode = $dvi_mode = 0;
 $lualatex = 'lualatex -interaction=nonstopmode -synctex=1 %O %S';
 
 # Procesador de bibliografía: solo ejecutar cuando se detecten citas en el .aux

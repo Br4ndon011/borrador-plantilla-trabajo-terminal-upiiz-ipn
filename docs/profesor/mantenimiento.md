@@ -51,3 +51,18 @@ Antes de aprobar cambios o publicar una nueva versión, el docente debe verifica
 ## 3. Monitoreo de Integración Continua (CI)
 
 El archivo `.github/workflows/latex.yml` compila automáticamente el documento en cada *Push* y *Pull Request* hacia la rama `main` en los servidores de GitHub Actions. Si un cambio rompe la compilación, GitHub mostrará una cruz roja `❌` alertando al profesor antes de fusionar el código.
+
+---
+
+## 4. Autores y Mantenedores de la Plantilla
+
+La plantilla fue diseñada y desarrollada por profesores de la academia de Ingeniería Mecatrónica de la Unidad Profesional Interdisciplinaria de Ingeniería Campus Zacatecas (UPIIZ-IPN):
+
+- **M. en C. Rafael Reveles Martínez** ([ORCID: 0000-0001-6075-1242](https://orcid.org/0000-0001-6075-1242))
+- **M. en C. Flabio Darío Mirelez Delgado** ([ORCID: 0000-0003-3547-9739](https://orcid.org/0000-0003-3547-9739))
+- **M. en C. Umanel Azazael Hernández González** ([ORCID: 0000-0002-4109-1776](https://orcid.org/0000-0002-4109-1776))
+
+Las futuras modificaciones a la estructura o requisitos normativos deben coordinarse mediante:
+- **Ramas y Pull Requests** en GitHub con revisión de pares.
+- **Registro detallado en `CHANGELOG.md`** siguiendo Versionado Semántico (SemVer).
+- **Ejecución del suite de pruebas** en `tests/`.
