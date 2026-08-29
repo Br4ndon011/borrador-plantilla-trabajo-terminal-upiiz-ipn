@@ -6,13 +6,13 @@
 \chapter{\tituloValidacion}
 \label{cap:validacion}
 
-En este capítulo se describen los procedimientos experimentales, las métricas estadísticas empleadas y los resultados cuantitativos obtenidos para evaluar el desempeño del sistema de control en espacio de estados implementado en el vehículo a escala 1:10.
+En este capítulo se describen los procedimientos experimentales planificados, las métricas estadísticas que se emplearán y el protocolo de pruebas cuantitativas que se llevará a cabo para evaluar el desempeño del sistema de control en espacio de estados que se implementará en el vehículo a escala 1:10.
 
 % ------------------------------------------------------------------------------
-\section{Métricas cuantitativas de evaluación}
+\section{Métricas cuantitativas de evaluación planificadas}
 \label{sec:validacion-metricas}
 
-Para evaluar rigurosamente la precisión y robustez del sistema de control, se emplearon las siguientes métricas de error y respuesta temporal:
+Para evaluar rigurosamente la precisión, estabilidad y robustez del sistema de control en la etapa experimental, se emplearán las siguientes métricas de error y respuesta temporal:
 
 \begin{enumerate}
     \item \textbf{Error de velocidad instantáneo:}
@@ -38,26 +38,26 @@ Para evaluar rigurosamente la precisión y robustez del sistema de control, se e
 \end{enumerate}
 
 % ------------------------------------------------------------------------------
-\section{Evaluación de resultados experimentales}
+\section{Protocolo y criterios de validación experimental}
 \label{sec:validacion-resultados}
 
-En la \tabref{tab:comparativa-validacion} se resumen los resultados obtenidos en las pruebas de regulación ante escalones de velocidad y cambios abruptos de dirección sobre superficie de pista horizontal.
+En la \tabref{tab:comparativa-validacion} se resumen los criterios cuantitativos de aceptación que se verificarán durante los ensayos experimentales ante perfiles de aceleración escalonada y maniobras de cambio de dirección sobre pista horizontal.
 
 \begin{table}[htbp]
     \centering
-    \caption{Evaluación de cumplimiento de especificaciones y análisis de error.}
+    \caption{Criterios de validación y especificaciones de desempeño por verificar.}
     \label{tab:comparativa-validacion}
-    \begin{tabularx}{\textwidth}{X c c c c}
+    \begin{tabularx}{\textwidth}{p{3.8cm} c p{3.8cm} X}
         \toprule
-        \textbf{Parámetro Evaluado} & \textbf{Especificación} & \textbf{Medición Media} & \textbf{Error Relativo} & \textbf{Estado} \\
+        \textbf{Parámetro por Evaluar} & \textbf{Especificación} & \textbf{Método de Medición} & \textbf{Criterio de Aceptación} \\
         \midrule
-        Sobrepaso de velocidad ($M_p$) & $\le 10\,\%$ & $6.4\,\%$ & --- & Cumple \\
-        Tiempo de establecimiento ($t_s$) & $\le \qty{0.50}{\second}$ & $\qty{0.38}{\second}$ & --- & Cumple \\
-        Error absoluto medio ($\text{MAE}_v$) & $\le \qty{0.05}{\meter\per\second}$ & $\qty{0.021}{\meter\per\second}$ & --- & Cumple \\
-        Error cuadrático medio ($\text{RMSE}_v$) & $\le \qty{0.08}{\meter\per\second}$ & $\qty{0.034}{\meter\per\second}$ & --- & Cumple \\
-        Error de dirección en régimen ($e_{\delta,ss}$) & $\le \ang{1.0}$ & $\ang{0.42}$ & --- & Cumple \\
+        Sobrepaso de velocidad ($M_p$) & $\le 10\,\%$ & Registro de encoder & Cumplimiento estricto \\
+        Tiempo de establecimiento ($t_s$) & $\le \qty{0.50}{\second}$ & Registro temporal a \qty{1}{\kilo\hertz} & Banda del $\pm 2\,\%$ \\
+        Error absoluto medio ($\text{MAE}_v$) & $\le \qty{0.05}{\meter\per\second}$ & Cálculo post-procesamiento & Régimen estacionario \\
+        Error cuadrático medio ($\text{RMSE}_v$) & $\le \qty{0.08}{\meter\per\second}$ & Análisis estadístico & Varianza reducida \\
+        Error de dirección ($e_{\delta,ss}$) & $\le \ang{1.0}$ & Medición con IMU & Alineación angular \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-Los resultados confirman que la estrategia de control en espacio de estados con precompensación directa logra satisfacer plenamente los requerimientos de respuesta transitoria y precisión estática fijados en la etapa de diseño.
+El cumplimiento de estos umbrales permitirá validar cuantitativamente que la estrategia de control en espacio de estados con precompensación directa satisface las especificaciones de diseño dinámico fijadas para la plataforma vehicular.

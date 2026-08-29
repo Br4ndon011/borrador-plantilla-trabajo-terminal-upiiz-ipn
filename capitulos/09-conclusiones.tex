@@ -3,16 +3,16 @@
 % Archivo: capitulos/09-conclusiones.tex
 % ==============================================================================
 
-\chapter{Conclusiones}
+\chapter{Resultados Esperados y Conclusiones del Protocolo}
 \label{cap:conclusiones}
 
-Con base en el desarrollo técnico, la integración mecatrónica y la evidencia cuantitativa obtenida durante las pruebas experimentales del vehículo a escala 1:10, se concluye lo siguiente:
+Con base en la formulación analítica, el plan de trabajo propuesto y la articulación sinérgica de las cuatro áreas de la ingeniería mecatrónica, se proyecta alcanzar los siguientes resultados y contribuciones al concluir las etapas de Trabajo Terminal I y II:
 
 \begin{enumerate}
-    \item \textbf{Cumplimiento del Objetivo Específico 1:} Se formuló con éxito el modelo dinámico continuo y discreto en espacio de estados que representa de forma precisa el comportamiento del motor de tracción y el mecanismo de dirección Ackermann, validando analíticamente los parámetros electromecánicos mediante pruebas de caracterización de banco.
-    \item \textbf{Cumplimiento del Objetivo Específico 2:} Se demostró formalmente que el sistema es completamente controlable y observable bajo la estructura de sensado propuesta, permitiendo diseñar la matriz de ganancias de realimentación $\mathbf{K}$ que ubicó los polos en lazo cerrado para lograr un tiempo de establecimiento menor a \qty{0.40}{\second} sin exceder los límites de saturación de tensión del puente H.
-    \item \textbf{Cumplimiento del Objetivo Específico 3:} Se integró una arquitectura mecatrónica compacta y modular sobre el chasis 1:10, incorporando sensores de efecto Hall/encoder, unidad inercial, regulación de potencia aislada y firmware determinista en C++ ejecutado a \qty{1}{\kilo\hertz} en un microcontrolador de 32 bits.
-    \item \textbf{Cumplimiento del Objetivo Específico 4:} La validación experimental confirmó que el sistema mantiene la velocidad regulada con un error absoluto medio de $\qty{0.021}{\meter\per\second}$ ($\text{MAE}_v$) y un sobrepaso del $6.4\,\%$, cumpliendo holgadamente con las tolerancias estipuladas en la matriz de requerimientos y recuperando el régimen estacionario en menos de \qty{0.45}{\second} ante perturbaciones súbitas de carga.
+    \item \textbf{Proyección respecto al Objetivo Específico 1:} Se obtendrá una representación dinámica continua y discreta en espacio de estados que modele con fidelidad el comportamiento acoplado del tren de tracción y del mecanismo de dirección Ackermann, sustentada en la identificación paramétrica experimental de los componentes electromecánicos.
+    \item \textbf{Proyección respecto al Objetivo Específico 2:} Se demostrará la controlabilidad y observabilidad del sistema mecatrónico, sintetizando la matriz de ganancias de realimentación $\mathbf{K}$ que garantizará una respuesta transitoria rápida ($t_s \le \qty{0.50}{\second}$) con un sobrepaso controlado ($M_p \le 10\,\%$) y sin saturación excesiva de las etapas de potencia.
+    \item \textbf{Proyección respecto al Objetivo Específico 3:} Se consolidará una plataforma vehicular a escala 1:10 instrumentada, modular y reproducible, con electrónica de potencia aislada y firmware determinista en lenguaje C++ ejecutado a \qty{1}{\kilo\hertz} sobre un microcontrolador de 32 bits.
+    \item \textbf{Proyección respecto al Objetivo Específico 4:} Se establecerá un protocolo de validación experimental cuantificable que permitirá verificar en pista el cumplimiento de los márgenes de error especificados ($\text{MAE}_v \le \qty{0.05}{\meter\per\second}$, $\text{RMSE}_v \le \qty{0.08}{\meter\per\second}$), evaluando la capacidad de rechazo ante perturbaciones y la robustez del sistema ante caídas de tensión de la batería.
 \end{enumerate}
 
-En síntesis, la formulación del proyecto bajo la Línea IV de la UPIIZ-IPN demuestra la eficacia de articular de manera interdisciplinaria el modelado analítico de control con el diseño e implementación física de sistemas mecatrónicos.
+En conclusión, la ejecución del proyecto bajo los lineamientos de la Línea IV de la UPIIZ-IPN proporcionará un banco de pruebas mecatrónico de alto valor académico, sirviendo de base experimental sólida para futuras investigaciones en sistemas de control y vehículos inteligentes.

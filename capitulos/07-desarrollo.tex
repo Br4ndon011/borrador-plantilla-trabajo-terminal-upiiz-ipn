@@ -6,34 +6,34 @@
 \chapter{Desarrollo del Sistema Mecatrónico}
 \label{cap:desarrollo}
 
-En este capítulo se describe la arquitectura mecatrónica general, el modelado paramétrico, la selección e integración de componentes y la formulación discreta de la ley de control en espacio de estados.
+En este capítulo se describe la arquitectura mecatrónica propuesta, la metodología de modelado paramétrico, los criterios de selección e integración de componentes y la formulación discreta de la ley de control en espacio de estados que se implementará.
 
 % ------------------------------------------------------------------------------
-\section{Arquitectura general del sistema y flujo funcional}
+\section{Arquitectura general del sistema y flujo funcional propuesto}
 \label{sec:desarrollo-arquitectura}
 
-El sistema mecatrónico opera bajo una estructura de lazo cerrado en tiempo real cuyo flujo de información secuencial se estructura de la siguiente manera:
+El sistema mecatrónico operará bajo una estructura de lazo cerrado en tiempo real cuyo flujo de información secuencial se organizará de la siguiente manera:
 \begin{enumerate}
-    \item \textbf{Sensado y Adquisición:} La velocidad angular de tracción $\omega_m(t)$ es capturada mediante interrupciones de cuadratura generadas por un encoder óptico incremental ($1024\text{ PPR}$), mientras que la tasa de guiñada $\dot{\psi}(t)$ y la aceleración longitudinal son medidas por una IMU vía bus I2C a \qty{400}{\kilo\hertz}.
-    \item \textbf{Filtrado y Procesamiento:} Las señales analógicas y digitales son procesadas por un filtro digital pasabajas Butterworth de segundo orden para atenuar el ruido de vibración mecánica.
-    \item \textbf{Cálculo del Vector de Estados:} Se ensambla el vector $\mathbf{x}(k) = [v(k) \quad i_a(k) \quad \delta(k)]\transp$ en el microcontrolador.
-    \item \textbf{Evaluación de la Ley de Control:} Se calcula la acción de control $\mathbf{u}(k) = -\mathbf{K}\mathbf{x}(k) + \mathbf{N}\mathbf{r}(k)$ dentro de la rutina de servicio de interrupción del temporizador principal ($T_s = \qty{1}{\milli\second}$).
-    \item \textbf{Actuación y Modulación:} Se generan señales PWM complementarias hacia el puente H del motor DC y pulsos periódicos de \qty{50}{\hertz} (\qty{1.0}{\milli\second} a \qty{2.0}{\milli\second}) para el servomotor de dirección.
+    \item \textbf{Sensado y Adquisición:} La velocidad angular de tracción $\omega_m(t)$ se medirá mediante interrupciones de cuadratura generadas por un encoder óptico incremental ($1024\text{ PPR}$), mientras que la tasa de guiñada $\dot{\psi}(t)$ y la aceleración longitudinal se adquirirán a través de una IMU comunicada vía bus I2C a \qty{400}{\kilo\hertz}.
+    \item \textbf{Filtrado y Procesamiento:} Las señales sensoriales se procesarán mediante un filtro digital pasabajas Butterworth de segundo orden para atenuar el ruido originado por vibraciones mecánicas del chasis.
+    \item \textbf{Cálculo del Vector de Estados:} Se ensamblará periódicamente el vector de estados discreto $\mathbf{x}(k) = [v(k) \quad i_a(k) \quad \delta(k)]\transp$ en la memoria del microcontrolador.
+    \item \textbf{Evaluación de la Ley de Control:} Se computará la acción de control $\mathbf{u}(k) = -\mathbf{K}\mathbf{x}(k) + \mathbf{N}\mathbf{r}(k)$ dentro de la rutina de servicio de interrupción del temporizador principal ($T_s = \qty{1}{\milli\second}$).
+    \item \textbf{Actuación y Modulación:} Se generarán señales PWM complementarias hacia el puente H del motor DC de tracción y pulsos periódicos de \qty{50}{\hertz} (\qty{1.0}{\milli\second} a \qty{2.0}{\milli\second}) para el servomotor de dirección.
 \end{enumerate}
 
 % ------------------------------------------------------------------------------
 \section{Matriz de requerimientos y especificaciones de diseño}
 \label{sec:desarrollo-especificaciones}
 
-En la \tabref{tab:especificaciones-diseno} se resumen las especificaciones cuantitativas que norman el diseño del sistema de control y la selección de hardware.
+En la \tabref{tab:especificaciones-diseno} se establecen las especificaciones cuantitativas de desempeño que normarán el diseño analítico del sistema de control y la selección de componentes de hardware.
 
 \begin{table}[htbp]
     \centering
-    \caption{Especificaciones cuantitativas de desempeño para el vehículo 1:10.}
+    \caption{Especificaciones cuantitativas de desempeño objetivo para el vehículo 1:10.}
     \label{tab:especificaciones-diseno}
     \begin{tabular}{llr}
         \toprule
-        \textbf{Parámetro de Desempeño} & \textbf{Símbolo / Métrica} & \textbf{Valor Especificado} \\
+        \textbf{Parámetro de Desempeño} & \textbf{Símbolo / Métrica} & \textbf{Valor Objetivo} \\
         \midrule
         Rango de velocidad longitudinal & $v(t)$ & $\qty{0.2}{\meter\per\second}$ a $\qty{2.0}{\meter\per\second}$ \\
         Rango angular de dirección & $\delta(t)$ & $\ang{-25}$ a $\ang{+25}$ \\
@@ -48,7 +48,7 @@ En la \tabref{tab:especificaciones-diseno} se resumen las especificaciones cuant
 \end{table}
 
 % ------------------------------------------------------------------------------
-\section{Diseño e integración de subsistemas}
+\section{Plan de diseño e integración de subsistemas}
 \label{sec:desarrollo-integracion}
 
-La integración física del prototipo se realizó sobre un chasis de tracción trasera escala 1:10 con diferencial mecánico. Los soportes del sensor encoder, la bahía de la batería y la plataforma para la tarjeta electrónica de control se diseñaron en SolidWorks y se manufacturaron en ácido poliláctico (PLA) mediante impresión 3D con una densidad de relleno del $60\,\%$, garantizando rigidez estructural ante aceleraciones transitorias.
+La integración física del prototipo se llevará a cabo sobre un chasis de tracción trasera escala 1:10 con diferencial mecánico. Los soportes del sensor encoder, la bahía de la batería y la plataforma para la tarjeta electrónica de control se diseñarán en SolidWorks y se manufacturarán en ácido poliláctico (PLA) mediante impresión 3D con una densidad de relleno del $60\,\%$, asegurando rigidez estructural ante esfuerzos dinámicos y vibraciones durante las pruebas en pista.
