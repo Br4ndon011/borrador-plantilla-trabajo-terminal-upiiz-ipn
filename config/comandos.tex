@@ -3,7 +3,8 @@
 % Archivo: config/comandos.tex
 % ==============================================================================
 % Macros, lógica de selección de tipo de documento (PROTOCOLO / TTI / TTII),
-% despacho de portadas, firmas dinámicas y referencias cruzadas.
+% validación entre Línea de Trabajo y número de alumnos, despacho de portadas,
+% firmas dinámicas y referencias cruzadas.
 % ==============================================================================
 
 \usepackage{etoolbox}
@@ -16,7 +17,7 @@
 \newif\ifTTI
 \newif\ifTTII
 
-% Macro principal de configuración
+% Macro principal de configuración de tipo de documento
 \newcommand{\TipoDocumento}[1]{%
   \edef\tipoDocParam{\detokenize{#1}}%
   \Protocolofalse
@@ -93,8 +94,10 @@
 }
 
 % ------------------------------------------------------------------------------
-% 2. VALIDACIÓN DE CAMPOS OBLIGATORIOS (ADVERTENCIAS EN LOG)
+% 2. VALIDACIÓN DE CAMPOS OBLIGATORIOS Y NORMATIVA DE LÍNEA DE TRABAJO
 % ------------------------------------------------------------------------------
+\newcounter{totalAlumnosRegistrados}
+
 \newcommand{\validarDatosDocumento}{%
   \ifcsvoid{tituloProyecto}{%
     \PackageWarning{PlantillaUPIIZ}{Falta definir \protect\tituloProyecto en config/datos.tex}%
@@ -105,6 +108,32 @@
   \ifcsvoid{asesorANombre}{%
     \PackageWarning{PlantillaUPIIZ}{Falta definir \protect\asesorANombre en config/datos.tex}%
   }{}%
+  
+  % Conteo de alumnos registrados
+  \setcounter{totalAlumnosRegistrados}{0}%
+  \ifcsvoid{alumnoANombre}{}{\stepcounter{totalAlumnosRegistrados}}%
+  \ifcsvoid{alumnoBNombre}{}{\stepcounter{totalAlumnosRegistrados}}%
+  \ifcsvoid{alumnoCNombre}{}{\stepcounter{totalAlumnosRegistrados}}%
+  
+  % Validación de Línea de Trabajo
+  \ifundef{\NumeroLineaTrabajo}{%
+    \PackageWarning{PlantillaUPIIZ}{Falta configurar \protect\LineaTrabajo en config/datos.tex (Opciones: I, II, III, IV, V, VI).}%
+  }{%
+    \ifLineaTrabajoValida
+      \ifnumcomp{\value{totalAlumnosRegistrados}}{>}{\MaximoAlumnosLineaTrabajo}{%
+        \PackageWarning{PlantillaUPIIZ}{%
+          ADVERTENCIA: La Línea de Trabajo \NumeroLineaTrabajo\space admite un máximo de \MaximoAlumnosLineaTrabajo\space alumnos %
+          conforme al Anexo 1 del Reglamento Interno de Trabajo Terminal. %
+          Actualmente se tienen \arabic{totalAlumnosRegistrados} alumnos registrados.%
+        }%
+      }{}%
+    \else
+      \PackageWarning{PlantillaUPIIZ}{%
+        Línea de trabajo no válida (\NumeroLineaTrabajo). Las opciones permitidas son: I, II, III, IV, V y VI.%
+      }%
+    \fi
+  }%
+  
   \ifProtocolo
     \ifcsvoid{areaUbicacion}{%
       \PackageWarning{PlantillaUPIIZ}{Para PROTOCOLO se sugiere definir \protect\areaUbicacion en config/datos.tex}%
@@ -138,7 +167,7 @@
 \newcommand{\imprimirAsesoresPortada}{%
   \begin{minipage}[t]{0.9\textwidth}
     \centering\fontsize{13}{16}\selectfont
-    \textbf{Asesor(es):}\\[0.5em]
+    \textbf{Dirección / Asesoría:}\\[0.5em]
     \asesorANombre%
     \ifcsvoid{asesorBNombre}{}{%
       \\[0.3em]\asesorBNombre%
@@ -149,31 +178,29 @@
   \end{minipage}%
 }
 
-% Línea de firma para portada interna
+% Línea para firmas en la Portada Interna
 \newcommand{\lineaFirma}[2]{%
-  \parbox[t]{0.42\textwidth}{%
+  \begin{minipage}[t]{0.45\textwidth}
     \centering
-    \vspace{2.5em}
-    \rule{0.38\textwidth}{0.6pt}\\
-    \textbf{#1}\\[0.2em]
-    {\small #2}
-  }%
+    \vspace{1.0cm}
+    \underline{\hspace{6.0cm}}\\[0.3em]
+    {\fontsize{10}{12}\bfseries\sffamily #1}\\[0.2em]
+    {\fontsize{9}{11}\sffamily #2}
+  \end{minipage}%
 }
 
 % ------------------------------------------------------------------------------
-% 4. COMANDOS RÁPIDOS DE REFERENCIAS CRUZADAS
+% 4. COMANDOS AUXILIARES DE REFERENCIAS CRUZADAS Y NOTACIÓN MECATRÓNICA
 % ------------------------------------------------------------------------------
 \newcommand{\figref}[1]{Figura~\ref{#1}}
 \newcommand{\tabref}[1]{Tabla~\ref{#1}}
-\newcommand{\secref}[1]{Sección~\ref{#1}}
+\newcommand{\eqrefsec}[1]{Ecuación~(\ref{#1})}
 \newcommand{\capref}[1]{Capítulo~\ref{#1}}
+\newcommand{\secref}[1]{Sección~\ref{#1}}
 \newcommand{\apref}[1]{Apéndice~\ref{#1}}
-\newcommand{\eqrefcmd}[1]{Ecuación~\eqref{#1}}
 
-% ------------------------------------------------------------------------------
-% 5. COMANDOS MECATRÓNICOS Y MATEMÁTICOS COMUNES
-% ------------------------------------------------------------------------------
-\newcommand{\matriz}[1]{\begin{bmatrix}#1\end{bmatrix}}
-\newcommand{\vectorv}[1]{\begin{pmatrix}#1\end{pmatrix}}
-\newcommand{\transp}{^{\mathsf{T}}}
-\newcommand{\inv}{^{-1}}
+% Notación matemática y vectorial
+\newcommand{\matriz}[1]{\mathbf{#1}}
+\newcommand{\vectorv}[1]{\mathbf{#1}}
+\newcommand{\transp}{^{\top}}
+\newcommand{\inversa}{^{-1}}

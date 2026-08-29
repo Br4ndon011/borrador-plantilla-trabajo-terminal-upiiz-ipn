@@ -1,0 +1,71 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: config/lineas-trabajo.tex
+% ==============================================================================
+% CATÁLOGO OFICIAL DE LÍNEAS DE TRABAJO INSTITUCIONALES (ANEXO 1)
+% Programa Académico de Ingeniería Mecatrónica — UPIIZ IPN
+%
+% Este archivo define el catálogo oficial inmutable de las 6 Líneas de Trabajo.
+% El estudiante selecciona su línea mediante el comando \LineaTrabajo{...} en
+% config/datos.tex sin necesidad de modificar este archivo.
+% ==============================================================================
+
+\usepackage{etoolbox}
+
+\newif\ifLineaTrabajoValida
+\LineaTrabajoValidafalse
+
+\newcommand{\LineaTrabajo}[1]{%
+  \def\NumeroLineaTrabajo{#1}%
+  \ifstrequal{#1}{I}{%
+    \LineaTrabajoValidatrue
+    \def\NombreLineaTrabajo{Diseño e implementación de un sistema robótico, dispositivos o sistemas Mecatrónicos.}%
+    \def\EntregableLineaTrabajo{Prototipo, Interfaz Hombre-Máquina.}%
+    \def\DescripcionLineaTrabajo{Las 4 áreas de la Mecatrónica se desarrollan con el mismo grado de complejidad y detalle.}%
+    \def\MaximoAlumnosLineaTrabajo{3}%
+  }{%
+  \ifstrequal{#1}{II}{%
+    \LineaTrabajoValidatrue
+    \def\NombreLineaTrabajo{Diseño e implementación de una máquina o mecanismo.}%
+    \def\EntregableLineaTrabajo{Prototipo, Interfaz Hombre-Máquina.}%
+    \def\DescripcionLineaTrabajo{Énfasis en la mecánica y menor complejidad en las demás áreas.}%
+    \def\MaximoAlumnosLineaTrabajo{2}%
+  }{%
+  \ifstrequal{#1}{III}{%
+    \LineaTrabajoValidatrue
+    \def\NombreLineaTrabajo{Diseño e implementación de componentes o sistemas electrónicos.}%
+    \def\EntregableLineaTrabajo{Prototipo, Interfaz Hombre-Máquina.}%
+    \def\DescripcionLineaTrabajo{Énfasis en la electrónica y menor complejidad en las demás áreas.}%
+    \def\MaximoAlumnosLineaTrabajo{2}%
+  }{%
+  \ifstrequal{#1}{IV}{%
+    \LineaTrabajoValidatrue
+    \def\NombreLineaTrabajo{Diseño e implementación de sistemas o técnicas de control.}%
+    \def\EntregableLineaTrabajo{Prototipo, Interfaz Hombre-Máquina.}%
+    \def\DescripcionLineaTrabajo{Énfasis en el control y menor complejidad en las demás áreas.}%
+    \def\MaximoAlumnosLineaTrabajo{2}%
+  }{%
+  \ifstrequal{#1}{V}{%
+    \LineaTrabajoValidatrue
+    \def\NombreLineaTrabajo{Diseño y desarrollo de software para el control de sistemas o procesos.}%
+    \def\EntregableLineaTrabajo{Software, Interfaz Hombre-Máquina y prototipo.}%
+    \def\DescripcionLineaTrabajo{Énfasis en la programación y menor complejidad en las demás áreas.}%
+    \def\MaximoAlumnosLineaTrabajo{2}%
+  }{%
+  \ifstrequal{#1}{VI}{%
+    \LineaTrabajoValidatrue
+    \def\NombreLineaTrabajo{Puesta en operación, optimización o automatización de un proceso o sistema industrial.}%
+    \def\EntregableLineaTrabajo{Proceso o sistema industrial en operación.}%
+    \def\DescripcionLineaTrabajo{Puesta en operación y automatización de procesos industriales.}%
+    \def\MaximoAlumnosLineaTrabajo{2}%
+  }{%
+    \LineaTrabajoValidafalse
+    \def\NombreLineaTrabajo{Línea de trabajo no válida}%
+    \def\EntregableLineaTrabajo{}%
+    \def\DescripcionLineaTrabajo{}%
+    \def\MaximoAlumnosLineaTrabajo{0}%
+    \PackageWarning{PlantillaUPIIZ}{%
+      Línea de trabajo '#1' no válida. Las opciones permitidas son: I, II, III, IV, V y VI.%
+    }%
+  }}}}}}%
+}

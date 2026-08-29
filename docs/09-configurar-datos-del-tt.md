@@ -10,16 +10,16 @@ Al inicio de `config/datos.tex`, encontrarás la instrucción principal de confi
 
 ```latex
 % Opciones válidas: PROTOCOLO | TTI | TTII
-\TipoDocumento{TTI}
+\TipoDocumento{PROTOCOLO}
 ```
 
 ### Opciones disponibles:
 
 1. **`\TipoDocumento{PROTOCOLO}` (Protocolo de Trabajo Terminal):**
-   - Carga automáticamente la portada oficial de registro de protocolo.
-   - Muestra el **Área de ubicación**, **Línea de trabajo** e **Intención de titulación**.
-   - **No incluye portada interna de defensa ni firmas de sínodo.**
-   - Oculta Agradecimientos, Dedicatorias y Trabajo a Futuro.
+   - Carga automáticamente la portada oficial reglamentaria con franja institucional.
+   - Muestra el **Área de ubicación**, **Línea de Trabajo** e **Intención de titulación**.
+   - **No incluye portada interna de firmas de sínodo.**
+   - Oculta Agradecimientos, Dedicatorias y el Capítulo 10 (*Trabajo a futuro*).
 
 2. **`\TipoDocumento{TTI}` (Trabajo Terminal I - Diseño Detallado):**
    - Carga automáticamente la portada de Trabajo Terminal con el rótulo:
@@ -40,35 +40,58 @@ Al inicio de `config/datos.tex`, encontrarás la instrucción principal de confi
 
 ---
 
-## 2. Título, Área y Línea de Investigación
+## 2. Seleccionar la Línea de Trabajo (Anexo 1 Institucional)
+
+La denominación oficial institucional es **LÍNEA DE TRABAJO** (no usar *"Línea de investigación"*).
+
+Para seleccionarla en `config/datos.tex`, escribe únicamente el identificador romano:
 
 ```latex
-\newcommand{\tituloProyecto}{Diseño e Integración de un Sistema Mecatrónico de Posicionamiento Angular}
-\newcommand{\tituloIngles}{Design and Integration of an Angular Positioning Mechatronic System}
-
-% Campos específicos para PROTOCOLO (dejar como aplique a su registro):
-\newcommand{\areaUbicacion}{Ingeniería Mecatrónica}
-\newcommand{\intencionTitulacion}{Opción curricular / Trabajo Terminal}
+\LineaTrabajo{IV}
 ```
 
-Selecciona una de las 6 líneas de investigación registradas en la UPIIZ:
-```latex
-\newcommand{\lineaTrabajo}{Línea de investigación: IV. Diseño e implementación de sistemas o técnicas de control.}
-```
+### Catálogo oficial institucional de Líneas de Trabajo:
 
-Las 6 líneas institucionales aprobadas son:
-1. *I. Diseño e implementación de un sistema robótico, dispositivos o sistemas mecatrónicos.*
-2. *II. Diseño e implementación de una máquina o mecanismo.*
-3. *III. Diseño e implementación de componentes o sistemas electrónicos.*
-4. *IV. Diseño e implementación de sistemas o técnicas de control.*
-5. *V. Diseño y desarrollo de software para el control de sistemas o procesos.*
-6. *VI. Puesta en operación, optimización o automatización de un proceso o sistema industrial.*
+| Clave | Línea de Trabajo Oficial | Máximo de alumnos | Entregable principal | Característica institucional |
+|:---:|---|:---:|---|---|
+| **I** | Diseño e implementación de un sistema robótico, dispositivos o sistemas Mecatrónicos | **3** | Prototipo, Interfaz Hombre-Máquina | Las 4 áreas de la Mecatrónica se desarrollan con el mismo grado de complejidad y detalle. |
+| **II** | Diseño e implementación de una máquina o mecanismo | **2** | Prototipo, Interfaz Hombre-Máquina | Énfasis en la mecánica y menor complejidad en las demás áreas. |
+| **III** | Diseño e implementación de componentes o sistemas electrónicos | **2** | Prototipo, Interfaz Hombre-Máquina | Énfasis en la electrónica y menor complejidad en las demás áreas. |
+| **IV** | Diseño e implementación de sistemas o técnicas de control | **2** | Prototipo, Interfaz Hombre-Máquina | Énfasis en el control y menor complejidad en las demás áreas. |
+| **V** | Diseño y desarrollo de software para el control de sistemas o procesos | **2** | Software, Interfaz Hombre-Máquina y prototipo | Énfasis en la programación y menor complejidad en las demás áreas. |
+| **VI** | Puesta en operación, optimización o automatización de un proceso o sistema industrial | **2** | Proceso o sistema industrial en operación | Puesta en operación y automatización de procesos industriales. |
+
+> **Nota institucional fundamental:** Todas las líneas de trabajo deben contemplar de forma articulada las **cuatro áreas de la Mecatrónica** (Mecánica, Electrónica, Control y Programación), independientemente de que alguna de ellas tenga mayor o menor peso.
+>
+> Las Líneas II, III, IV y V se consideran para diseño de productos de consumo, biomédicos, didácticos o de investigación.
+
+### Macros obtenidas automáticamente:
+Al configurar `\LineaTrabajo{IV}`, la plantilla define internamente:
+- `\NumeroLineaTrabajo` $\rightarrow$ `IV`
+- `\NombreLineaTrabajo` $\rightarrow$ `Diseño e implementación de sistemas o técnicas de control.`
+- `\EntregableLineaTrabajo` $\rightarrow$ `Prototipo, Interfaz Hombre-Máquina.`
+- `\MaximoAlumnosLineaTrabajo` $\rightarrow$ `2`
+- `\DescripcionLineaTrabajo` $\rightarrow$ `Énfasis en el control y menor complejidad en las demás áreas.`
 
 ---
 
-## 3. Configuración de Alumnos (1, 2 o 3 Integrantes)
+## 3. Título y Datos Generales del Proyecto
 
-La plantilla adapta dinámicamente el diseño y las líneas de firma en las portadas:
+```latex
+\newcommand{\tituloProyecto}{Título General del Trabajo Terminal de Ingeniería Mecatrónica}
+\newcommand{\tituloIngles}{General Title of the Mechatronics Engineering Terminal Project}
+
+% Campos específicos para PROTOCOLO:
+\newcommand{\areaUbicacion}{Ingeniería Mecatrónica}
+\newcommand{\intencionTitulacion}{Opción curricular / Trabajo Terminal}
+\newcommand{\fechaDefensa}{enero de 2026}
+```
+
+---
+
+## 4. Configuración de Alumnos (1, 2 o 3 Integrantes)
+
+La plantilla cuenta automáticamente el número de integrantes y valida que no exceda el máximo permitido por la Línea de Trabajo seleccionada:
 
 ### Caso A: Proyecto Individual (1 Alumno)
 ```latex
@@ -82,7 +105,7 @@ La plantilla adapta dinámicamente el diseño y las líneas de firma en las port
 \newcommand{\alumnoCBoleta}{}
 ```
 
-### Caso B: Equipo de 2 Alumnos
+### Caso B: Equipo de 2 Alumnos (Válido para Líneas I a VI)
 ```latex
 \newcommand{\alumnoANombre}{Mariana Robles Reynoso}
 \newcommand{\alumnoABoleta}{2020670001}
@@ -94,7 +117,7 @@ La plantilla adapta dinámicamente el diseño y las líneas de firma en las port
 \newcommand{\alumnoCBoleta}{}
 ```
 
-### Caso C: Equipo de 3 Alumnos
+### Caso C: Equipo de 3 Alumnos (Exclusivo para Línea I)
 ```latex
 \newcommand{\alumnoANombre}{Mariana Robles Reynoso}
 \newcommand{\alumnoABoleta}{2020670001}
@@ -108,19 +131,19 @@ La plantilla adapta dinámicamente el diseño y las líneas de firma en las port
 
 ---
 
-## 4. Configuración de Asesores (1 a 3 Asesores)
+## 5. Configuración de Asesores (1 a 3 Asesores)
 
 ```latex
 \newcommand{\asesorANombre}{M. en C. Rafael Reveles Martínez}
-\newcommand{\asesorBNombre}{Dra. Ma. Auxiliadora Araiza Esquivel}
+\newcommand{\asesorBNombre}{Mtro. José Refugio Campos Flores}
 \newcommand{\asesorCNombre}{}
 ```
 
 ---
 
-## 5. Jurado Evaluador / Sínodo (Para TT I y TT II)
+## 6. Jurado Evaluador / Sínodo (Para TT I y TT II)
 
-Estos nombres aparecerán en la Portada Interna con sus respectivas líneas de firma:
+Aparecerán en la Portada Interna con sus respectivas líneas de firma:
 ```latex
 \newcommand{\juradoPresidente}{Dr. Umanel A. Hernández González}
 \newcommand{\juradoSecretario}{M. en C. Eleazar Pacheco Reyes}
@@ -131,6 +154,6 @@ Estos nombres aparecerán en la Portada Interna con sus respectivas líneas de f
 
 ---
 
-## 6. Próximo Paso
+## 7. Próximo Paso
 
 Continúa con la [Guía 10: Cómo Escribir los Capítulos](10-escribir-capitulos.md).

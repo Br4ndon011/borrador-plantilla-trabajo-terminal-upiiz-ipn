@@ -28,7 +28,7 @@ Si la dirección del IPN o la academia de la UPIIZ modifica los lineamientos:
   ```latex
   \setstretch{1.5}
   ```
-- **Agregar una Nueva Línea de Investigación:** Añade el texto en los comentarios de `config/datos.tex` y en la guía [09. Configurar Datos](09-configurar-datos-del-tt.md).
+- **Actualizar el Catálogo de Líneas de Trabajo:** Edita el catálogo oficial en `config/lineas-trabajo.tex`, los comentarios de `config/datos.tex` y la guía [09. Configurar Datos](../09-configurar-datos-del-tt.md).
 
 ---
 

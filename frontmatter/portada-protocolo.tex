@@ -34,8 +34,10 @@
         \ifcsvoid{areaUbicacion}{}{%
             \textbf{Área de ubicación:} \areaUbicacion\\[0.3em]
         }%
-        \ifcsvoid{lineaTrabajo}{}{%
-            \textbf{\lineaTrabajo}\\[0.3em]
+        \ifundef{\NumeroLineaTrabajo}{}{%
+            \ifLineaTrabajoValida
+                \textbf{Línea de Trabajo:} \NumeroLineaTrabajo. \NombreLineaTrabajo\\[0.3em]
+            \fi
         }%
         \ifcsvoid{intencionTitulacion}{}{%
             \textbf{Intención de titulación:} \intencionTitulacion\\[0.3em]

@@ -10,7 +10,7 @@
 % ==============================================================================
 % 1. SELECCIÓN DEL TIPO DE DOCUMENTO
 % ==============================================================================
-% Seleccione UNA de las siguientes opciones (descomente o modifique el valor):
+% Seleccione UNA de las siguientes opciones:
 %
 %   PROTOCOLO  -> Protocolo de Trabajo Terminal (registro de propuesta)
 %   TTI        -> Trabajo Terminal I (diseño detallado y propuesta)
@@ -19,9 +19,23 @@
 \TipoDocumento{PROTOCOLO}
 
 % ==============================================================================
-% 2. DATOS GENERALES DEL PROYECTO
+% 2. LÍNEA DE TRABAJO (ANEXO 1 INSTITUCIONAL)
 % ==============================================================================
-% Escriba el título completo en español e inglés:
+% Catálogo oficial de Líneas de Trabajo de la UPIIZ-IPN:
+%
+%   I   = Diseño e implementación de un sistema robótico, dispositivos o sistemas Mecatrónicos (máx. 3 alumnos)
+%   II  = Diseño e implementación de una máquina o mecanismo (máx. 2 alumnos)
+%   III = Diseño e implementación de componentes o sistemas electrónicos (máx. 2 alumnos)
+%   IV  = Diseño e implementación de sistemas o técnicas de control (máx. 2 alumnos)
+%   V   = Diseño y desarrollo de software para el control de sistemas o procesos (máx. 2 alumnos)
+%   VI  = Puesta en operación, optimización o automatización de un proceso o sistema industrial (máx. 2 alumnos)
+%
+% Seleccione únicamente el identificador (I, II, III, IV, V o VI):
+\LineaTrabajo{I}
+
+% ==============================================================================
+% 3. DATOS GENERALES DEL PROYECTO
+% ==============================================================================
 \newcommand{\tituloProyecto}{Título General del Trabajo Terminal de Ingeniería Mecatrónica}
 \newcommand{\tituloIngles}{General Title of the Mechatronics Engineering Terminal Project}
 
@@ -32,23 +46,16 @@
 % Ejemplos: "Opción curricular / Trabajo Terminal", "Tesis", "Proyecto de Investigación"
 \newcommand{\intencionTitulacion}{Opción curricular / Trabajo Terminal}
 
-% Líneas de investigación institucionales de la UPIIZ-IPN (seleccione la suya):
-% - Línea I:   Diseño e implementación de un sistema robótico, dispositivos o sistemas mecatrónicos.
-% - Línea II:  Automatización de procesos industriales.
-% - Línea III: Instrumentación y adquisición de datos.
-% - Línea IV:  Diseño e implementación de sistemas o técnicas de control.
-% - Línea V:   Sistemas bio-mecatrónicos y tecnología asistiva.
-\newcommand{\lineaTrabajo}{Línea de investigación: I. Diseño e implementación de un sistema robótico, dispositivos o sistemas mecatrónicos.}
-
 % Mes y año de presentación o defensa:
 \newcommand{\fechaDefensa}{enero de 2026}
 
 % ==============================================================================
-% 3. INTEGRANTES DEL PROYECTO (1, 2 O 3 ESTUDIANTES)
+% 4. INTEGRANTES DEL PROYECTO (1, 2 O 3 ESTUDIANTES)
 % ==============================================================================
 % Si su equipo tiene 1 integrante: complete Alumno A y deje B y C en blanco.
 % Si tiene 2 integrantes: complete Alumno A y B, y deje C en blanco.
 % Si tiene 3 integrantes: complete Alumno A, B y C.
+% (Nota: Las Líneas II a VI admiten un máximo de 2 alumnos; la Línea I admite hasta 3).
 
 \newcommand{\alumnoANombre}{Nombre Completo del Primer Alumno}
 \newcommand{\alumnoABoleta}{2020670001}
@@ -60,7 +67,7 @@
 \newcommand{\alumnoCBoleta}{}
 
 % ==============================================================================
-% 4. ASESORES / DIRECTORES DEL TRABAJO TERMINAL (1 A 3 ASESORES)
+% 5. ASESORES / DIRECTORES DEL TRABAJO TERMINAL (1 A 3 ASESORES)
 % ==============================================================================
 % Indique el grado académico oficial (Dr., M. en C., Mtro., Ing., etc.):
 \newcommand{\asesorANombre}{M. en C. Primer Asesor del Proyecto}
@@ -68,7 +75,7 @@
 \newcommand{\asesorCNombre}{}
 
 % ==============================================================================
-% 5. JURADO EVALUADOR / SÍNODO (APLICA PARA TT I Y TT II)
+% 6. JURADO EVALUADOR / SÍNODO (APLICA PARA TT I Y TT II)
 % ==============================================================================
 \newcommand{\juradoPresidente}{Dr. Presidente del Sínodo}
 \newcommand{\juradoSecretario}{M. en C. Secretario del Sínodo}
@@ -77,7 +84,7 @@
 \newcommand{\juradoTercerVocal}{} % Dejar en blanco si solo son 4 miembros
 
 % ==============================================================================
-% 6. DATOS INSTITUCIONALES (NO MODIFICAR SALVO DISPOSICIÓN OFICIAL)
+% 7. DATOS INSTITUCIONALES (NO MODIFICAR SALVO DISPOSICIÓN OFICIAL)
 % ==============================================================================
 \newcommand{\institucionNombre}{INSTITUTO POLITÉCNICO NACIONAL}
 \newcommand{\unidadAcademica}{UNIDAD PROFESIONAL INTERDISCIPLINARIA DE INGENIERÍA CAMPUS ZACATECAS}
