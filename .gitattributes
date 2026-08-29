@@ -1,0 +1,28 @@
+# ==============================================================================
+# .gitattributes — Plantilla Institucional de Trabajo Terminal UPIIZ-IPN
+# Normalización de saltos de línea (LF) y codificación UTF-8 multiplataforma
+# ==============================================================================
+
+# Manejo automático de texto por defecto
+* text=auto eol=lf
+
+# Código fuente LaTeX y bibliografía
+*.tex text eol=lf diff=tex
+*.bib text eol=lf
+*.cls text eol=lf diff=tex
+*.sty text eol=lf diff=tex
+
+# Documentación y datos estructurados
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.txt text eol=lf
+latexmkrc text eol=lf
+
+# Archivos binarios (imágenes)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.eps binary
+*.pdf binary

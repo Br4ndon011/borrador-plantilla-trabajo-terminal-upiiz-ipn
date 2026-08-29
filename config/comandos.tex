@@ -1,0 +1,93 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: config/comandos.tex
+% ==============================================================================
+% Macros y comandos auxiliares para la automatización de portada, jurado,
+% referencias cruzadas y lógica condicional.
+% ==============================================================================
+
+\usepackage{etoolbox}
+
+% ------------------------------------------------------------------------------
+% 1. COMANDOS DE IDENTIFICACIÓN DINÁMICA DE AUTORES
+% ------------------------------------------------------------------------------
+
+% Imprime los autores en la Portada Principal
+\newcommand{\imprimirAutoresPortada}{%
+    \begin{minipage}[t]{0.9\textwidth}
+        \centering\fontsize{13}{16}\selectfont
+        \textbf{Presenta(n):}\\[0.5em]
+        \alumnoANombre%
+        \ifcsvoid{alumnoBNombre}{}{%
+            \\[0.3em]\alumnoBNombre%
+        }%
+        \ifcsvoid{alumnoCNombre}{}{%
+            \\[0.3em]\alumnoCNombre%
+        }%
+    \end{minipage}%
+}
+
+% Imprime los asesores en la Portada Principal
+\newcommand{\imprimirAsesoresPortada}{%
+    \begin{minipage}[t]{0.9\textwidth}
+        \centering\fontsize{13}{16}\selectfont
+        \textbf{Asesor(es):}\\[0.5em]
+        \asesorANombre%
+        \ifcsvoid{asesorBNombre}{}{%
+            \\[0.3em]\asesorBNombre%
+        }%
+        \ifcsvoid{asesorCNombre}{}{%
+            \\[0.3em]\asesorCNombre%
+        }%
+    \end{minipage}%
+}
+
+% Línea de firma para portada interna
+\newcommand{\lineaFirma}[2]{%
+    \parbox[t]{0.42\textwidth}{%
+        \centering
+        \vspace{2.5em}
+        \rule{0.38\textwidth}{0.6pt}\\
+        \textbf{#1}\\[0.2em]
+        {\small #2}
+    }%
+}
+
+% ------------------------------------------------------------------------------
+% 2. TÍTULOS DINÁMICOS SEGÚN LA MODALIDAD TT I / TT II
+% ------------------------------------------------------------------------------
+
+\newcommand{\tituloValidacion}{%
+    \ifTTI
+        Análisis y validación del diseño%
+    \else
+        Análisis y validación de resultados%
+    \fi
+}
+
+\newcommand{\subtituloPortada}{%
+    \ifTTI
+        REPORTE TÉCNICO DE TRABAJO TERMINAL I%
+    \else
+        REPORTE FINAL DE TRABAJO TERMINAL%
+    \fi
+}
+
+% ------------------------------------------------------------------------------
+% 3. COMANDOS RÁPIDOS DE REFERENCIAS CRUZADAS
+% ------------------------------------------------------------------------------
+% Estos comandos generan referencias automáticas evitando escribir "Figura X" a mano.
+\newcommand{\figref}[1]{Figura~\ref{#1}}
+\newcommand{\tabref}[1]{Tabla~\ref{#1}}
+\newcommand{\secref}[1]{Sección~\ref{#1}}
+\newcommand{\capref}[1]{Capítulo~\ref{#1}}
+\newcommand{\apref}[1]{Apéndice~\ref{#1}}
+\newcommand{\eqrefcmd}[1]{Ecuación~\eqref{#1}}
+
+% ------------------------------------------------------------------------------
+% 4. COMANDOS MECATRÓNICOS Y MATEMÁTICOS COMUNES
+% ------------------------------------------------------------------------------
+\newcommand{\matriz}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\vectorv}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\transp}{^{\mathsf{T}}}
+\newcommand{\inv}{^{-1}}

@@ -1,0 +1,45 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: ejemplos/figuras.tex
+% ==============================================================================
+% Ejemplos prácticos para la inserción de figuras individuales, dobles y subfiguras.
+% ==============================================================================
+
+\section{Guía de ejemplos para figuras}
+\label{sec:ejemplo-figuras}
+
+% ------------------------------------------------------------------------------
+% 1. FIGURA INDIVIDUAL CON ANCHO AJUSTABLE
+% ------------------------------------------------------------------------------
+En la \figref{fig:ejemplo-individual} se ilustra una figura individual centrada con ancho definido respecto a \texttt{\textbackslash textwidth}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{figuras/institucional/upiiz.png}
+    \caption{Ejemplo de figura individual con ancho al $45\%$ del ancho de texto.}
+    \label{fig:ejemplo-individual}
+\end{figure}
+
+% ------------------------------------------------------------------------------
+% 2. SUBFIGURAS LADO A LADO (subcaption)
+% ------------------------------------------------------------------------------
+Para colocar dos o más figuras lado a lado con numeración (a), (b), utilice el entorno \texttt{subfigure} como se muestra en la \figref{fig:ejemplo-subfiguras}.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.42\textwidth}
+        \centering
+        \includegraphics[width=0.6\textwidth]{figuras/institucional/ipn.jpg}
+        \caption{Emblema del IPN.}
+        \label{fig:sub-ipn}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.42\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{figuras/institucional/upiiz.png}
+        \caption{Logotipo de la UPIIZ.}
+        \label{fig:sub-upiiz}
+    \end{subfigure}
+    \caption{Ejemplo de subfiguras lado a lado con etiquetas individuales.}
+    \label{fig:ejemplo-subfiguras}
+\end{figure}

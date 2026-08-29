@@ -1,0 +1,80 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: capitulos/07-desarrollo.tex
+% ==============================================================================
+
+\chapter{Desarrollo del trabajo}
+\label{cap:desarrollo}
+
+% ==============================================================================
+% REQUISITOS INSTITUCIONALES Y METODOLÓGICOS:
+%
+% PARA TRABAJO TERMINAL I:
+% Esta sección debe orientarse al DISEÑO DETALLADO del sistema mecatrónico.
+% Documente según la naturaleza de su proyecto:
+% - Especificaciones de diseño y tabla de requerimientos vs. métricas.
+% - Cálculos de ingeniería (esfuerzos, pares motores, consumos eléctricos).
+% - Selección y justificación técnica de componentes.
+% - Diseño mecánico y planos (manufactura, ensamble, tolerancias).
+% - Diseño electrónico y diagramas esquemáticos (potencia, control, sensado).
+% - Diseño de control y modelado matemático.
+% - Diseño de software, diagramas de flujo, algoritmos o máquinas de estados.
+% - Simulaciones computacionales y pruebas preliminares de concepto.
+% - Plan de manufactura y cronograma de TT II.
+%
+% NOTA: No es obligatorio incluir todos los elementos si alguno no aplica a la
+% naturaleza particular de su proyecto mecatrónico.
+%
+% PARA TRABAJO TERMINAL II:
+% Esta sección documenta la IMPLEMENTACIÓN Y PUESTA EN MARCHA:
+% - Fabricación de piezas mecánicas y ensamble físico.
+% - Ensamble de circuitos electrónicos y arneses de cableado.
+% - Programación definitiva y calibración del firmware.
+% - Puesta en operación, ajustes mecánicos y correcciones electrónicas justificadas.
+% ==============================================================================
+
+\section{Especificaciones de diseño y requerimientos}
+\label{sec:desarrollo-especificaciones}
+
+Para orientar el desarrollo de la ingeniería de detalle, se definen las especificaciones cuantitativas del sistema en la \tabref{tab:especificaciones-diseno}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Lista de especificaciones de diseño mecatrónico.}
+    \label{tab:especificaciones-diseno}
+    \begin{tabularx}{\textwidth}{l p{5cm} c c X}
+        \toprule
+        \textbf{Métrica} & \textbf{Descripción} & \textbf{Valor Marginal} & \textbf{Valor Ideal} & \textbf{Unidad} \\
+        \midrule
+        M1 & Error de posicionamiento angular & $\le 1.0$ & $\le 0.2$ & \unit{\degree} \\
+        M2 & Tiempo de respuesta transitorio & $\le 1.5$ & $\le 0.5$ & \unit{\second} \\
+        M3 & Consumo de potencia nominal & $\le 60$ & $\le 35$ & \unit{\watt} \\
+        M4 & Masa total del conjunto móvil & $\le 4.5$ & $\le 3.0$ & \unit{\kilo\gram} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Diseño y análisis mecánico}
+\label{sec:desarrollo-mecanico}
+
+% Escriba aquí el diseño mecánico, selección de materiales, cálculos estructurales...
+El diseño estructural se dimensionó para soportar las cargas estáticas y dinámicas operativas garantizando un factor de seguridad $n_s \ge 2.0$. Los cálculos de esfuerzos se realizaron considerando el límite de fluencia del material seleccionado:
+
+\begin{equation}
+    \sigma_{\text{adm}} = \frac{S_y}{n_s}
+    \label{eq:esfuerzo-adm}
+\end{equation}
+
+\noindent Los planos mecánicos de detalle y vistas en explosión se presentan en el \apref{ap:planos}.
+
+\section{Diseño electrónico y de potencia}
+\label{sec:desarrollo-electronico}
+
+% Escriba aquí la instrumentación, diagramas esquemáticos, PCB y alimentación...
+La etapa de potencia y el acondicionamiento sensorial se integraron en una tarjeta de circuito impreso dedicada. Se incorporaron protecciones contra sobretensión, diodos de libre rueda y aislamiento optoelectrónico en las líneas de conmutación.
+
+\section{Diseño del sistema de control y software}
+\label{sec:desarrollo-control-software}
+
+% Escriba aquí los algoritmos, máquinas de estado y código de control...
+La arquitectura de software se organizó mediante una máquina de estados finitos ejecutada de forma periódica con interrupciones por temporizador a una frecuencia de \qty{1}{\kilo\hertz}. Los cálculos de dimensionamiento y la formulación analítica se detallan en el \apref{ap:calculos}.

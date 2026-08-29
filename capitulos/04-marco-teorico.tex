@@ -1,0 +1,48 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: capitulos/04-marco-teorico.tex
+% ==============================================================================
+
+\chapter{Marco teórico}
+\label{cap:marco-teorico}
+
+% ==============================================================================
+% REQUISITO INSTITUCIONAL:
+% Extensión: Máximo TRES páginas.
+%
+% INSTRUCCIONES PEDAGÓGICAS:
+% Sintetice los conceptos teóricos, leyes físicas, modelos matemáticos, principios
+% de control y fundamentos de ingeniería necesarios para comprender el desarrollo.
+% NO transcriba libros de texto completos; concéntrese exclusivamente en los modelos
+% y ecuaciones que serán utilizados directamente en los capítulos de desarrollo y validación.
+% ==============================================================================
+
+\section{Fundamentos mecatrónicos y modelado físico}
+\label{sec:marco-modelado}
+
+% Escriba aquí la teoría y ecuaciones clave del sistema...
+El modelado dinámico de sistemas mecatrónicos permite predecir la respuesta temporal y frecuencial de los actuadores y mecanismos ante entradas de control y perturbaciones externas. Para un sistema mecánico con traslación o rotación, las ecuaciones de movimiento se derivan a partir de las leyes de Newton-Euler o la formulación de Euler-Lagrange:
+
+\begin{equation}
+    \frac{d}{dt}\left( \frac{\partial L}{\partial \dot{q}} \right) - \frac{\partial L}{\partial q} = \tau
+    \label{eq:lagrange}
+\end{equation}
+
+\noindent donde $L = K - P$ representa el Lagrangiano del sistema (diferencia entre energía cinética $K$ y energía potencial $P$), $q$ son las coordenadas generalizadas y $\tau$ corresponde al vector de fuerzas o pares generalizados aplicados por los actuadores.
+
+\section{Estrategias de control y estabilidad}
+\label{sec:marco-control}
+
+La ley de control se diseña para garantizar la estabilidad del sistema en lazo cerrado, minimizando el error en régimen permanente y optimizando el tiempo de establecimiento. Un esquema clásico de control proporcional-integral-derivativo (PID) en el dominio del tiempo se expresa como:
+
+\begin{equation}
+    u(t) = K_p \, e(t) + K_i \int_{0}^{t} e(\tau)\,d\tau + K_d \, \frac{de(t)}{dt}
+    \label{eq:pid}
+\end{equation}
+
+\noindent donde $u(t)$ es la señal de control, $e(t) = r(t) - y(t)$ representa el error de seguimiento entre la referencia $r(t)$ y la salida medida $y(t)$, y $K_p$, $K_i$, $K_d$ son las ganancias del controlador.
+
+\section{Instrumentación y adquisición de datos}
+\label{sec:marco-instrumentacion}
+
+El acondicionamiento de señales y el filtrado digital resultan indispensables para eliminar ruido de alta frecuencia proveniente de los sensores. La discretización de señales analógicas se rige por el teorema de muestreo de Nyquist-Shannon, garantizando una frecuencia de muestreo $f_s \ge 2 f_{\max}$.

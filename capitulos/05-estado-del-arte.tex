@@ -1,0 +1,55 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: capitulos/05-estado-del-arte.tex
+% ==============================================================================
+
+\chapter{Estado del arte}
+\label{cap:estado-del-arte}
+
+% ==============================================================================
+% REQUISITO INSTITUCIONAL:
+% Extensión: Máximo CUATRO páginas.
+%
+% INSTRUCCIONES PEDAGÓGICAS:
+% Realice una revisión crítica y comparativa de las tecnologías, productos comerciales,
+% patentes y publicaciones científicas recientes (últimos 5 años preferentemente)
+% relacionadas directamente con el problema que resuelve su proyecto.
+%
+% No se limite a listar artículos; elabore un análisis comparativo destacando:
+% - Ventajas y desventajas de cada enfoque existente.
+% - Parámetros de desempeño, costos, complejidad y limitaciones.
+% - La brecha tecnológica u oportunidad que justifica la solución propuesta en este TT.
+% ==============================================================================
+
+\section{Tecnologías y soluciones existentes}
+\label{sec:arte-tecnologias}
+
+% Escriba aquí la revisión de soluciones comerciales y académicas...
+En el ámbito internacional, el desarrollo de soluciones mecatrónicas para este tipo de aplicaciones ha experimentado un crecimiento notable impulsado por avances en microelectrónica y algoritmos de optimización. Diversos autores han propuesto arquitecturas basadas en controladores lógicos programables, microcontroladores de 32 bits y computadoras de placa reducida (SBC) \cite{ogata2010modern, arizona2023embedded}.
+
+Asimismo, en la literatura especializada se reportan implementaciones con diferentes grados de autonomía y precisión, empleando esquemas de comunicación inalámbrica y protocolos industriales \cite{smith2022control, ieee2021robotics}.
+
+\section{Comparativa técnica de enfoques}
+\label{sec:arte-comparativa}
+
+A fin de situar la presente propuesta frente a las alternativas documentadas, la \tabref{tab:comparativa-arte} resume las principales características operativas de las tecnologías analizadas.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Comparación técnica de tecnologías y enfoques existentes.}
+    \label{tab:comparativa-arte}
+    \begin{tabularx}{\textwidth}{p{3.0cm} X X p{3.2cm}}
+        \toprule
+        \textbf{Enfoque / Solución} & \textbf{Ventajas} & \textbf{Desventajas} & \textbf{Aplicabilidad en este TT} \\
+        \midrule
+        Sistemas comerciales propietarios & Alta robustez y soporte de fábrica & Costo elevado y nula personalización & Limitada para fines académicos \\
+        Plataformas abiertas modulares & Bajo costo y alta flexibilidad & Mayor complejidad de integración & Base fundamental de este trabajo \\
+        Control clásico analógico & Simplicidad circuital & Sensibilidad a ruido y deriva térmica & Superado por control digital \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Oportunidad y aportación de la propuesta}
+\label{sec:arte-oportunidad}
+
+A partir de la revisión realizada, se identifica una oportunidad de desarrollo enfocada en optimizar la relación costo-rendimiento mediante la integración de hardware de procesamiento accesible y técnicas de control robustas adaptadas a las condiciones operativas locales.

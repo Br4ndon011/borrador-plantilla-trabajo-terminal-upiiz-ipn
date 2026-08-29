@@ -1,0 +1,72 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: frontmatter/portada-interna.tex
+% ==============================================================================
+% Portada interna con registro de firmas de alumnos, asesores y jurado evaluador.
+% ==============================================================================
+
+\begin{titlepage}
+\thispagestyle{empty}
+\newgeometry{left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.0cm}
+
+\begin{center}
+    {\fontsize{15}{18}\bfseries\sffamily \institucionNombre}\\[0.4em]
+    {\fontsize{11}{14}\bfseries\sffamily \unidadAcademica\ (\siglasUnidad)}\\[0.3em]
+    {\fontsize{12}{15}\bfseries\sffamily PROGRAMA ACADÉMICO DE \programaAcademico}\\[0.8em]
+
+    {\fontsize{14}{17}\bfseries\sffamily ``\tituloProyecto''}\\[0.5em]
+    {\fontsize{10}{13}\sffamily \lineaTrabajo}\\[1.0em]
+
+    % --- Firmas de Alumnos ---
+    {\fontsize{11}{14}\bfseries\sffamily Integrantes del Proyecto:}\\[0.2em]
+    \noindent
+    \begin{minipage}{\textwidth}
+        \centering
+        \lineaFirma{\alumnoANombre}{Boleta: \alumnoABoleta}%
+        \ifcsvoid{alumnoBNombre}{}{%
+            \hfill
+            \lineaFirma{\alumnoBNombre}{Boleta: \alumnoBBoleta}%
+        }%
+        \ifcsvoid{alumnoCNombre}{}{%
+            \\[0.5em]
+            \lineaFirma{\alumnoCNombre}{Boleta: \alumnoCBoleta}%
+        }%
+    \end{minipage}\\[1.2em]
+
+    % --- Firmas de Asesores ---
+    {\fontsize{11}{14}\bfseries\sffamily Dirección / Asesoría:}\\[0.2em]
+    \noindent
+    \begin{minipage}{\textwidth}
+        \centering
+        \lineaFirma{\asesorANombre}{Asesor Principal}%
+        \ifcsvoid{asesorBNombre}{}{%
+            \hfill
+            \lineaFirma{\asesorBNombre}{Asesor(a)}%
+        }%
+        \ifcsvoid{asesorCNombre}{}{%
+            \\[0.5em]
+            \lineaFirma{\asesorCNombre}{Asesor(a)}%
+        }%
+    \end{minipage}\\[1.2em]
+
+    % --- Firmas del Jurado Calificador ---
+    {\fontsize{11}{14}\bfseries\sffamily Jurado Calificador (Sínodo):}\\[0.2em]
+    \noindent
+    \begin{minipage}{\textwidth}
+        \centering
+        \lineaFirma{\juradoPresidente}{Presidente del Jurado}\hfill
+        \lineaFirma{\juradoSecretario}{Secretario del Jurado}\\[0.4em]
+        \ifcsvoid{juradoPrimerVocal}{}{%
+            \lineaFirma{\juradoPrimerVocal}{Primer Vocal}\hfill
+        }%
+        \ifcsvoid{juradoSegundoVocal}{}{%
+            \lineaFirma{\juradoSegundoVocal}{Segundo Vocal}%
+        }%
+    \end{minipage}
+
+    \vfill
+    {\fontsize{11}{14}\sffamily \lugarDefensa, a \fechaDefensa}
+\end{center}
+
+\restoregeometry
+\end{titlepage}

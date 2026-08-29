@@ -1,0 +1,75 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: ejemplos/codigo.tex
+% ==============================================================================
+% Ejemplos prácticos para listados de código fuente en C, C++, Python, MATLAB y Arduino.
+% ==============================================================================
+
+\section{Guía de ejemplos para inserción de código fuente}
+\label{sec:ejemplo-codigo}
+
+% ------------------------------------------------------------------------------
+% 1. CÓDIGO EN C / C++ / ARDUINO
+% ------------------------------------------------------------------------------
+En el \lstlistingname~\ref{lst:codigo-pid-c} se muestra la implementación discreta de una rutina de control PID para microcontroladores.
+
+\begin{lstlisting}[language=C, caption={Rutina de control PID discreto en C/C++.}, label={lst:codigo-pid-c}]
+/* Controlador PID discreto con anti-windup */
+float calcularPID(float ref, float med, float dt) {
+    static float error_prev = 0.0f;
+    static float integral = 0.0f;
+    
+    float error = ref - med;
+    integral += error * dt;
+    float derivada = (error - error_prev) / dt;
+    error_prev = error;
+    
+    float salida = (KP * error) + (KI * integral) + (KD * derivada);
+    
+    // Saturacion de la senal de control
+    if (salida > PWM_MAX) salida = PWM_MAX;
+    else if (salida < PWM_MIN) salida = PWM_MIN;
+    
+    return salida;
+}
+\end{lstlisting}
+
+% ------------------------------------------------------------------------------
+% 2. CÓDIGO EN PYTHON
+% ------------------------------------------------------------------------------
+En el \lstlistingname~\ref{lst:codigo-python} se ilustra un script en Python para filtrado de datos en tiempo real.
+
+\begin{lstlisting}[language=Python, caption={Filtrado digital pasa-bajas recursivo en Python.}, label={lst:codigo-python}]
+import numpy as np
+
+def filtro_pasabajas(senal_cruda, alfa=0.15):
+    """Aplica un filtro IIR exponencial de primer orden."""
+    filtrada = np.zeros_like(senal_cruda)
+    filtrada[0] = senal_cruda[0]
+    for i in range(1, len(senal_cruda)):
+        filtrada[i] = alfa * senal_cruda[i] + (1.0 - alfa) * filtrada[i-1]
+    return filtrada
+\end{lstlisting}
+
+% ------------------------------------------------------------------------------
+% 3. CÓDIGO EN MATLAB
+% ------------------------------------------------------------------------------
+En el \lstlistingname~\ref{lst:codigo-matlab} se presenta un script de simulación de respuesta al escalón en MATLAB.
+
+\begin{lstlisting}[language=Matlab, caption={Simulación y sintonización de parámetros en MATLAB.}, label={lst:codigo-matlab}]
+% Definicion de la planta mecatronica
+m = 3.5;  % Masa en kg
+b = 1.2;  % Coeficiente de amortiguamiento
+k = 25.0; % Constante elastica
+
+num = [1];
+den = [m, b, k];
+G = tf(num, den);
+
+% Sintonia del controlador PID
+C = pid(120, 35, 12);
+LazoCerrado = feedback(C*G, 1);
+step(LazoCerrado);
+grid on;
+title('Respuesta al Escalon del Sistema');
+\end{lstlisting}

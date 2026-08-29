@@ -1,0 +1,64 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: apendices/apendices.tex
+% ==============================================================================
+% Configuración y contenido de los Apéndices de ingeniería del proyecto.
+% ==============================================================================
+
+\appendix
+
+% ==============================================================================
+% APÉNDICE A: CÁLCULOS DETALLADOS Y SELECCIÓN DE COMPONENTES
+% ==============================================================================
+\chapter{Cálculos detallados de ingeniería}
+\label{ap:calculos}
+
+% Incluya aquí desarrollos matemáticos extensos, demostraciones o cálculos de dimensionamiento...
+En este apéndice se detallan los cálculos de dimensionamiento mecánico y térmico.
+
+\section{Cálculo del par motor requerido}
+Para una masa total $m = \qty{3.5}{\kilo\gram}$ y un radio de rueda $r = \qty{0.05}{\meter}$, considerando una aceleración angular $\alpha = \qty{4.0}{\radian\per\second\squared}$ y una pendiente máxima $\theta = \ang{15}$, el par estático y dinámico se calcula como:
+
+\begin{equation}
+    \tau_{\text{total}} = (m \, g \, \sin\theta + m \, a) \cdot r + I \cdot \alpha
+    \label{eq:par-calculo}
+\end{equation}
+
+\noindent Sustituyendo los valores numéricos correspondientes:
+\begin{equation}
+    \tau_{\text{total}} = (3.5 \cdot 9.81 \cdot \sin(\ang{15}) + 3.5 \cdot 0.2) \cdot 0.05 \approx \qty{0.479}{\newton\meter}
+\end{equation}
+
+% ==============================================================================
+% APÉNDICE B: PLANOS MECÁNICOS Y VISTAS DE ENSAMBLE
+% ==============================================================================
+\chapter{Planos mecánicos y de ensamble}
+\label{ap:planos}
+
+% Incluya aquí planos normalizados, vistas de ensamble y despiece...
+En este apartado se incorporan los planos de manufactura normalizados con cotas, tolerancias dimensionales y acabados superficiales requeridos para la fabricación de los componentes estructurales.
+
+\begin{figure}[htbp]
+    \centering
+    \fbox{\parbox[c][6cm][c]{0.85\textwidth}{\centering\textbf{[Espacio reservado para Plano de Ensamble / Vista en Explosión]}\\
+    \small Inserte aquí el plano en formato PDF o imagen vectorial (\texttt{\textbackslash includegraphics[width=0.9\textbackslash textwidth]\{...\}})}}
+    \caption{Plano de ensamble general del sistema mecatrónico.}
+    \label{fig:plano-ensamble}
+\end{figure}
+
+% ==============================================================================
+% APÉNDICE C: DIAGRAMAS ELECTRÓNICOS Y ESQUEMÁTICOS
+% ==============================================================================
+\chapter{Diagramas esquemáticos y ruteo de PCB}
+\label{ap:esquematicos}
+
+% Incluya aquí diagramas de conexiones, circuitos impresos y distribución de terminales...
+En la \figref{fig:diagrama-conexiones} se presenta la topología de interconexión entre la unidad de procesamiento, los sensores y las etapas de potencia.
+
+\begin{figure}[htbp]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.85\textwidth}{\centering\textbf{[Espacio reservado para Diagrama Esquemático Electrónico]}\\
+    \small Inserte aquí el diagrama esquemático exportado desde KiCAD, Altium o Eagle}}
+    \caption{Diagrama esquemático de la etapa de potencia e instrumentación.}
+    \label{fig:diagrama-conexiones}
+\end{figure}

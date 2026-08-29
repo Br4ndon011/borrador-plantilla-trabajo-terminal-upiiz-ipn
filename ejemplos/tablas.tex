@@ -1,0 +1,50 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: ejemplos/tablas.tex
+% ==============================================================================
+% Ejemplos prácticos para tablas simples, autoajustables (tabularx) y multipágina (longtable).
+% ==============================================================================
+
+\section{Guía de ejemplos para tablas}
+\label{sec:ejemplo-tablas}
+
+% ------------------------------------------------------------------------------
+% 1. TABLA PEQUEÑA / ESTÁNDAR CON BOOKTABS
+% ------------------------------------------------------------------------------
+En la \tabref{tab:ejemplo-simple} se ilustra una tabla estándar con líneas limpias mediante el paquete \texttt{booktabs}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Ejemplo de tabla compacta con formato formal.}
+    \label{tab:ejemplo-simple}
+    \begin{tabular}{llr}
+        \toprule
+        \textbf{Componente} & \textbf{Modelo} & \textbf{Consumo (\unit{\watt})} \\
+        \midrule
+        Microcontrolador & ESP32-WROOM-32 & 0.8 \\
+        Controlador H-Bridge & L298N Dual & 25.0 \\
+        Sensor IMU & MPU-6050 & 0.02 \\
+        Servomotor & MG996R & 4.5 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+% 2. TABLA ANCHA AUTOAJUSTABLE AL ANCHO DE PÁGINA (tabularx)
+% ------------------------------------------------------------------------------
+Para tablas con texto descriptivo largo que deban ocupar exactamente el ancho de página, utilice la columna tipo \texttt{X} de \texttt{tabularx} (\tabref{tab:ejemplo-tabularx}).
+
+\begin{table}[htbp]
+    \centering
+    \caption{Ejemplo de tabla ajustable con columnas de justificación automática.}
+    \label{tab:ejemplo-tabularx}
+    \begin{tabularx}{\textwidth}{l c c X}
+        \toprule
+        \textbf{Subsistema} & \textbf{Voltaje (\unit{\volt})} & \textbf{Corriente (\unit{\ampere})} & \textbf{Función y Criterio de Selección} \\
+        \midrule
+        Alimentación & 12.0 & 5.0 & Batería LiPo de 3 celdas seleccionada por alta densidad energética y bajo peso. \\
+        Regulación & 5.0 & 3.0 & Convertidor Buck DC-DC con eficiencia superior al $90\,\%$ para evitar pérdidas térmicas. \\
+        Sensado & 3.3 & 0.2 & Sensores digitales I2C protegidos con conversores de nivel lógico bidireccionales. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}

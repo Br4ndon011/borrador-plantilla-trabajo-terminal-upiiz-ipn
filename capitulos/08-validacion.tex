@@ -1,0 +1,58 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: capitulos/08-validacion.tex
+% ==============================================================================
+
+\chapter{\tituloValidacion}
+\label{cap:validacion}
+
+% ==============================================================================
+% REGLA INSTITUCIONAL:
+% El título de este capítulo cambia AUTOMÁTICAMENTE según la modalidad:
+% - En TT I:  "Análisis y validación del diseño"
+% - En TT II: "Análisis y validación de resultados"
+%
+% INSTRUCCIONES PEDAGÓGICAS:
+% No basta con indicar que el prototipo o modelo "funciona".
+% Presente evidencia cuantitativa y verificable:
+% - Datos experimentales y mediciones obtenidas con instrumentos calibrados.
+% - Gráficas de respuesta temporal, curvas de calibración o análisis de frecuencia.
+% - Comparación explícita de los resultados obtenidos contra las especificaciones
+%   iniciales planteadas en la Tabla de Requerimientos.
+% - Análisis de error, repetibilidad y análisis estadístico cuando corresponda
+%   (media, desviación estándar, intervalo de confianza).
+% - Discusión honesta de limitaciones observadas durante las pruebas.
+% ==============================================================================
+
+\section{Pruebas experimentales y metodología de medición}
+\label{sec:validacion-metodologia}
+
+% Describa aquí el protocolo de pruebas, instrumentación de medición y condiciones experimentales...
+Para validar el comportamiento del sistema, se llevaron a cabo series de pruebas bajo condiciones controladas de laboratorio. Se registraron las variables de estado empleando un osciloscopio digital y un sistema de adquisición de datos a una tasa de muestreo de \qty{10}{\kilo\hertz}.
+
+\section{Resultados cuantitativos y análisis de error}
+\label{sec:validacion-resultados}
+
+Los datos obtenidos en las pruebas de respuesta al escalón y seguimiento de consigna se sintetizan en la \tabref{tab:comparativa-validacion}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Evaluación de cumplimiento de especificaciones y análisis de error.}
+    \label{tab:comparativa-validacion}
+    \begin{tabularx}{\textwidth}{X c c c c}
+        \toprule
+        \textbf{Parámetro Evaluado} & \textbf{Especificación} & \textbf{Medición Media} & \textbf{Error Relativo} & \textbf{Estado} \\
+        \midrule
+        Sobrepaso porcentual ($M_p$) & $\le 10\,\%$ & $6.4\,\%$ & --- & Cumple \\
+        Tiempo de subida ($t_r$) & $\le \qty{0.5}{\second}$ & $\qty{0.38}{\second}$ & --- & Cumple \\
+        Error en régimen permanente ($e_{ss}$) & $\le 0.5\,\%$ & $0.18\,\%$ & $1.8\,\text{\textperthousand}$ & Cumple \\
+        Consumo de corriente promedio & $\le \qty{2.5}{\ampere}$ & $\qty{1.92}{\ampere}$ & --- & Cumple \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Discusión de limitaciones y evaluación de cumplimiento}
+\label{sec:validacion-discusion}
+
+% Analice críticamente los resultados y las fuentes de incertidumbre...
+A partir del análisis comparativo se constata que los resultados satisfacen las métricas fijadas. Como limitación se identificó un incremento marginal en la temperatura del puente H durante ciclos prolongados de operación continua, aspecto que no compromete la estabilidad funcional pero sugiere optimizar el área del disipador térmico.

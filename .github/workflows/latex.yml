@@ -1,0 +1,31 @@
+name: Validar Compilación LaTeX
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Compilar Reporte con LuaLaTeX
+        uses: dante-ev/latex-action@v0.2.0
+        with:
+          root_file: main.tex
+          compiler: lualatex
+          args: -interaction=nonstopmode -file-line-error
+
+      - name: Verificar generación de PDF
+        run: |
+          if [ -f main.pdf ]; then
+            echo "Compilación exitosa: main.pdf generado correctamente."
+          else
+            echo "ERROR: main.pdf no fue generado."
+            exit 1
+          fi

@@ -1,0 +1,76 @@
+# ==============================================================================
+# .gitignore — Plantilla Institucional de Trabajo Terminal UPIIZ-IPN
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. ARCHIVOS AUXILIARES Y TEMPORALES DE COMPILACIÓN LATEX
+# ------------------------------------------------------------------------------
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.synctex
+*.toc
+*.vrb
+*.xdv
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.dvi
+*.idx
+*.ilg
+*.ind
+*.loa
+*.loe
+*.maf
+*.mtc*
+*.pgf-plot*
+*.ist
+*.glg
+*.glo
+*.gls
+
+# ------------------------------------------------------------------------------
+# 2. DOCUMENTOS PDF COMPILADOS (PRODUCTO DE CONSTRUCCIÓN)
+# ------------------------------------------------------------------------------
+# NOTA DE BUENAS PRÁCTICAS:
+# Los archivos PDF generados localmente son binarios que cambian en cada
+# compilación e inflan innecesariamente el historial de Git. El código fuente
+# .tex y las imágenes son la única fuente de verdad versionada.
+main.pdf
+*.pdf
+!figuras/institucional/*.pdf
+!figuras/proyecto/*.pdf
+
+# ------------------------------------------------------------------------------
+# 3. DIRECTORIOS DE SALIDA TEMPORALES
+# ------------------------------------------------------------------------------
+pdfout/
+build/
+dist/
+out/
+_minted-*/
+
+# ------------------------------------------------------------------------------
+# 4. ARCHIVOS DEL SISTEMA OPERATIVO Y EDITORES
+# ------------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+*$*
+*~
+
+# NO ignorar la configuración de VS Code para LaTeX Workshop
+!.vscode/
+!.vscode/settings.json

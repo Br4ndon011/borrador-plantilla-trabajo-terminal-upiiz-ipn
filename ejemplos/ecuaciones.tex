@@ -1,0 +1,70 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: ejemplos/ecuaciones.tex
+% ==============================================================================
+% Ejemplos prácticos para ecuaciones individuales, sistemas, matrices y unidades SI.
+% ==============================================================================
+
+\section{Guía de ejemplos para ecuaciones matemáticas}
+\label{sec:ejemplo-ecuaciones}
+
+% ------------------------------------------------------------------------------
+% 1. ECUACIÓN INDIVIDUAL NUMERADA
+% ------------------------------------------------------------------------------
+Para una ecuación individual numerada y referenciada, utilice el entorno \texttt{equation}:
+
+\begin{equation}
+    F(s) = m \, s^2 X(s) + b \, s X(s) + k X(s)
+    \label{eq:ejemplo-masa-resorte}
+\end{equation}
+
+\noindent La función de transferencia en lazo abierto a partir de la \eqref{eq:ejemplo-masa-resorte} se obtiene como $G(s) = \frac{X(s)}{F(s)} = \frac{1}{m s^2 + b s + k}$.
+
+% ------------------------------------------------------------------------------
+% 2. SISTEMA DE ECUACIONES ALINEADAS (align)
+% ------------------------------------------------------------------------------
+Para varias líneas alineadas con el signo igual:
+
+\begin{align}
+    \dot{x}_1(t) &= x_2(t) \label{eq:espacio-estados-1} \\
+    \dot{x}_2(t) &= -\frac{k}{m} x_1(t) - \frac{b}{m} x_2(t) + \frac{1}{m} u(t) \label{eq:espacio-estados-2}
+\end{align}
+
+% ------------------------------------------------------------------------------
+% 3. MATRICES Y VECTORES
+% ------------------------------------------------------------------------------
+Para la representación en variables de estado matricial:
+
+\begin{equation}
+    \begin{bmatrix}
+        \dot{x}_1 \\
+        \dot{x}_2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 & 1 \\
+        -\frac{k}{m} & -\frac{b}{m}
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1 \\
+        x_2
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        0 \\
+        \frac{1}{m}
+    \end{bmatrix}
+    u(t)
+    \label{eq:matriz-estados}
+\end{equation}
+
+% ------------------------------------------------------------------------------
+% 4. UNIDADES FÍSICAS CON SIUNITX
+% ------------------------------------------------------------------------------
+Para escribir unidades correctamente según la norma internacional, emplee el comando \texttt{\textbackslash qty\{magnitud\}\{unidad\}}:
+\begin{itemize}
+    \item Resistencia y capacitancia: $R = \qty{4.7}{\kilo\ohm}$, $C = \qty{100}{\micro\farad}$.
+    \item Frecuencia y voltaje: $f = \qty{50}{\kilo\hertz}$, $V = \qty{12.6}{\volt}$.
+    \item Velocidad y aceleración: $v = \qty{1.85}{\meter\per\second}$, $a = \qty{9.81}{\meter\per\second\squared}$.
+    \item Temperatura y ángulo: $T = \qty{45.2}{\degreeCelsius}$, $\theta = \ang{30}$.
+\end{itemize}
