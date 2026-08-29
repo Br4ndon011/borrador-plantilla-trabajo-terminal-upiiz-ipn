@@ -52,26 +52,33 @@ Para seleccionarla en `config/datos.tex`, escribe únicamente el identificador r
 
 ### Catálogo oficial institucional de Líneas de Trabajo:
 
-| Clave | Línea de Trabajo Oficial | Máximo de alumnos | Entregable principal | Característica institucional |
+| Clave | Línea de Trabajo | Máximo de alumnos | Entregable | Característica |
 |:---:|---|:---:|---|---|
 | **I** | Diseño e implementación de un sistema robótico, dispositivos o sistemas Mecatrónicos | **3** | Prototipo, Interfaz Hombre-Máquina | Las 4 áreas de la Mecatrónica se desarrollan con el mismo grado de complejidad y detalle. |
 | **II** | Diseño e implementación de una máquina o mecanismo | **2** | Prototipo, Interfaz Hombre-Máquina | Énfasis en la mecánica y menor complejidad en las demás áreas. |
 | **III** | Diseño e implementación de componentes o sistemas electrónicos | **2** | Prototipo, Interfaz Hombre-Máquina | Énfasis en la electrónica y menor complejidad en las demás áreas. |
 | **IV** | Diseño e implementación de sistemas o técnicas de control | **2** | Prototipo, Interfaz Hombre-Máquina | Énfasis en el control y menor complejidad en las demás áreas. |
 | **V** | Diseño y desarrollo de software para el control de sistemas o procesos | **2** | Software, Interfaz Hombre-Máquina y prototipo | Énfasis en la programación y menor complejidad en las demás áreas. |
-| **VI** | Puesta en operación, optimización o automatización de un proceso o sistema industrial | **2** | Proceso o sistema industrial en operación | Puesta en operación y automatización de procesos industriales. |
+| **VI** | Puesta en operación, optimización o automatización de un proceso o sistema industrial | **2** | Proceso o sistema industrial en operación | *(El Anexo 1 no establece una frase adicional de característica)* |
 
-> **Nota institucional fundamental:** Todas las líneas de trabajo deben contemplar de forma articulada las **cuatro áreas de la Mecatrónica** (Mecánica, Electrónica, Control y Programación), independientemente de que alguna de ellas tenga mayor o menor peso.
+> **NOTA INSTITUCIONAL (ANEXO 1):**
 >
-> Las Líneas II, III, IV y V se consideran para diseño de productos de consumo, biomédicos, didácticos o de investigación.
+> Las líneas II, III, IV y V se consideran para diseño de productos de:
+> - consumo;
+> - biomédicos;
+> - didácticos;
+> - investigación.
+>
+> Además:
+> **Todas las líneas deben contemplar las cuatro áreas de la Mecatrónica**, independientemente de que alguna de ellas tenga menor peso.
 
 ### Macros obtenidas automáticamente:
-Al configurar `\LineaTrabajo{IV}`, la plantilla define internamente:
+Al configurar por ejemplo `\LineaTrabajo{IV}`, la plantilla define internamente:
 - `\NumeroLineaTrabajo` $\rightarrow$ `IV`
 - `\NombreLineaTrabajo` $\rightarrow$ `Diseño e implementación de sistemas o técnicas de control.`
 - `\EntregableLineaTrabajo` $\rightarrow$ `Prototipo, Interfaz Hombre-Máquina.`
 - `\MaximoAlumnosLineaTrabajo` $\rightarrow$ `2`
-- `\DescripcionLineaTrabajo` $\rightarrow$ `Énfasis en el control y menor complejidad en las demás áreas.`
+- `\DescripcionLineaTrabajo` $\rightarrow$ `Énfasis en el control y menor complejidad en las demás áreas.` (para la Línea VI, devuelve una cadena vacía `""`).
 
 ---
 

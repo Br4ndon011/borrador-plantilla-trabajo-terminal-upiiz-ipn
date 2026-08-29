@@ -4,10 +4,19 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/), y este proyecto se adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 
+## [1.1.1] - 2026-08-29
+
+### Corregido
+- Se elimina una descripción no establecida institucionalmente para la Línea de Trabajo VI, retornando una cadena vacía conforme a la literalidad del Anexo 1 del Reglamento Interno.
+- Se fortalece la validación del catálogo oficial I–VI y la correspondencia entre la línea seleccionada y el número máximo de integrantes permitido (3 para Línea I, 2 para Líneas II a VI).
+- Se incorporan scripts de pruebas automáticas de integridad y compilación para todas las Líneas de Trabajo en `tests/`.
+- Se actualiza la documentación institucional y las advertencias docentes en `docs/09-configurar-datos-del-tt.md` y `docs/profesor/actualizar-plantilla.md`.
+
 ## [1.1.0] - 2026-08-29
 
 ### Agregado
 - Sistema centralizado de selección de tipo de documento mediante la API `\TipoDocumento{PROTOCOLO|TTI|TTII}` en `config/datos.tex`.
+- Catálogo institucional modular de Líneas de Trabajo en `config/lineas-trabajo.tex` con la API `\LineaTrabajo{...}`.
 - Despachador modular de portadas en `frontmatter/portada.tex`.
 - Portada institucional exclusiva para Protocolo de Trabajo Terminal (`frontmatter/portada-protocolo.tex`) con área de ubicación, línea de trabajo e intención de titulación.
 - Portada institucional unificada para reportes de Trabajo Terminal I y II (`frontmatter/portada-tt.tex`).

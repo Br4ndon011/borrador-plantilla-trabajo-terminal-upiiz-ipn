@@ -2,7 +2,7 @@
 ### Programa Académico de Ingeniería Mecatrónica
 
 [![Validar Compilación LaTeX](https://github.com/REPOSITORIO_OFICIAL/Plantilla_Trabajo_Terminal/actions/workflows/latex.yml/badge.svg)](https://github.com/REPOSITORIO_OFICIAL/Plantilla_Trabajo_Terminal/actions/workflows/latex.yml)
-[![Versión](https://img.shields.io/badge/versión-1.0.0-blue.svg)](CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.1.1-blue.svg)](CHANGELOG.md)
 [![Licencia: MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
 [![Motor: LuaLaTeX](https://img.shields.io/badge/Motor-LuaLaTeX-orange.svg)](https://lualatex.org/)
 

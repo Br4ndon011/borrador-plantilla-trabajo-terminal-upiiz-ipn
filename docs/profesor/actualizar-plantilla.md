@@ -28,11 +28,31 @@ Si la dirección del IPN o la academia de la UPIIZ modifica los lineamientos:
   ```latex
   \setstretch{1.5}
   ```
-- **Actualizar el Catálogo de Líneas de Trabajo:** Edita el catálogo oficial en `config/lineas-trabajo.tex`, los comentarios de `config/datos.tex` y la guía [09. Configurar Datos](../09-configurar-datos-del-tt.md).
 
 ---
 
-## 3. Registro de Modificaciones
+## 3. Mantenimiento del Catálogo de Líneas de Trabajo (Anexo 1)
+
+> ⚠️ **ADVERTENCIA PARA EL MANTENEDOR:**
+>
+> El archivo **`config/lineas-trabajo.tex`** representa un **catálogo institucional inmutable** derivado del Anexo 1 del Reglamento Interno de Trabajo Terminal.
+>
+> **No debe modificarse por preferencia editorial ni agregarse frases inventadas.**
+
+Si en el futuro la academia de la UPIIZ o el Consejo Técnico modifica el Reglamento Interno y el Anexo 1, el procedimiento obligatorio de actualización es:
+
+1. **Consultar el nuevo Anexo 1 oficial aprobado.**
+2. **Actualizar las definiciones** en `config/lineas-trabajo.tex` respetando la literalidad del texto normativo.
+3. **Actualizar los entregables principales** por cada línea.
+4. **Actualizar el número máximo de alumnos** admitido por línea.
+5. **Actualizar la documentación y tablas** en `docs/09-configurar-datos-del-tt.md` y `config/datos.tex`.
+6. **Ejecutar las pruebas automáticas de integridad y compilación.**
+7. **Incrementar el número de versión** siguiendo versionado semántico (SemVer).
+8. **Registrar detalladamente el cambio** en `CHANGELOG.md`.
+
+---
+
+## 4. Registro de Modificaciones
 
 Cada vez que realices una actualización en el repositorio maestro:
 1. Agrega las notas correspondientes en `CHANGELOG.md` siguiendo el estándar SemVer.
