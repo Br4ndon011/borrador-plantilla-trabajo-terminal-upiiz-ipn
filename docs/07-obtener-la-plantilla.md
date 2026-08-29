@@ -1,58 +1,44 @@
 # Guía 07: Cómo Obtener la Plantilla Institucional
 
-Esta guía explica las dos formas de obtener una copia limpia de la plantilla para iniciar tu Trabajo Terminal.
+Esta guía explica el procedimiento oficial para obtener una copia limpia e independiente de la plantilla para iniciar tu Trabajo Terminal.
 
 ---
 
-## Opción 1: GitHub Template Repository (MÉTODO RECOMENDADO)
+## 🎯 Método Oficial: Usar como Plantilla (GitHub Template)
 
-El repositorio oficial de la plantilla está configurado como **GitHub Template**. Este mecanismo crea un repositorio nuevo en tu cuenta con un historial limpio de Git desde el primer día, sin vincularte a los commits de desarrollo del profesor.
+El repositorio oficial de la plantilla está configurado como **GitHub Template Repository**. Este mecanismo crea un repositorio nuevo y 100% independiente en tu cuenta de GitHub, con un historial limpio de Git desde el primer día y sin modificar la plantilla maestra.
 
-### Pasos para el alumno:
-1. Abre el enlace del repositorio oficial de la plantilla en GitHub.
-2. En la parte superior derecha, haz clic en el botón verde **`Use this template`** y selecciona **`Create a new repository`**.
-3. Configura las opciones del nuevo repositorio:
-   - **Repository name:** Usa la convención sugerida: `TT_Apellido1_Apellido2_TemaCorto` (ej. `TT_Martinez_Rios_BrazoRobotico`).
+### Pasos paso a paso:
+1. Abre el enlace del repositorio maestro institucional:
+   [https://github.com/rrevelesm/plantilla-trabajo-terminal-upiiz-ipn](https://github.com/rrevelesm/plantilla-trabajo-terminal-upiiz-ipn)
+2. En la parte superior derecha, haz clic en el botón verde **`Use this template`** $\rightarrow$ **`Create a new repository`**.
+3. Configura las opciones de tu nuevo proyecto:
+   - **Owner:** Tu cuenta personal de GitHub o la organización de tu equipo.
+   - **Repository name:** Nombra tu repositorio conforme a la convención sugerida (ej. `TT-2026-Control-Vehiculo-Escala`).
    - **Description:** *"Reporte de Trabajo Terminal - UPIIZ IPN - Ingeniería Mecatrónica"*.
-   - **Privacy:** Selecciona **Private** (puedes cambiarlo a público tras la titulación).
-   - **Include all branches:** Desmarcado (solo necesitas la rama `main`).
+   - **Privacy:** Selecciona **Public** o **Private** según lo acordado con tu asesor.
+   - **Include all branches:** Desmarcado (solo se requiere la rama principal `main`).
 4. Haz clic en **Create repository**.
-5. Ahora tienes tu propio repositorio independiente. Cópialo a tu computadora con:
+5. ¡Listo! GitHub creará tu copia independiente. Ahora clona **TU PROPIO REPOSITORIO** en tu computadora:
    ```bash
    git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
    ```
+6. Abre la carpeta resultante en Visual Studio Code y comienza a trabajar siguiendo la [Guía 00: Inicio Rápido](00-inicio-rapido.md).
+
+> ⚠️ **IMPORTANTE:**
+> **No solicites permisos de escritura al repositorio maestro.** Todo tu trabajo, commits y pushes deben realizarse exclusivamente sobre tu propio repositorio recién creado.
 
 ---
 
-## Opción 2: Clonado Directo con Git (MÉTODO ALTERNATIVO)
+## 📂 Convención Sugerida para Nombres de Repositorio
 
-Si deseas clonar el repositorio y desvincular el origen para apuntar a un nuevo repositorio propio:
+Para mantener orden académico y facilitar la identificación por parte de los asesores y sinodales, se sugiere nombrar los repositorios con uno de los siguientes esquemas:
 
-1. Clona el repositorio maestro:
-   ```bash
-   git clone https://github.com/REPOSITORIO_OFICIAL/Plantilla_Trabajo_Terminal.git Mi_Trabajo_Terminal
-   ```
-2. Entra a la carpeta:
-   ```bash
-   cd Mi_Trabajo_Terminal
-   ```
-3. Cambia la URL remota para apuntar a tu propio repositorio de GitHub:
-   ```bash
-   git remote set-url origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
-   git push -u origin main
-   ```
+- `TT-2026-TemaCorto` (ej. `TT-2026-Robot-Explorador-Irregular`)
+- `TT-Apellidos-TemaCorto` (ej. `TT-Robles-Ramirez-Vehiculo-Escala`)
 
 ---
 
-## 3. Convención Sugerida para Nombres de Repositorio
-
-Para mantener orden institucional y facilitar la identificación por parte de los asesores, se sugiere nombrar los repositorios con uno de los siguientes formatos:
-
-- `TT_Apellido1_Apellido2_Tema` (ej. `TT_Gomez_Hernandez_SistemaVision`)
-- `TrabajoTerminal_NombreCorto` (ej. `TrabajoTerminal_VehiculoAutonomo`)
-
----
-
-## 4. Próximo Paso
+## 🧭 Próximo Paso
 
 Continúa con la [Guía 08: Estructura del Proyecto y Carpetas](08-estructura-del-proyecto.md).

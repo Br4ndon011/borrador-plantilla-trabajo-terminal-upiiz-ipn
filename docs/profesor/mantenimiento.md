@@ -66,3 +66,14 @@ Las futuras modificaciones a la estructura o requisitos normativos deben coordin
 - **Ramas y Pull Requests** en GitHub con revisión de pares.
 - **Registro detallado en `CHANGELOG.md`** siguiendo Versionado Semántico (SemVer).
 - **Ejecución del suite de pruebas** en `tests/`.
+
+---
+
+## 5. Protección del Repositorio Maestro
+
+Para evitar alteraciones accidentales a la plantilla institucional:
+- **No agregar alumnos como colaboradores:** Los estudiantes no requieren permisos de escritura en el repositorio maestro; únicamente deben usar el botón **`Use this template`** para crear su propia copia independiente.
+- **Configuración como Template Repository:** Permite que cualquier alumno clone la estructura base sin vincular su historial de desarrollo con el repositorio maestro.
+- **Protección de la rama `main`:** Mantener activadas las reglas de protección contra *Force Push* (`git push --force`) y eliminación accidental de rama.
+- **Recepción de mejoras:** Si algún profesor o estudiante propone una mejora al formato general, esta debe recibirse exclusivamente mediante **Pull Requests** hacia la rama `main`.
+- **Revisión periódica de permisos:** Verificar regularmente en *Settings $\rightarrow$ Collaborators* que únicamente los profesores mantenedores tengan privilegios de administración.

@@ -14,9 +14,23 @@ Esta plantilla ha sido diseñada para ser **modular, robusta, fácil de usar y 1
 
 > ### 🚀 ¿Primera vez con LaTeX o Git?
 > **Si nunca has usado LaTeX, Git, GitHub o Visual Studio Code, no te preocupes:**
-> 👉 **[Comienza aquí con la Guía de Inicio Rápido](docs/00-inicio-rapido.md)** 👈
+---
+
+## 🎓 Para Estudiantes
+
+> ⚠️ **IMPORTANTE:** Este repositorio es la **plantilla maestra** oficial de Trabajo Terminal. **NO trabajes directamente sobre este repositorio ni solicites acceso de escritura.**
 >
-> Esta guía te llevará paso a paso desde cero, sin asumir ningún conocimiento previo.
+> Crear un repositorio a partir de esta plantilla genera una **copia 100% independiente**. Los cambios realizados por los estudiantes en sus repositorios **NO** modifican la plantilla maestra.
+
+### ¿Cómo comenzar tu proyecto en 5 pasos?
+1. Haz clic en el botón verde superior **`Use this template`** $\rightarrow$ **`Create a new repository`**.
+2. Crea el repositorio en tu propia cuenta o en la organización de tu equipo (ej. `TT-2026-Control-Vehiculo`).
+3. Clona **tu nuevo repositorio** en tu computadora:
+   ```bash
+   git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
+   ```
+4. Abre la carpeta en Visual Studio Code.
+5. Sigue la [Guía 00: Inicio Rápido](docs/00-inicio-rapido.md) y edita `config/datos.tex`.
 
 ---
 
