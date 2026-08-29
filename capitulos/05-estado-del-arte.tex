@@ -2,46 +2,40 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: capitulos/05-estado-del-arte.tex
 % ==============================================================================
-% LÍMITE INSTITUCIONAL: Máximo 4 páginas.
+% LÍMITE NORMATIVO INSTITUCIONAL: Máximo 4 páginas (incluye tabla comparativa).
 % ==============================================================================
 
 \chapter{Estado del Arte}
 \label{cap:estado-del-arte}
 
-En este capítulo se analiza el estado actual de las tecnologías de locomoción en terreno agreste, las técnicas de localización relativa en ausencia de GPS y los mecanismos de recolección y depósito empleados en rovers de exploración.
+En este capítulo se realiza una revisión crítica de las soluciones tecnológicas, productos comerciales, patentes y artículos científicos más recientes relacionados con el problema de estudio \cite{ieee2021robotics}.
 
 % ------------------------------------------------------------------------------
-\section{Revisión de arquitecturas de rovers de exploración}
-\label{sec:arte-arquitecturas-rover}
+\section{Revisión de tecnologías y enfoques existentes}
+\label{sec:arte-revision}
 
-En la literatura y en certámenes internacionales de robótica móvil se identifican tres aproximaciones principales para la concepción de rovers todoterreno:
-
-\begin{enumerate}
-    \item \textbf{Rovers de tracción diferencial con ruedas de gran diámetro:} Utilizan dos o cuatro ruedas motrices fijas al chasis con neumáticos de alto agarre. Son mecánicamente simples y de bajo costo, pero presentan susceptibilidad a perder contacto con el suelo ante zanjas o rocas de altura superior al radio de la rueda.
-    \item \textbf{Sistemas con suspensión articulada tipo \textit{Rocker-Bogie}:} Distribuyen pasivamente el peso en seis ruedas motrices independientes, manteniendo contacto constante con el suelo sin necesidad de resortes. Aunque poseen excelente capacidad todoterreno, su manufactura y control de tracción aumentan la complejidad mecánica y el peso total del sistema.
-    \item \textbf{Chasises articulados con dirección activa y tracción 4WD/6WD:} Combinan tracción en todas las ruedas con pivotes de oscilación central, ofreciendo un equilibrio óptimo entre masa estructural, capacidad de trepado en pendientes ($> \ang{20}$) y facilidad de integración mecatrónica.
-\end{enumerate}
+Describa las principales tendencias tecnológicas actuales clasificándolas por categorías, destacando sus fortalezas, debilidades y el grado de madurez técnica alcanzado en la industria y en centros de investigación.
 
 % ------------------------------------------------------------------------------
-\section{Comparativa de tecnologías de recolección y navegación}
-\label{sec:arte-comparativa-rover}
+\section{Tabla comparativa del estado del arte}
+\label{sec:arte-tabla}
 
-En la \tabref{tab:comparativa-arte} se sintetizan las ventajas, limitaciones y pertinencia de los métodos de recolección y navegación identificados para misiones de exploración a escala.
+En la \tabref{tab:comparativa-arte} se sintetiza la comparación técnica entre las soluciones existentes y la propuesta desarrollada en este Trabajo Terminal.
 
 \begin{table}[htbp]
     \centering
-    \caption{Comparación técnica de enfoques de locomoción, sensado y manipulación para rovers.}
+    \caption{Comparación técnica de soluciones existentes frente a la propuesta de este Trabajo Terminal.}
     \label{tab:comparativa-arte}
-    \begin{tabularx}{\textwidth}{p{3.0cm} X X p{3.2cm}}
+    \begin{tabularx}{\textwidth}{p{3.2cm} X X p{3.2cm}}
         \toprule
-        \textbf{Tecnología / Enfoque} & \textbf{Ventajas} & \textbf{Desventajas} & \textbf{Aplicabilidad en este TT} \\
+        \textbf{Solución / Enfoque} & \textbf{Ventajas} & \textbf{Desventajas / Limitaciones} & \textbf{Pertinencia en este TT} \\
         \midrule
-        Brazo robótico serial de 5--6 GDL & Alta destreza y manipulación espacial compleja & Elevado peso, alto consumo y control cinemático complejo & Excesivo para recolección de muestras simples \\
-        Mecanismo tipo pala / cuchara con compuerta & Estructura simple, bajo consumo y alta robustez de agarre & Requiere posicionamiento frontal preciso del rover & \textbf{Alternativa recomendada para evaluación en TT I} \\
-        Odometría de rueda pura (Encoders) & Bajo costo y alta frecuencia de muestreo & Deriva acumulativa severa por deslizamiento en tierra & Insuficiente como método único sin GPS \\
-        Fusión sensorial (Encoder + IMU + Visión) & Localización relativa robusta y corrección de deriva & Requiere procesamiento digital y calibración periódica & \textbf{Enfoque seleccionado para la navegación del rover} \\
+        Solución comercial estándar & Producto terminado, alta disponibilidad comercial & Sistema cerrado, costo elevado y nula capacidad de adaptación & Referencia funcional para pruebas comparativas \\
+        Desarrollo académico básico & Bajo costo inicial, facilidad de implementación & Sin lazo cerrado formal ni validación cuantitativa rigurosa & Superado por el enfoque analítico propuesto \\
+        Arquitectura compleja basada en PC & Gran potencia de cómputo y librerías avanzadas & Consumo de potencia elevado ($> \qty{15}{\watt}$) y poca portabilidad & Inviable para aplicaciones embebidas autónomas \\
+        \textbf{Propuesta de este Trabajo Terminal} & \textbf{Equilibrio entre costo, portabilidad, control riguroso y determinismo temporal} & \textbf{Requiere modelado físico e integración mecatrónica completa} & \textbf{Enfoque seleccionado e implementado} \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-A partir de este análisis, se concluye que un rover con tracción en todas las ruedas, fusión sensorial odometría-IMU-visión y mecanismo de recolección directo ofrece la mejor relación entre viabilidad técnica, robustez y cumplimiento de misión.
+\noindent A partir de esta matriz comparativa, justifique la selección de la arquitectura técnica adoptada para el desarrollo de su Trabajo Terminal.

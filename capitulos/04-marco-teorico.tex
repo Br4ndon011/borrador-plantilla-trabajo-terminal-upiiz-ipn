@@ -2,80 +2,40 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: capitulos/04-marco-teorico.tex
 % ==============================================================================
-% LÍMITE INSTITUCIONAL: Máximo 3 páginas.
+% LÍMITE NORMATIVO INSTITUCIONAL: Máximo 3 páginas.
 % ==============================================================================
 
 \chapter{Marco Teórico}
 \label{cap:marco-teorico}
 
-En este capítulo se presentan los fundamentos físico-matemáticos y conceptuales que sustentan el modelado cinemático del rover, la estimación de posición relativa sin GPS, la detección visual de muestras y la formulación del control de navegación.
+En este capítulo se presentan los fundamentos físico-matemáticos indispensables que sustentan el modelado dinámico, el análisis de estabilidad, las leyes de control y las técnicas de procesamiento empleadas en el proyecto \cite{ogata2010modern}.
 
 % ------------------------------------------------------------------------------
-\section{Cinemática de locomoción y estabilidad en terreno irregular}
-\label{sec:marco-cinematica-rover}
+\section{Modelado físico-matemático del sistema}
+\label{sec:marco-modelado}
 
-El movimiento planar del rover se modela mediante la cinemática de una plataforma móvil con tracción diferencial o multirrueda independiente \cite{ieee2021robotics}. El vector de pose en el marco de referencia inercial global $\{W\}$ se define como $\mathbf{p}(t) = [x(t) \quad y(t) \quad \theta(t)]\transp$. Las velocidades en el marco del robot se relacionan mediante:
-\begin{equation}
-    \begin{bmatrix}
-        \dot{x}(t) \\
-        \dot{y}(t) \\
-        \dot{\theta}(t)
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-        \cos\theta(t) & 0 \\
-        \sin\theta(t) & 0 \\
-        0 & 1
-    \end{bmatrix}
-    \begin{bmatrix}
-        v(t) \\
-        \omega(t)
-    \end{bmatrix}
-    \label{eq:cinematica-rover}
-\end{equation}
-donde $v(t)$ es la velocidad lineal de avance en \unit{\meter\per\second} y $\omega(t)$ es la velocidad angular de guiñada en \unit{\radian\per\second}.
-
-Para garantizar la estabilidad estática del rover sobre pendientes con ángulo de inclinación $\alpha$, el ángulo crítico de vuelco $\alpha_{\text{crítico}}$ está determinado por la trocha del vehículo $W$, la distancia entre ejes $L$ y la altura del centro de masa $h_{\text{cm}}$:
-\begin{equation}
-    \tan(\alpha_{\text{vuelco,lat}}) = \frac{W}{2 h_{\text{cm}}}, \quad \tan(\alpha_{\text{vuelco,long}}) = \frac{L}{2 h_{\text{cm}}}
-    \label{eq:estabilidad-vuelco}
-\end{equation}
-
-% ------------------------------------------------------------------------------
-\section{Odometría relativa y localización sin GPS}
-\label{sec:marco-odometria}
-
-En ausencia de señales satelitales, la pose del rover se estima de forma recursiva mediante la integración temporal de las velocidades angulares de las ruedas medidas por encoders incrementales y la velocidad angular medida por el giroscopio de la IMU:
+Describa las ecuaciones diferenciales que gobiernan el comportamiento del sistema mecatrónico. Por ejemplo, para un sistema electromecánico lineal invariante en el tiempo continuo, la representación general en espacio de estados se formula como:
 \begin{align}
-    x(k) &= x(k-1) + v(k) \cdot T_s \cos\big(\theta(k-1) + \tfrac{1}{2}\omega(k) T_s\big) \label{eq:odometria-x} \\
-    y(k) &= y(k-1) + v(k) \cdot T_s \sin\big(\theta(k-1) + \tfrac{1}{2}\omega(k) T_s\big) \label{eq:odometria-y} \\
-    \theta(k) &= \theta(k-1) + \omega(k) \cdot T_s \label{eq:odometria-theta}
+    \dot{\mathbf{x}}(t) &= \mathbf{A}\mathbf{x}(t) + \mathbf{B}\mathbf{u}(t) \label{eq:espacio-estados-continuo} \\
+    \mathbf{y}(t) &= \mathbf{C}\mathbf{x}(t) + \mathbf{D}\mathbf{u}(t) \label{eq:salida-continuo}
 \end{align}
-donde $T_s$ es el periodo de muestreo discreto del lazo de localización.
+donde $\mathbf{x}(t) \in \mathbb{R}^n$ es el vector de variables de estado, $\mathbf{u}(t) \in \mathbb{R}^m$ es el vector de entradas de control, $\mathbf{y}(t) \in \mathbb{R}^p$ es el vector de salidas medidas, y $\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D}$ son las matrices del sistema.
 
 % ------------------------------------------------------------------------------
-\section{Percepción visual y estimación de posición de muestras}
-\label{sec:marco-vision}
+\section{Análisis de controlabilidad y leyes de control}
+\label{sec:marco-control}
 
-La identificación de las muestras geológicas simuladas se realiza mediante un sensor óptico (cámara monocromática/RGB o RGB-D). El modelo de cámara estenopeica relaciona las coordenadas de un punto en el marco de la cámara $\mathbf{P}_c = [X_c \quad Y_c \quad Z_c]\transp$ con las coordenadas del plano de imagen $(u, v)$ en píxeles:
+La controlabilidad del sistema garantiza que es posible transferir el estado del sistema desde cualquier condición inicial hasta el origen en tiempo finito mediante una ley de control admisible. La matriz de controlabilidad $\mathcal{C}$ se define como:
 \begin{equation}
-    s \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = \begin{bmatrix} f_x & 0 & c_x \\ 0 & f_y & c_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} X_c \\ Y_c \\ Z_c \end{bmatrix}
-    \label{eq:modelo-camara}
+    \mathcal{C} = \begin{bmatrix} \mathbf{B} & \mathbf{A}\mathbf{B} & \mathbf{A}^2\mathbf{B} & \cdots & \mathbf{A}^{n-1}\mathbf{B} \end{bmatrix}, \quad \text{rank}(\mathcal{C}) = n
+    \label{eq:matriz-controlabilidad-marco}
 \end{equation}
-donde $f_x, f_y$ representan las distancias focales en píxeles y $(c_x, c_y)$ es el punto principal óptico. La distancia y orientación relativa hacia la muestra permiten alimentar el lazo de control de aproximación.
 
-% ------------------------------------------------------------------------------
-\section{Control de navegación y error de trayectoria}
-\label{sec:marco-control-navegacion}
+La ley de control por realimentación de estados con precompensación para seguimiento de referencias $\mathbf{r}(t)$ se expresa mediante:
+\begin{equation}
+    \mathbf{u}(t) = -\mathbf{K}\mathbf{x}(t) + \mathbf{N}\mathbf{r}(t)
+    \label{eq:ley-control-marco}
+\end{equation}
+donde $\mathbf{K}$ representa la matriz de ganancias calculada para satisfacer las especificaciones dinámicas de tiempo de establecimiento y sobrepaso porcentual.
 
-Para la navegación autónoma entre puntos de paso (waypoints) $\mathbf{p}_r = [x_r \quad y_r]\transp$, se define el error de posición euclidiano:
-\begin{equation}
-    e_p(t) = \sqrt{\big(x_r - x(t)\big)^2 + \big(y_r - y(t)\big)^2}
-    \label{eq:error-posicion-euclidiano}
-\end{equation}
-y el error de orientación angular:
-\begin{equation}
-    e_\theta(t) = \text{atan2}\big(y_r - y(t), x_r - x(t)\big) - \theta(t)
-    \label{eq:error-orientacion}
-\end{equation}
-El controlador cinemático calcula las velocidades deseadas $v(t) = k_v \cos(e_\theta) e_p(t)$ y $\omega(t) = k_\theta e_\theta(t)$, garantizando la convergencia asintótica hacia el objetivo o zona de depósito.
+Recuerde expresar todas las magnitudes físicas utilizando el paquete \texttt{siunitx}, por ejemplo: tensión de \qty{12.0}{\volt}, corriente de \qty{2.5}{\ampere}, frecuencia de muestreo de \qty{1.0}{\kilo\hertz} y par motor de \qty{0.45}{\newton\meter}.

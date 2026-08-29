@@ -6,58 +6,58 @@
 \chapter{\tituloValidacion}
 \label{cap:validacion}
 
-En este capítulo se describen los protocolos experimentales planificados, las métricas cuantitativas que se utilizarán y los criterios de aceptación para evaluar el desempeño integral del robot rover en el entorno de pruebas de terreno irregular.
+En este capítulo se exponen los protocolos de prueba experimentales, las métricas cuantitativas empleadas y los resultados obtenidos para evaluar rigurosamente el desempeño del sistema mecatrónico.
 
 % ------------------------------------------------------------------------------
-\section{Métricas cuantitativas de evaluación de la misión}
-\label{sec:validacion-metricas-rover}
+\section{Métricas cuantitativas de evaluación}
+\label{sec:validacion-metricas}
 
-Para evaluar rigurosamente el desempeño de cada subsistema y la eficacia global de la misión de exploración, se emplearán las siguientes métricas:
+Para cuantificar el desempeño del sistema, se emplean las siguientes métricas estadísticas de error y respuesta transitoria:
 
 \begin{enumerate}
-    \item \textbf{Error de posición euclidiano en navegación sin GPS:}
+    \item \textbf{Error instantáneo del sistema:}
     \begin{equation}
-        e_p(t) = \sqrt{\big(x_r(t) - x(t)\big)^2 + \big(y_r(t) - y(t)\big)^2}
-        \label{eq:error-posicion-rover}
+        e(t) = r(t) - y(t)
+        \label{eq:error-instantaneo-gen}
     \end{equation}
-    \item \textbf{Tasa de éxito en la detección de muestras geológicas ($\eta_{\text{det}}$):}
+    \item \textbf{Error Absoluto Medio ($\text{MAE}$):}
     \begin{equation}
-        \eta_{\text{det}} = \frac{N_{\text{muestras detectadas}}}{N_{\text{muestras presentes en el campo}}} \times 100\,\%
-        \label{eq:tasa-deteccion}
+        \text{MAE} = \frac{1}{N}\sum_{k=1}^{N} |e(k)|
+        \label{eq:mae-gen}
     \end{equation}
-    \item \textbf{Tasa de éxito del mecanismo de recolección ($\eta_{\text{rec}}$):}
+    \item \textbf{Error Cuadrático Medio ($\text{RMSE}$):}
     \begin{equation}
-        \eta_{\text{rec}} = \frac{N_{\text{muestras recolectadas y aseguradas}}}{N_{\text{intentos de recolección}}} \times 100\,\%
-        \label{eq:tasa-recoleccion}
+        \text{RMSE} = \sqrt{\frac{1}{N}\sum_{k=1}^{N} e^2(k)}
+        \label{eq:rmse-gen}
     \end{equation}
-    \item \textbf{Eficiencia global de cumplimiento de misión ($\eta_{\text{misión}}$):}
+    \item \textbf{Eficiencia de cumplimiento de tareas o misiones ($\eta$):}
     \begin{equation}
-        \eta_{\text{misión}} = \frac{N_{\text{misiones completadas exitosamente}}}{N_{\text{misiones ejecutadas}}} \times 100\,\%
-        \label{eq:eficiencia-mision}
+        \eta = \frac{N_{\text{éxitos}}}{N_{\text{ensayos totales}}} \times 100\,\%
+        \label{eq:eficiencia-gen}
     \end{equation}
 \end{enumerate}
 
 % ------------------------------------------------------------------------------
-\section{Protocolo y criterios de validación experimental en pista}
-\label{sec:validacion-protocolo-rover}
+\section{Evaluación de resultados y contraste de especificaciones}
+\label{sec:validacion-resultados}
 
-En la \tabref{tab:comparativa-validacion} se resumen los criterios de aceptación cuantitativos que se verificarán durante los ensayos de campo en el escenario experimental de terreno irregular.
+En la \tabref{tab:comparativa-validacion} se resumen los criterios de evaluación y el grado de cumplimiento de los requerimientos de diseño.
 
 \begin{table}[htbp]
     \centering
-    \caption{Criterios de validación y especificaciones de desempeño por verificar en el rover.}
+    \caption{Matriz de validación y contraste con especificaciones de diseño.}
     \label{tab:comparativa-validacion}
     \begin{tabularx}{\textwidth}{p{3.8cm} c p{3.8cm} X}
         \toprule
-        \textbf{Prueba / Subsistema} & \textbf{Especificación} & \textbf{Método de Medición} & \textbf{Criterio de Aceptación} \\
+        \textbf{Parámetro Evaluado} & \textbf{Especificación} & \textbf{Método de Medición} & \textbf{Criterio de Aceptación} \\
         \midrule
-        Movilidad en pendiente & $\ge \ang{15}$ de inclinación & Ensayos en rampa de tierra & Ascenso sin deslizamiento crítico \\
-        Localización sin GPS & $e_p \le 5\,\%$ de trayecto & Contraste con marcas terrestres & Deriva acotada en circuito \\
-        Detección visual de muestras & $\eta_{\text{det}} \ge 85\,\%$ & Registro de cámara y HMI & Reconocimiento a $\ge \qty{1.0}{\meter}$ \\
-        Recolección y depósito & $\eta_{\text{rec}} \ge 80\,\%$ & Ensayos de manipulación & Captura, traslado y descarga \\
-        Misión autónoma integral & $\eta_{\text{misión}} \ge 75\,\%$ & Ejecución completa sin GPS & Retorno exitoso a zona base \\
+        Sobrepaso porcentual ($M_p$) & $\le 10\,\%$ & Adquisición digital de salida & Cumplimiento estricto \\
+        Tiempo de establecimiento ($t_s$) & $\le \qty{0.50}{\second}$ & Registro temporal a \qty{1}{\kilo\hertz} & Banda de tolerancia $\pm 2\,\%$ \\
+        Error absoluto medio ($\text{MAE}$) & $\le \qty{0.05}{\unit{\meter}}$ & Análisis estadístico de prueba & Media en régimen estacionario \\
+        Error cuadrático medio ($\text{RMSE}$) & $\le \qty{0.08}{\unit{\meter}}$ & Cálculo de varianza & Dispersión acotada \\
+        Tasa de éxito de operación ($\eta$) & $\ge 80\,\%$ & Repetibilidad de $N \ge 10$ ensayos & Operación confiable \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-El cumplimiento de estos criterios permitirá demostrar la viabilidad, robustez y autonomía de la plataforma robótica desarrollada para misiones de exploración terrestre y lunar análoga.
+\noindent Presente gráficas comparativas entre la referencia deseada y la respuesta real del sistema, detallando el comportamiento ante perturbaciones y variaciones paramétricas.

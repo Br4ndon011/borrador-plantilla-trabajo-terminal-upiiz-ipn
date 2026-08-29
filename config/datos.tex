@@ -10,35 +10,47 @@
 % ==============================================================================
 % 1. SELECCIÓN DEL TIPO DE DOCUMENTO
 % ==============================================================================
-% Opciones válidas:
-%   PROTOCOLO  -> Protocolo de Trabajo Terminal (registro de proyecto)
-%   TTI        -> Trabajo Terminal I (diseño detallado)
+% Seleccione UNA de las siguientes opciones (descomente o modifique el valor):
+%
+%   PROTOCOLO  -> Protocolo de Trabajo Terminal (registro de propuesta)
+%   TTI        -> Trabajo Terminal I (diseño detallado y propuesta)
 %   TTII       -> Trabajo Terminal II / Reporte Final (implementación y validación)
 %
 \TipoDocumento{PROTOCOLO}
 
 % ==============================================================================
-% 2. DATOS DEL PROYECTO
+% 2. DATOS GENERALES DEL PROYECTO
 % ==============================================================================
-\newcommand{\tituloProyecto}{Diseño e implementación de un robot rover autónomo para exploración de terreno irregular y recolección de muestras geológicas simuladas}
-\newcommand{\tituloIngles}{Design and Implementation of an Autonomous Rover Robot for Rough Terrain Exploration and Simulated Geological Sample Collection}
+% Escriba el título completo en español e inglés:
+\newcommand{\tituloProyecto}{Título General del Trabajo Terminal de Ingeniería Mecatrónica}
+\newcommand{\tituloIngles}{General Title of the Mechatronics Engineering Terminal Project}
 
-% Área de ubicación (Aplica para PROTOCOLO)
+% Área de ubicación del proyecto (aplica en la portada de PROTOCOLO):
 \newcommand{\areaUbicacion}{Ingeniería Mecatrónica}
 
-% Intención de titulación (Aplica para PROTOCOLO)
+% Modalidad / Intención de titulación (aplica en la portada de PROTOCOLO):
+% Ejemplos: "Opción curricular / Trabajo Terminal", "Tesis", "Proyecto de Investigación"
 \newcommand{\intencionTitulacion}{Opción curricular / Trabajo Terminal}
 
-% Línea de investigación institucional de la UPIIZ:
-% I.   Diseño e implementación de un sistema robótico, dispositivos o sistemas mecatrónicos.
+% Líneas de investigación institucionales de la UPIIZ-IPN (seleccione la suya):
+% - Línea I:   Diseño e implementación de un sistema robótico, dispositivos o sistemas mecatrónicos.
+% - Línea II:  Automatización de procesos industriales.
+% - Línea III: Instrumentación y adquisición de datos.
+% - Línea IV:  Diseño e implementación de sistemas o técnicas de control.
+% - Línea V:   Sistemas bio-mecatrónicos y tecnología asistiva.
 \newcommand{\lineaTrabajo}{Línea de investigación: I. Diseño e implementación de un sistema robótico, dispositivos o sistemas mecatrónicos.}
 
+% Mes y año de presentación o defensa:
 \newcommand{\fechaDefensa}{enero de 2026}
 
 % ==============================================================================
-% 3. INTEGRANTES DEL PROYECTO (1, 2 o 3 ALUMNOS)
+% 3. INTEGRANTES DEL PROYECTO (1, 2 O 3 ESTUDIANTES)
 % ==============================================================================
-\newcommand{\alumnoANombre}{Mariana Robles Reynoso}
+% Si su equipo tiene 1 integrante: complete Alumno A y deje B y C en blanco.
+% Si tiene 2 integrantes: complete Alumno A y B, y deje C en blanco.
+% Si tiene 3 integrantes: complete Alumno A, B y C.
+
+\newcommand{\alumnoANombre}{Nombre Completo del Primer Alumno}
 \newcommand{\alumnoABoleta}{2020670001}
 
 \newcommand{\alumnoBNombre}{}
@@ -48,23 +60,24 @@
 \newcommand{\alumnoCBoleta}{}
 
 % ==============================================================================
-% 4. ASESORES / DIRECCIÓN (1 A 3 ASESORES)
+% 4. ASESORES / DIRECTORES DEL TRABAJO TERMINAL (1 A 3 ASESORES)
 % ==============================================================================
-\newcommand{\asesorANombre}{M. en C. Rafael Reveles Martínez}
-\newcommand{\asesorBNombre}{Mtro. José Refugio Campos Flores}
+% Indique el grado académico oficial (Dr., M. en C., Mtro., Ing., etc.):
+\newcommand{\asesorANombre}{M. en C. Primer Asesor del Proyecto}
+\newcommand{\asesorBNombre}{Mtro. Segundo Asesor del Proyecto}
 \newcommand{\asesorCNombre}{}
 
 % ==============================================================================
-% 5. JURADO EVALUADOR (SÍNODO)
+% 5. JURADO EVALUADOR / SÍNODO (APLICA PARA TT I Y TT II)
 % ==============================================================================
-\newcommand{\juradoPresidente}{Dr. Umanel A. Hernández González}
-\newcommand{\juradoSecretario}{M. en C. Eleazar Pacheco Reyes}
+\newcommand{\juradoPresidente}{Dr. Presidente del Sínodo}
+\newcommand{\juradoSecretario}{M. en C. Secretario del Sínodo}
 \newcommand{\juradoPrimerVocal}{Dr. Primer Vocal del Sínodo}
 \newcommand{\juradoSegundoVocal}{M. en C. Segundo Vocal del Sínodo}
-\newcommand{\juradoTercerVocal}{}
+\newcommand{\juradoTercerVocal}{} % Dejar en blanco si solo son 4 miembros
 
 % ==============================================================================
-% 6. DATOS INSTITUCIONALES (NO MODIFICAR SALVO INDICACIÓN OFICIAL)
+% 6. DATOS INSTITUCIONALES (NO MODIFICAR SALVO DISPOSICIÓN OFICIAL)
 % ==============================================================================
 \newcommand{\institucionNombre}{INSTITUTO POLITÉCNICO NACIONAL}
 \newcommand{\unidadAcademica}{UNIDAD PROFESIONAL INTERDISCIPLINARIA DE INGENIERÍA CAMPUS ZACATECAS}

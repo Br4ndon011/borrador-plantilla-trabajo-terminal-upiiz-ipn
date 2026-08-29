@@ -6,40 +6,40 @@
 \chapter{Introducción}
 \label{cap:introduccion}
 
-La exploración de entornos terrestres no estructurados e irregulares mediante sistemas robóticos autónomos representa una de las áreas más dinámicas y desafiantes de la ingeniería mecatrónica contemporánea. En escenarios donde la intervención humana directa resulta riesgosa o inviable, como en labores de prospección geológica, rescate en zonas de desastre o exploración planetaria análoga, se requiere de plataformas móviles capaces de desplazarse de forma estable sobre pendientes y surcos, estimar su posición relativa sin depender de sistemas de navegación satelital (GPS) e interactuar físicamente con el entorno mediante mecanismos de recolección y manipulación.
+En este capítulo se expone el contexto general del proyecto de Trabajo Terminal, la relevancia del problema de ingeniería abordado y la articulación de las cuatro áreas formativas de la Ingeniería Mecatrónica: mecánica, electrónica, control y programación.
 
-El presente protocolo expone la propuesta de Trabajo Terminal para el diseño, desarrollo, implementación física y validación experimental de un robot móvil tipo rover autónomo. El sistema estará orientado a cumplir una misión integral consistente en: partir desde un punto inicial, navegar de forma autónoma en un escenario de terreno irregular controlado, detectar y localizar muestras geológicas simuladas (piezas sólidas de geometría irregular), aproximarse a ellas, recolectarlas mediante un mecanismo dedicado, transportarlas de regreso y liberarlas en una zona de depósito designada, transmitiendo simultáneamente datos de telemetría hacia una interfaz hombre-máquina.
+La redacción debe ser formal, técnica, impersonal y clara, guiando al lector a través de la motivación, los alcances y la estructura general del documento.
 
-A continuación se detalla la estructura capitular del documento:
+A continuación se detalla la estructura capitular de este documento:
 \begin{itemize}
     \item El \capref{cap:justificacion} expone la justificación técnica, académica y social del proyecto.
-    \item El \capref{cap:antecedentes} presenta los antecedentes y desarrollos previos en sistemas robóticos rover.
-    \item El \capref{cap:marco-teorico} sintetiza los fundamentos de cinemática de locomoción, odometría y visión artificial.
-    \item El \capref{cap:estado-del-arte} revisa las tecnologías y arquitecturas de rovers de exploración existentes.
+    \item El \capref{cap:antecedentes} presenta los antecedentes y desarrollos previos relacionados.
+    \item El \capref{cap:marco-teorico} sintetiza el modelado físico-matemático y los fundamentos teóricos.
+    \item El \capref{cap:estado-del-arte} revisa las tecnologías existentes y comparativas del estado de la técnica.
     \item El \capref{cap:planteamiento} define formalmente el problema de ingeniería y la solución mecatrónica propuesta.
-    \item El \capref{cap:desarrollo} describe la arquitectura funcional de los subsistemas y la metodología de diseño.
-    \item El \capref{cap:validacion} presenta los protocolos experimentales planificados y las métricas de evaluación.
-    \item El \capref{cap:conclusiones} establece los resultados esperados y el impacto del cumplimiento de los objetivos.
+    \item El \capref{cap:desarrollo} describe la metodología de diseño, subsistemas e integración física.
+    \item El \capref{cap:validacion} presenta los protocolos experimentales y las métricas cuantitativas de evaluación.
+    \item El \capref{cap:conclusiones} establece las conclusiones derivadas del cumplimiento de los objetivos.
     \ifTTII
-    \item El \capref{cap:trabajo-futuro} plantea las líneas de trabajo a futuro e iteraciones posteriores.
+    \item El \capref{cap:trabajo-futuro} plantea las líneas de investigación futuras e iteraciones de desarrollo.
     \fi
 \end{itemize}
 
 % ------------------------------------------------------------------------------
-% OBJETIVOS (COPIAR TEXTUALMENTE EN INFINITIVO)
+% OBJETIVOS (REGLA INSTITUCIONAL: REDACTAR SIEMPRE EN INFINITIVO)
 % ------------------------------------------------------------------------------
 
 \section{Objetivo general}
 \label{sec:objetivo-general}
 
-Diseñar e implementar un sistema robótico rover autónomo capaz de explorar un terreno irregular, localizar y recolectar muestras geológicas simuladas sin utilizar posicionamiento satelital, transportarlas hasta una zona de depósito y supervisar el desarrollo de la misión mediante una interfaz hombre-máquina, validando experimentalmente su desempeño.
+Diseñar e implementar un sistema mecatrónico [describir el sistema general] para [definir la función o propósito principal], mediante el modelado físico-matemático, la integración sinérgica de mecánica, electrónica, control y programación, y su validación experimental bajo condiciones de operación representativas.
 
 \section{Objetivos específicos}
 \label{sec:objetivos-especificos}
 
 \begin{enumerate}
-    \item \textbf{Objetivo Específico 1:} Definir y desarrollar la arquitectura mecatrónica del rover a partir de los requerimientos de movilidad, estabilidad, exploración y manipulación de muestras en un entorno de terreno irregular.
-    \item \textbf{Objetivo Específico 2:} Diseñar los subsistemas de percepción, localización relativa y navegación necesarios para que el rover pueda desplazarse sin GPS, identificar muestras y estimar su ubicación dentro del entorno de operación.
-    \item \textbf{Objetivo Específico 3:} Diseñar el subsistema de recolección, transporte y depósito de muestras, así como la coordinación funcional necesaria entre locomoción, percepción, navegación y manipulación.
-    \item \textbf{Objetivo Específico 4:} Implementar e integrar el sistema robótico y validar experimentalmente su desempeño mediante pruebas de movilidad, navegación, detección, recolección, retorno y cumplimiento de misión.
+    \item \textbf{Objetivo Específico 1 (Modelado y Requerimientos):} Obtener el modelo físico-matemático del sistema que represente sus variables dinámicas y formular los requerimientos cuantitativos de diseño a partir de parámetros físicos y análisis analítico.
+    \item \textbf{Objetivo Específico 2 (Control y Algoritmos):} Diseñar y simular las estrategias de control y procesamiento necesarias para garantizar el desempeño dinámico y la estabilidad del sistema ante perturbaciones de operación.
+    \item \textbf{Objetivo Específico 3 (Diseño e Integración Mecatrónica):} Diseñar e integrar la arquitectura física y lógica del prototipo, incluyendo componentes mecánicos, circuitos electrónicos de potencia y sensado, y firmware embebido en tiempo real.
+    \item \textbf{Objetivo Específico 4 (Implementación y Validación):} Implementar el prototipo funcional y validar experimentalmente su desempeño mediante un protocolo de pruebas sistemáticas empleando métricas cuantitativas cuantificables.
 \end{enumerate}

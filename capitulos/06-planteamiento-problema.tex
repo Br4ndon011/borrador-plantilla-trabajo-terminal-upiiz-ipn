@@ -6,31 +6,27 @@
 \chapter{Planteamiento del Problema}
 \label{cap:planteamiento}
 
-En este capítulo se define formalmente el problema de ingeniería que motiva el proyecto, se establecen las restricciones operativas y se expone la solución mecatrónica interdisciplinaria propuesta.
+En este capítulo se define de manera formal y precisa la problemática de ingeniería que motiva el Trabajo Terminal, las restricciones operativas del sistema y la solución mecatrónica interdisciplinaria propuesta.
 
 % ------------------------------------------------------------------------------
 \section{Formulación del problema de ingeniería}
-\label{sec:planteamiento-problema-rover}
+\label{sec:planteamiento-problema}
 
-Las misiones de exploración en superficies no estructuradas exigen plataformas robóticas autónomas capaces de desplazarse sobre desniveles pronunciados, superar irregularidades del terreno y manipular objetos sin intervención humana directa ni disponibilidad de sistemas satelitales globales (GPS). En tales escenarios, el desarrollo de un rover enfrenta los siguientes desafíos técnicos críticos:
+Redacte de forma clara los síntomas y causas de la problemática que se pretende resolver. Identifique las limitaciones que presentan los sistemas actuales y formule la necesidad concreta de diseño o automatización:
 \begin{enumerate}
-    \item \textbf{Inestabilidad y deslizamiento en terreno irregular:} Las pendientes, surcos y rocas generan pérdida de tracción, desalineación en el rumbo e incertidumbre en la estimación de distancia recorrida.
-    \item \textbf{Imposibilidad de utilizar GPS:} La navegación depende exclusivamente de sensores a bordo (encoders, IMU, cámaras), los cuales acumulan deriva temporal si no se implementan algoritmos de corrección y fusión sensorial.
-    \item \textbf{Detección y localización visual de muestras:} Las muestras geológicas simuladas (cuerpos sólidos de geometría irregular) deben ser identificadas y ubicadas en coordenadas relativas tridimensionales bajo condiciones variables de iluminación y perspectiva.
-    \item \textbf{Mecanismo de recolección y transporte seguro:} Se requiere un subsistema electromecánico capaz de asegurar la muestra durante desplazamientos sobre vibraciones severas y liberarla de forma controlada en la zona de depósito.
-    \item \textbf{Coordinación y supervisión de misión:} La plataforma debe ejecutar de manera autónoma una máquina de estados compleja (inicio $\rightarrow$ patrullaje $\rightarrow$ detección $\rightarrow$ aproximación $\rightarrow$ recolección $\rightarrow$ retorno $\rightarrow$ descarga), transmitiendo telemetría en tiempo real hacia una estación de supervisión.
+    \item \textbf{Deficiencia o limitación principal:} Describa qué fenómeno físico, ineficiencia de proceso o restricción operacional impide alcanzar el desempeño óptimo.
+    \item \textbf{Causas técnicas identificadas:} Explique los factores electromecánicos, perturbaciones ambientales o carencias sensoriales asociadas.
+    \item \textbf{Consecuencias de no resolver el problema:} Puntualice los riesgos de falla, pérdidas económicas o desviaciones de calidad.
 \end{enumerate}
-
-Por tanto, el problema consiste en diseñar, construir e integrar un sistema mecatrónico que resuelva coordinadamente los requerimientos de locomoción, percepción, navegación sin GPS y manipulación, validando su desempeño mediante métricas cuantitativas reproducibles.
 
 % ------------------------------------------------------------------------------
 \section{Solución mecatrónica propuesta}
-\label{sec:solucion-propuesta-rover}
+\label{sec:solucion-propuesta}
 
-La solución planteada articula de manera equilibrada las cuatro áreas de la mecatrónica:
+Exponga la propuesta técnica de solución, detallando explícitamente cómo participará cada una de las cuatro áreas de la Ingeniería Mecatrónica:
 \begin{itemize}
-    \item \textbf{Mecánica:} Diseño del chasis todoterreno con suspensión adaptativa, cálculo de centro de masa para prevención de vuelcos, y diseño del mecanismo articulado de recolección, bahía de transporte y depósito.
-    \item \textbf{Electrónica:} Sistema de distribución y gestión de energía con baterías LiPo, etapas de potencia para motores de tracción y actuadores de recolección, instrumentación sensorial (encoders, IMU, cámara) y módulos de comunicación inalámbrica.
-    \item \textbf{Control:} Control cinemático y dinámico de velocidad y orientación, algoritmos de aproximación fina a las muestras y coordinación secuencial entre la locomoción y el mecanismo de agarre.
-    \item \textbf{Programación:} Algoritmos de visión por computadora para detección de muestras, estimación de odometría sensorial, lógica de misión basada en máquinas de estado finito deterministas y desarrollo de una interfaz gráfica hombre-máquina (HMI).
+    \item \textbf{Mecánica:} Diseño del mecanismo, análisis cinemático y dinámico, cálculo de esfuerzos estructurales y modelado CAD 3D de piezas y ensambles.
+    \item \textbf{Electrónica:} Selección y acondicionamiento de sensores, diseño de etapas de potencia, aislamiento galvánico y gestión eficiente de la energía.
+    \item \textbf{Control:} Formulación de modelos dinámicos, diseño de observadores/estimadores y síntesis de leyes de control en lazo cerrado para garantizar estabilidad y seguimiento.
+    \item \textbf{Programación:} Implementación de firmware determinista en tiempo real, comunicación por buses industriales/digitales e interfaz de supervisión telemática.
 \end{itemize}
