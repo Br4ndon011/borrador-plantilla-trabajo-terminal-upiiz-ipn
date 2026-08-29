@@ -8,40 +8,40 @@
 \chapter{Estado del Arte}
 \label{cap:estado-del-arte}
 
-En este capítulo se analizan las plataformas tecnológicas, arquitecturas de control embebido y desarrollos experimentales existentes para la regulación dinámica de vehículos terrestres a escala en la literatura científica reciente.
+En este capítulo se analiza el estado actual de las tecnologías de locomoción en terreno agreste, las técnicas de localización relativa en ausencia de GPS y los mecanismos de recolección y depósito empleados en rovers de exploración.
 
 % ------------------------------------------------------------------------------
-\section{Revisión de plataformas y enfoques de control vehicular}
-\label{sec:arte-plataformas}
+\section{Revisión de arquitecturas de rovers de exploración}
+\label{sec:arte-arquitecturas-rover}
 
-El desarrollo de vehículos terrestres a escala reducida ha transitado por tres generaciones tecnológicas principales:
+En la literatura y en certámenes internacionales de robótica móvil se identifican tres aproximaciones principales para la concepción de rovers todoterreno:
 
 \begin{enumerate}
-    \item \textbf{Plataformas comerciales de radio control (RC) en lazo abierto:} Utilizan transmisores de radiofrecuencia para enviar señales moduladas por ancho de pulso (PWM) directamente a un controlador electrónico de velocidad (ESC) y a un servomotor estándar. Carecen por completo de sensores a bordo, estimación de variables y lazo cerrado de control, por lo que su velocidad y trayectoria dependen exclusivamente de la compensación visual manual del usuario.
-    \item \textbf{Plataformas instrumentadas con control clásico monovariable (PID desacoplado):} Incorporan microcontroladores básicos de 8 bits y encoders ópticos para regular la velocidad de las ruedas de forma independiente del mecanismo de dirección. Aunque reducen el error estacionario de tracción, no contemplan el acoplamiento dinámico entre la aceleración longitudinal y la fuerza lateral en curvas, resultando inestables ante perturbaciones súbitas.
-    \item \textbf{Plataformas mecatrónicas en espacio de estados con procesamiento embebido de 32 bits:} Integran unidades de medición inercial (IMU), encoders de alta resolución, etapas de potencia configurables y microcontroladores con unidades de punto flotante (FPU) como arquitecturas ARM Cortex-M4/M7 o ESP32. Permiten la ejecución determinista de leyes de control matriciales en tiempo real ($f_s \ge \qty{1}{\kilo\hertz}$), estimación de variables mediante observadores y comunicación telemática.
+    \item \textbf{Rovers de tracción diferencial con ruedas de gran diámetro:} Utilizan dos o cuatro ruedas motrices fijas al chasis con neumáticos de alto agarre. Son mecánicamente simples y de bajo costo, pero presentan susceptibilidad a perder contacto con el suelo ante zanjas o rocas de altura superior al radio de la rueda.
+    \item \textbf{Sistemas con suspensión articulada tipo \textit{Rocker-Bogie}:} Distribuyen pasivamente el peso en seis ruedas motrices independientes, manteniendo contacto constante con el suelo sin necesidad de resortes. Aunque poseen excelente capacidad todoterreno, su manufactura y control de tracción aumentan la complejidad mecánica y el peso total del sistema.
+    \item \textbf{Chasises articulados con dirección activa y tracción 4WD/6WD:} Combinan tracción en todas las ruedas con pivotes de oscilación central, ofreciendo un equilibrio óptimo entre masa estructural, capacidad de trepado en pendientes ($> \ang{20}$) y facilidad de integración mecatrónica.
 \end{enumerate}
 
 % ------------------------------------------------------------------------------
-\section{Comparativa técnica de tecnologías existentes}
-\label{sec:arte-comparativa}
+\section{Comparativa de tecnologías de recolección y navegación}
+\label{sec:arte-comparativa-rover}
 
-En la \tabref{tab:comparativa-arte} se sintetizan las ventajas, limitaciones y pertinencia de los enfoques reportados en la literatura respecto a los objetivos de este Trabajo Terminal.
+En la \tabref{tab:comparativa-arte} se sintetizan las ventajas, limitaciones y pertinencia de los métodos de recolección y navegación identificados para misiones de exploración a escala.
 
 \begin{table}[htbp]
     \centering
-    \caption{Comparación técnica de tecnologías y enfoques de control vehicular a escala.}
+    \caption{Comparación técnica de enfoques de locomoción, sensado y manipulación para rovers.}
     \label{tab:comparativa-arte}
     \begin{tabularx}{\textwidth}{p{3.0cm} X X p{3.2cm}}
         \toprule
-        \textbf{Enfoque / Solución} & \textbf{Ventajas} & \textbf{Desventajas} & \textbf{Aplicabilidad en este TT} \\
+        \textbf{Tecnología / Enfoque} & \textbf{Ventajas} & \textbf{Desventajas} & \textbf{Aplicabilidad en este TT} \\
         \midrule
-        Plataformas comerciales RC propietarias & Bajo costo inicial y componentes mecánicos integrados & Electrónica cerrada, nula programabilidad y sin sensado & Se aprovecha únicamente el chasis y la suspensión \\
-        Control PID clásico desacoplado & Simplicidad de cálculo e implementación en microcontroladores básicos & Incapacidad para compensar acoplamientos multivariables y retardos & Superado por la formulación matricial en espacio de estados \\
-        Arquitecturas ROS / Linux embebido en SBC & Alto nivel de abstracción y librerías de navegación avanzada & Consumo de potencia elevado ($> \qty{10}{\watt}$) y latencias no deterministas & Excesivo para control bajo nivel de velocidad y dirección \\
-        Microcontrolador de 32 bits con control en espacio de estados & Determinismo estricto en tiempo real, bajo consumo y control multivariable & Requiere modelado e identificación dinámica rigurosa & \textbf{Enfoque seleccionado para este proyecto} \\
+        Brazo robótico serial de 5--6 GDL & Alta destreza y manipulación espacial compleja & Elevado peso, alto consumo y control cinemático complejo & Excesivo para recolección de muestras simples \\
+        Mecanismo tipo pala / cuchara con compuerta & Estructura simple, bajo consumo y alta robustez de agarre & Requiere posicionamiento frontal preciso del rover & \textbf{Alternativa recomendada para evaluación en TT I} \\
+        Odometría de rueda pura (Encoders) & Bajo costo y alta frecuencia de muestreo & Deriva acumulativa severa por deslizamiento en tierra & Insuficiente como método único sin GPS \\
+        Fusión sensorial (Encoder + IMU + Visión) & Localización relativa robusta y corrección de deriva & Requiere procesamiento digital y calibración periódica & \textbf{Enfoque seleccionado para la navegación del rover} \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-A partir de esta comparativa, se concluye que la implementación de una arquitectura mecatrónica basada en microcontrolador de 32 bits ejecutando una ley de control en espacio de estados representa la alternativa óptima en costo, determinismo temporal y rigor analítico.
+A partir de este análisis, se concluye que un rover con tracción en todas las ruedas, fusión sensorial odometría-IMU-visión y mecanismo de recolección directo ofrece la mejor relación entre viabilidad técnica, robustez y cumplimiento de misión.

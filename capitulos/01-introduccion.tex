@@ -6,40 +6,40 @@
 \chapter{Introducción}
 \label{cap:introduccion}
 
-El control automático de sistemas vehiculares terrestres constituye uno de los campos de mayor relevancia e impacto en la ingeniería mecatrónica contemporánea. La regulación precisa de la velocidad longitudinal y del ángulo de dirección en vehículos a escala reducida presenta desafíos técnicos significativos asociados al modelado dinámico, la no linealidad de los componentes electromecánicos, el retardo temporal en la actuación y la sensibilidad ante perturbaciones externas del entorno.
+La exploración de entornos terrestres no estructurados e irregulares mediante sistemas robóticos autónomos representa una de las áreas más dinámicas y desafiantes de la ingeniería mecatrónica contemporánea. En escenarios donde la intervención humana directa resulta riesgosa o inviable, como en labores de prospección geológica, rescate en zonas de desastre o exploración planetaria análoga, se requiere de plataformas móviles capaces de desplazarse de forma estable sobre pendientes y surcos, estimar su posición relativa sin depender de sistemas de navegación satelital (GPS) e interactuar físicamente con el entorno mediante mecanismos de recolección y manipulación.
 
-El presente protocolo expone la propuesta de Trabajo Terminal para el diseño, desarrollo, implementación física e integración mecatrónica de una estrategia de control formulada en espacio de estados sobre una plataforma vehicular a escala 1:10. A diferencia de un enfoque basado en lazo abierto o control manual no realimentado, el proyecto articulará formalmente las cuatro disciplinas esenciales de la mecatrónica: mecánica (geometría de dirección y transmisión), electrónica (instrumentación, sensado y etapas de potencia), control (modelado dinámico, controlabilidad, observabilidad y realimentación de estados) y programación (firmware embebido determinista en tiempo real y adquisición de datos).
+El presente protocolo expone la propuesta de Trabajo Terminal para el diseño, desarrollo, implementación física y validación experimental de un robot móvil tipo rover autónomo. El sistema estará orientado a cumplir una misión integral consistente en: partir desde un punto inicial, navegar de forma autónoma en un escenario de terreno irregular controlado, detectar y localizar muestras geológicas simuladas (piezas sólidas de geometría irregular), aproximarse a ellas, recolectarlas mediante un mecanismo dedicado, transportarlas de regreso y liberarlas en una zona de depósito designada, transmitiendo simultáneamente datos de telemetría hacia una interfaz hombre-máquina.
 
 A continuación se detalla la estructura capitular del documento:
 \begin{itemize}
     \item El \capref{cap:justificacion} expone la justificación técnica, académica y social del proyecto.
-    \item El \capref{cap:antecedentes} presenta los antecedentes y desarrollos previos en plataformas vehiculares a escala.
-    \item El \capref{cap:marco-teorico} sintetiza el modelado físico-matemático y la formulación en espacio de estados.
-    \item El \capref{cap:estado-del-arte} revisa las tecnologías y enfoques de control vehicular existentes.
+    \item El \capref{cap:antecedentes} presenta los antecedentes y desarrollos previos en sistemas robóticos rover.
+    \item El \capref{cap:marco-teorico} sintetiza los fundamentos de cinemática de locomoción, odometría y visión artificial.
+    \item El \capref{cap:estado-del-arte} revisa las tecnologías y arquitecturas de rovers de exploración existentes.
     \item El \capref{cap:planteamiento} define formalmente el problema de ingeniería y la solución mecatrónica propuesta.
-    \item El \capref{cap:desarrollo} describe la arquitectura del sistema, la metodología de diseño y el plan de integración.
-    \item El \capref{cap:validacion} presenta los procedimientos experimentales planificados y las métricas de evaluación.
-    \item El \capref{cap:conclusiones} establece los resultados y expectativas derivados del cumplimiento de los objetivos.
+    \item El \capref{cap:desarrollo} describe la arquitectura funcional de los subsistemas y la metodología de diseño.
+    \item El \capref{cap:validacion} presenta los protocolos experimentales planificados y las métricas de evaluación.
+    \item El \capref{cap:conclusiones} establece los resultados esperados y el impacto del cumplimiento de los objetivos.
     \ifTTII
     \item El \capref{cap:trabajo-futuro} plantea las líneas de trabajo a futuro e iteraciones posteriores.
     \fi
 \end{itemize}
 
 % ------------------------------------------------------------------------------
-% OBJETIVOS (EN INFINITIVO)
+% OBJETIVOS (COPIAR TEXTUALMENTE EN INFINITIVO)
 % ------------------------------------------------------------------------------
 
 \section{Objetivo general}
 \label{sec:objetivo-general}
 
-Diseñar e implementar un sistema mecatrónico de control en espacio de estados para regular la velocidad longitudinal y la dirección de un vehículo a escala 1:10, mediante el modelado de su dinámica, la integración de sensores, actuadores, electrónica y programación, y su validación experimental bajo diferentes condiciones de operación.
+Diseñar e implementar un sistema robótico rover autónomo capaz de explorar un terreno irregular, localizar y recolectar muestras geológicas simuladas sin utilizar posicionamiento satelital, transportarlas hasta una zona de depósito y supervisar el desarrollo de la misión mediante una interfaz hombre-máquina, validando experimentalmente su desempeño.
 
 \section{Objetivos específicos}
 \label{sec:objetivos-especificos}
 
 \begin{enumerate}
-    \item \textbf{Objetivo Específico 1:} Obtener un modelo dinámico del vehículo para representar las variables asociadas con su velocidad longitudinal y dirección, y formularlo en espacio de estados a partir de parámetros físicos y/o datos experimentales.
-    \item \textbf{Objetivo Específico 2:} Diseñar el sistema de control en espacio de estados, determinando su controlabilidad y observabilidad y, cuando resulte necesario, incorporando un método de estimación de estados para satisfacer las especificaciones de desempeño establecidas.
-    \item \textbf{Objetivo Específico 3:} Diseñar e integrar la arquitectura mecatrónica necesaria para la implementación del sistema de control, incluyendo sensores, actuadores, electrónica de acondicionamiento y potencia, sistema de procesamiento y software de control.
-    \item \textbf{Objetivo Específico 4:} Implementar y validar experimentalmente el sistema desarrollado en el vehículo a escala 1:10 mediante pruebas de regulación y seguimiento, respuesta transitoria, rechazo a perturbaciones y operación bajo diferentes condiciones, empleando métricas cuantificables de desempeño.
+    \item \textbf{Objetivo Específico 1:} Definir y desarrollar la arquitectura mecatrónica del rover a partir de los requerimientos de movilidad, estabilidad, exploración y manipulación de muestras en un entorno de terreno irregular.
+    \item \textbf{Objetivo Específico 2:} Diseñar los subsistemas de percepción, localización relativa y navegación necesarios para que el rover pueda desplazarse sin GPS, identificar muestras y estimar su ubicación dentro del entorno de operación.
+    \item \textbf{Objetivo Específico 3:} Diseñar el subsistema de recolección, transporte y depósito de muestras, así como la coordinación funcional necesaria entre locomoción, percepción, navegación y manipulación.
+    \item \textbf{Objetivo Específico 4:} Implementar e integrar el sistema robótico y validar experimentalmente su desempeño mediante pruebas de movilidad, navegación, detección, recolección, retorno y cumplimiento de misión.
 \end{enumerate}

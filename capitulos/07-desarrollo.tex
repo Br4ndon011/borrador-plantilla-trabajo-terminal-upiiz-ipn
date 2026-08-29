@@ -3,52 +3,59 @@
 % Archivo: capitulos/07-desarrollo.tex
 % ==============================================================================
 
-\chapter{Desarrollo del Sistema Mecatrónico}
+\chapter{Desarrollo del Sistema Robótico Rover}
 \label{cap:desarrollo}
 
-En este capítulo se describe la arquitectura mecatrónica propuesta, la metodología de modelado paramétrico, los criterios de selección e integración de componentes y la formulación discreta de la ley de control en espacio de estados que se implementará.
+En este capítulo se describe la arquitectura mecatrónica funcional de los doce subsistemas que integrarán el rover, la matriz de especificaciones preliminares y el plan de desarrollo tecnológico previsto para las etapas de Trabajo Terminal I y II.
 
 % ------------------------------------------------------------------------------
-\section{Arquitectura general del sistema y flujo funcional propuesto}
-\label{sec:desarrollo-arquitectura}
+\section{Arquitectura funcional de los doce subsistemas}
+\label{sec:desarrollo-arquitectura-rover}
 
-El sistema mecatrónico operará bajo una estructura de lazo cerrado en tiempo real cuyo flujo de información secuencial se organizará de la siguiente manera:
+El sistema mecatrónico del rover operará de forma modular integrando doce subsistemas interconectados:
 \begin{enumerate}
-    \item \textbf{Sensado y Adquisición:} La velocidad angular de tracción $\omega_m(t)$ se medirá mediante interrupciones de cuadratura generadas por un encoder óptico incremental ($1024\text{ PPR}$), mientras que la tasa de guiñada $\dot{\psi}(t)$ y la aceleración longitudinal se adquirirán a través de una IMU comunicada vía bus I2C a \qty{400}{\kilo\hertz}.
-    \item \textbf{Filtrado y Procesamiento:} Las señales sensoriales se procesarán mediante un filtro digital pasabajas Butterworth de segundo orden para atenuar el ruido originado por vibraciones mecánicas del chasis.
-    \item \textbf{Cálculo del Vector de Estados:} Se ensamblará periódicamente el vector de estados discreto $\mathbf{x}(k) = [v(k) \quad i_a(k) \quad \delta(k)]\transp$ en la memoria del microcontrolador.
-    \item \textbf{Evaluación de la Ley de Control:} Se computará la acción de control $\mathbf{u}(k) = -\mathbf{K}\mathbf{x}(k) + \mathbf{N}\mathbf{r}(k)$ dentro de la rutina de servicio de interrupción del temporizador principal ($T_s = \qty{1}{\milli\second}$).
-    \item \textbf{Actuación y Modulación:} Se generarán señales PWM complementarias hacia el puente H del motor DC de tracción y pulsos periódicos de \qty{50}{\hertz} (\qty{1.0}{\milli\second} a \qty{2.0}{\milli\second}) para el servomotor de dirección.
+    \item \textbf{Locomoción:} Chasis con tracción multirrueda motorizada independiente y geometría adaptativa para superar obstáculos y pendientes.
+    \item \textbf{Alimentación:} Banco de baterías LiPo con monitoreo de tensión, corriente y etapas de regulación conmutada aisladas.
+    \item \textbf{Percepción del entorno:} Sensores de distancia ultrasónicos/ópticos para detección local de colisiones y cámara frontal.
+    \item \textbf{Localización relativa:} Algoritmo de estimación de pose sin GPS basado en fusión de odometría de rueda e IMU de 6 GDL.
+    \item \textbf{Navegación autónoma:} Planificador local de trayectorias para avance hacia waypoints y evasión de obstáculos.
+    \item \textbf{Detección de muestras:} Algoritmo de procesamiento visual en tiempo real para identificación de muestras geológicas simuladas.
+    \item \textbf{Recolección:} Mecanismo electromecánico dedicado (cuchara/compuerta articulada) para levantar la muestra desde el suelo.
+    \item \textbf{Transporte:} Bahía interna o contenedor seguro para albergar las muestras durante la marcha sin riesgo de caída.
+    \item \textbf{Depósito:} Mecanismo de descarga controlada para liberar las muestras en la zona de almacenamiento final.
+    \item \textbf{Procesamiento:} Unidad de cómputo embebida de alta capacidad para visión y navegación comunicada con microcontrolador de bajo nivel.
+    \item \textbf{Comunicación y telemetría:} Enlace inalámbrico por radiofrecuencia/Wi-Fi para transmisión continua de estado de batería, pose y alertas.
+    \item \textbf{Interfaz hombre-máquina (HMI):} Aplicación gráfica en estación de tierra para monitoreo y parada de emergencia.
 \end{enumerate}
 
 % ------------------------------------------------------------------------------
-\section{Matriz de requerimientos y especificaciones de diseño}
-\label{sec:desarrollo-especificaciones}
+\section{Matriz de requerimientos y especificaciones preliminares}
+\label{sec:desarrollo-especificaciones-rover}
 
-En la \tabref{tab:especificaciones-diseno} se establecen las especificaciones cuantitativas de desempeño que normarán el diseño analítico del sistema de control y la selección de componentes de hardware.
+En la \tabref{tab:especificaciones-diseno} se resumen los parámetros cuantitativos preliminares que guiarán el proceso de diseño detallado en Trabajo Terminal I.
 
 \begin{table}[htbp]
     \centering
-    \caption{Especificaciones cuantitativas de desempeño objetivo para el vehículo 1:10.}
+    \caption{Especificaciones cuantitativas preliminares del robot rover.}
     \label{tab:especificaciones-diseno}
-    \begin{tabular}{llr}
+    \begin{tabularx}{\textwidth}{p{6.5cm} c X}
         \toprule
         \textbf{Parámetro de Desempeño} & \textbf{Símbolo / Métrica} & \textbf{Valor Objetivo} \\
         \midrule
-        Rango de velocidad longitudinal & $v(t)$ & $\qty{0.2}{\meter\per\second}$ a $\qty{2.0}{\meter\per\second}$ \\
-        Rango angular de dirección & $\delta(t)$ & $\ang{-25}$ a $\ang{+25}$ \\
-        Tiempo de establecimiento ($2\,\%$) & $t_s$ & $\le \qty{0.50}{\second}$ \\
-        Sobrepaso porcentual máximo & $M_p$ & $\le 10\,\%$ \\
-        Error en régimen permanente de velocidad & $|e_v|$ & $\le \qty{0.05}{\meter\per\second}$ \\
-        Frecuencia de muestreo del lazo de control & $f_s = 1/T_s$ & $\ge \qty{1.0}{\kilo\hertz}$ \\
-        Masa total del vehículo instrumentado & $m_{\text{total}}$ & $\le \qty{2.5}{\kilo\gram}$ \\
-        Tensión nominal de alimentación & $V_{\text{bat}}$ & $\qty{7.4}{\volt}$ (LiPo 2S) \\
+        Masa total del rover & $m_{\text{rover}}$ & $\le \qty{8.0}{\kilo\gram}$ \\
+        Velocidad lineal de desplazamiento & $v(t)$ & $\qty{0.15}{\meter\per\second}$ a $\qty{0.50}{\meter\per\second}$ \\
+        Capacidad de superación de pendientes & $\alpha_{\max}$ & $\ge \ang{15}$ \\
+        Masa de muestras simuladas & $m_{\text{muestra}}$ & $\qty{50}{\gram}$ a $\qty{250}{\gram}$ \\
+        Autonomía energética de operación & $t_{\text{aut}}$ & $\ge \qty{20}{\minute}$ \\
+        Error máximo en localización relativa & $e_p / d_{\text{recorrida}}$ & $\le 5\,\%$ \\
+        Tasa de éxito en detección visual & $\eta_{\text{det}}$ & $\ge 85\,\%$ \\
+        Tensión de alimentación principal & $V_{\text{bat}}$ & $\qty{11.1}{\volt}$ a $\qty{14.8}{\volt}$ (LiPo 3S--4S) \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
 
 % ------------------------------------------------------------------------------
-\section{Plan de diseño e integración de subsistemas}
-\label{sec:desarrollo-integracion}
+\section{Plan de diseño detallado y manufactura}
+\label{sec:desarrollo-plan-rover}
 
-La integración física del prototipo se llevará a cabo sobre un chasis de tracción trasera escala 1:10 con diferencial mecánico. Los soportes del sensor encoder, la bahía de la batería y la plataforma para la tarjeta electrónica de control se diseñarán en SolidWorks y se manufacturarán en ácido poliláctico (PLA) mediante impresión 3D con una densidad de relleno del $60\,\%$, asegurando rigidez estructural ante esfuerzos dinámicos y vibraciones durante las pruebas en pista.
+Durante Trabajo Terminal I se realizarán los cálculos de torque motor, resistencia de materiales y simulación cinemática. En Trabajo Terminal II se llevará a cabo la manufactura aditiva y mecanizado CNC del chasis, la integración eléctrica y la programación del firmware embebido y la estación de supervisión.

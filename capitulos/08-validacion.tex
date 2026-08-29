@@ -6,58 +6,58 @@
 \chapter{\tituloValidacion}
 \label{cap:validacion}
 
-En este capítulo se describen los procedimientos experimentales planificados, las métricas estadísticas que se emplearán y el protocolo de pruebas cuantitativas que se llevará a cabo para evaluar el desempeño del sistema de control en espacio de estados que se implementará en el vehículo a escala 1:10.
+En este capítulo se describen los protocolos experimentales planificados, las métricas cuantitativas que se utilizarán y los criterios de aceptación para evaluar el desempeño integral del robot rover en el entorno de pruebas de terreno irregular.
 
 % ------------------------------------------------------------------------------
-\section{Métricas cuantitativas de evaluación planificadas}
-\label{sec:validacion-metricas}
+\section{Métricas cuantitativas de evaluación de la misión}
+\label{sec:validacion-metricas-rover}
 
-Para evaluar rigurosamente la precisión, estabilidad y robustez del sistema de control en la etapa experimental, se emplearán las siguientes métricas de error y respuesta temporal:
+Para evaluar rigurosamente el desempeño de cada subsistema y la eficacia global de la misión de exploración, se emplearán las siguientes métricas:
 
 \begin{enumerate}
-    \item \textbf{Error de velocidad instantáneo:}
+    \item \textbf{Error de posición euclidiano en navegación sin GPS:}
     \begin{equation}
-        e_v(t) = v_r(t) - v(t)
-        \label{eq:error-velocidad}
+        e_p(t) = \sqrt{\big(x_r(t) - x(t)\big)^2 + \big(y_r(t) - y(t)\big)^2}
+        \label{eq:error-posicion-rover}
     \end{equation}
-    \item \textbf{Error absoluto medio de velocidad ($\text{MAE}_v$):}
+    \item \textbf{Tasa de éxito en la detección de muestras geológicas ($\eta_{\text{det}}$):}
     \begin{equation}
-        \text{MAE}_v = \frac{1}{N}\sum_{k=1}^{N} |e_v(k)|
-        \label{eq:mae-velocidad}
+        \eta_{\text{det}} = \frac{N_{\text{muestras detectadas}}}{N_{\text{muestras presentes en el campo}}} \times 100\,\%
+        \label{eq:tasa-deteccion}
     \end{equation}
-    \item \textbf{Error cuadrático medio de velocidad ($\text{RMSE}_v$):}
+    \item \textbf{Tasa de éxito del mecanismo de recolección ($\eta_{\text{rec}}$):}
     \begin{equation}
-        \text{RMSE}_v = \sqrt{\frac{1}{N}\sum_{k=1}^{N} e_v^2(k)}
-        \label{eq:rmse-velocidad}
+        \eta_{\text{rec}} = \frac{N_{\text{muestras recolectadas y aseguradas}}}{N_{\text{intentos de recolección}}} \times 100\,\%
+        \label{eq:tasa-recoleccion}
     \end{equation}
-    \item \textbf{Error de dirección y tiempo de recuperación ante perturbaciones:}
+    \item \textbf{Eficiencia global de cumplimiento de misión ($\eta_{\text{misión}}$):}
     \begin{equation}
-        e_\delta(t) = \delta_r(t) - \delta(t), \quad t_{\text{rec}} = \{ t - t_{\text{pert}} \mid |e_v(t)| \le 0.05\,v_r \}
-        \label{eq:error-direccion}
+        \eta_{\text{misión}} = \frac{N_{\text{misiones completadas exitosamente}}}{N_{\text{misiones ejecutadas}}} \times 100\,\%
+        \label{eq:eficiencia-mision}
     \end{equation}
 \end{enumerate}
 
 % ------------------------------------------------------------------------------
-\section{Protocolo y criterios de validación experimental}
-\label{sec:validacion-resultados}
+\section{Protocolo y criterios de validación experimental en pista}
+\label{sec:validacion-protocolo-rover}
 
-En la \tabref{tab:comparativa-validacion} se resumen los criterios cuantitativos de aceptación que se verificarán durante los ensayos experimentales ante perfiles de aceleración escalonada y maniobras de cambio de dirección sobre pista horizontal.
+En la \tabref{tab:comparativa-validacion} se resumen los criterios de aceptación cuantitativos que se verificarán durante los ensayos de campo en el escenario experimental de terreno irregular.
 
 \begin{table}[htbp]
     \centering
-    \caption{Criterios de validación y especificaciones de desempeño por verificar.}
+    \caption{Criterios de validación y especificaciones de desempeño por verificar en el rover.}
     \label{tab:comparativa-validacion}
     \begin{tabularx}{\textwidth}{p{3.8cm} c p{3.8cm} X}
         \toprule
-        \textbf{Parámetro por Evaluar} & \textbf{Especificación} & \textbf{Método de Medición} & \textbf{Criterio de Aceptación} \\
+        \textbf{Prueba / Subsistema} & \textbf{Especificación} & \textbf{Método de Medición} & \textbf{Criterio de Aceptación} \\
         \midrule
-        Sobrepaso de velocidad ($M_p$) & $\le 10\,\%$ & Registro de encoder & Cumplimiento estricto \\
-        Tiempo de establecimiento ($t_s$) & $\le \qty{0.50}{\second}$ & Registro temporal a \qty{1}{\kilo\hertz} & Banda del $\pm 2\,\%$ \\
-        Error absoluto medio ($\text{MAE}_v$) & $\le \qty{0.05}{\meter\per\second}$ & Cálculo post-procesamiento & Régimen estacionario \\
-        Error cuadrático medio ($\text{RMSE}_v$) & $\le \qty{0.08}{\meter\per\second}$ & Análisis estadístico & Varianza reducida \\
-        Error de dirección ($e_{\delta,ss}$) & $\le \ang{1.0}$ & Medición con IMU & Alineación angular \\
+        Movilidad en pendiente & $\ge \ang{15}$ de inclinación & Ensayos en rampa de tierra & Ascenso sin deslizamiento crítico \\
+        Localización sin GPS & $e_p \le 5\,\%$ de trayecto & Contraste con marcas terrestres & Deriva acotada en circuito \\
+        Detección visual de muestras & $\eta_{\text{det}} \ge 85\,\%$ & Registro de cámara y HMI & Reconocimiento a $\ge \qty{1.0}{\meter}$ \\
+        Recolección y depósito & $\eta_{\text{rec}} \ge 80\,\%$ & Ensayos de manipulación & Captura, traslado y descarga \\
+        Misión autónoma integral & $\eta_{\text{misión}} \ge 75\,\%$ & Ejecución completa sin GPS & Retorno exitoso a zona base \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-El cumplimiento de estos umbrales permitirá validar cuantitativamente que la estrategia de control en espacio de estados con precompensación directa satisface las especificaciones de diseño dinámico fijadas para la plataforma vehicular.
+El cumplimiento de estos criterios permitirá demostrar la viabilidad, robustez y autonomía de la plataforma robótica desarrollada para misiones de exploración terrestre y lunar análoga.

@@ -8,70 +8,74 @@
 \chapter{Marco Teórico}
 \label{cap:marco-teorico}
 
-En este capítulo se presentan los fundamentos físico-matemáticos indispensables para el modelado dinámico del vehículo a escala 1:10, la representación en variables de estado y la formulación analítica de la ley de control por realimentación de estados.
+En este capítulo se presentan los fundamentos físico-matemáticos y conceptuales que sustentan el modelado cinemático del rover, la estimación de posición relativa sin GPS, la detección visual de muestras y la formulación del control de navegación.
 
 % ------------------------------------------------------------------------------
-\section{Modelado dinámico del tren motriz y tracción}
-\label{sec:marco-modelo-motor}
+\section{Cinemática de locomoción y estabilidad en terreno irregular}
+\label{sec:marco-cinematica-rover}
 
-La dinámica del subsistema de tracción longitudinal está gobernada por el comportamiento electromecánico del motor de corriente continua acoplado a la transmisión y a las ruedas motrices. La ecuación eléctrica de armadura y la ecuación mecánica de par se expresan como:
+El movimiento planar del rover se modela mediante la cinemática de una plataforma móvil con tracción diferencial o multirrueda independiente \cite{ieee2021robotics}. El vector de pose en el marco de referencia inercial global $\{W\}$ se define como $\mathbf{p}(t) = [x(t) \quad y(t) \quad \theta(t)]\transp$. Las velocidades en el marco del robot se relacionan mediante:
+\begin{equation}
+    \begin{bmatrix}
+        \dot{x}(t) \\
+        \dot{y}(t) \\
+        \dot{\theta}(t)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \cos\theta(t) & 0 \\
+        \sin\theta(t) & 0 \\
+        0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        v(t) \\
+        \omega(t)
+    \end{bmatrix}
+    \label{eq:cinematica-rover}
+\end{equation}
+donde $v(t)$ es la velocidad lineal de avance en \unit{\meter\per\second} y $\omega(t)$ es la velocidad angular de guiñada en \unit{\radian\per\second}.
+
+Para garantizar la estabilidad estática del rover sobre pendientes con ángulo de inclinación $\alpha$, el ángulo crítico de vuelco $\alpha_{\text{crítico}}$ está determinado por la trocha del vehículo $W$, la distancia entre ejes $L$ y la altura del centro de masa $h_{\text{cm}}$:
+\begin{equation}
+    \tan(\alpha_{\text{vuelco,lat}}) = \frac{W}{2 h_{\text{cm}}}, \quad \tan(\alpha_{\text{vuelco,long}}) = \frac{L}{2 h_{\text{cm}}}
+    \label{eq:estabilidad-vuelco}
+\end{equation}
+
+% ------------------------------------------------------------------------------
+\section{Odometría relativa y localización sin GPS}
+\label{sec:marco-odometria}
+
+En ausencia de señales satelitales, la pose del rover se estima de forma recursiva mediante la integración temporal de las velocidades angulares de las ruedas medidas por encoders incrementales y la velocidad angular medida por el giroscopio de la IMU:
 \begin{align}
-    V_a(t) &= R_a i_a(t) + L_a \frac{d i_a(t)}{dt} + K_b \omega_m(t) \label{eq:electrica-motor} \\
-    J_{\text{eq}} \frac{d \omega_m(t)}{dt} &= K_t i_a(t) - B_{\text{eq}} \omega_m(t) - \tau_L(t) \label{eq:mecanica-motor}
+    x(k) &= x(k-1) + v(k) \cdot T_s \cos\big(\theta(k-1) + \tfrac{1}{2}\omega(k) T_s\big) \label{eq:odometria-x} \\
+    y(k) &= y(k-1) + v(k) \cdot T_s \sin\big(\theta(k-1) + \tfrac{1}{2}\omega(k) T_s\big) \label{eq:odometria-y} \\
+    \theta(k) &= \theta(k-1) + \omega(k) \cdot T_s \label{eq:odometria-theta}
 \end{align}
-donde $V_a(t)$ es la tensión de armadura en \unit{\volt}, $i_a(t)$ es la corriente de armadura en \unit{\ampere}, $R_a$ es la resistencia en \unit{\ohm}, $L_a$ es la inductancia en \unit{\henry}, $K_b$ es la constante contraelectromotriz en \unit{\volt\second\per\radian}, $K_t$ es la constante de par en \unit{\newton\meter\per\ampere}, $J_{\text{eq}}$ es el momento de inercia equivalente del conjunto en \unit{\kilo\gram\meter\squared}, $B_{\text{eq}}$ es el coeficiente de fricción viscosa en \unit{\newton\meter\second\per\radian} y $\tau_L(t)$ representa el par de carga por resistencia a la rodadura.
-
-La velocidad longitudinal del vehículo $v(t)$ en \unit{\meter\per\second} se relaciona con la velocidad angular del motor $\omega_m(t)$ mediante el radio efectivo de la rueda $r_w$ en \unit{\meter} y la relación de reducción de la transmisión $N_g$:
-\begin{equation}
-    v(t) = \frac{r_w}{N_g} \omega_m(t)
-    \label{eq:relacion-velocidad}
-\end{equation}
+donde $T_s$ es el periodo de muestreo discreto del lazo de localización.
 
 % ------------------------------------------------------------------------------
-\section{Cinemática del mecanismo de dirección Ackermann}
-\label{sec:marco-direccion-ackermann}
+\section{Percepción visual y estimación de posición de muestras}
+\label{sec:marco-vision}
 
-El vehículo a escala 1:10 implementa una geometría de dirección tipo Ackermann en el eje delantero. Para maniobras a velocidades bajas y medias donde el deslizamiento lateral es despreciable, el modelo cinemático de bicicleta relaciona el ángulo promedio de dirección $\delta(t)$ en \unit{\radian}, la distancia entre ejes $L$ en \unit{\meter} y la tasa de guiñada $\dot{\psi}(t)$ en \unit{\radian\per\second}:
+La identificación de las muestras geológicas simuladas se realiza mediante un sensor óptico (cámara monocromática/RGB o RGB-D). El modelo de cámara estenopeica relaciona las coordenadas de un punto en el marco de la cámara $\mathbf{P}_c = [X_c \quad Y_c \quad Z_c]\transp$ con las coordenadas del plano de imagen $(u, v)$ en píxeles:
 \begin{equation}
-    \dot{\psi}(t) = \frac{v(t)}{L} \tan\big(\delta(t)\big)
-    \label{eq:cinematica-guiada}
+    s \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = \begin{bmatrix} f_x & 0 & c_x \\ 0 & f_y & c_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} X_c \\ Y_c \\ Z_c \end{bmatrix}
+    \label{eq:modelo-camara}
 \end{equation}
-El servomotor de dirección se modela como un sistema de primer orden con retardo respecto a la señal de control $u_\delta(t)$:
-\begin{equation}
-    \tau_\delta \dot{\delta}(t) + \delta(t) = K_\delta u_\delta(t)
-    \label{eq:dinamica-servo}
-\end{equation}
+donde $f_x, f_y$ representan las distancias focales en píxeles y $(c_x, c_y)$ es el punto principal óptico. La distancia y orientación relativa hacia la muestra permiten alimentar el lazo de control de aproximación.
 
 % ------------------------------------------------------------------------------
-\section{Representación general en espacio de estados}
-\label{sec:marco-espacio-estados}
+\section{Control de navegación y error de trayectoria}
+\label{sec:marco-control-navegacion}
 
-El sistema mecatrónico acoplado continuo se representa mediante la estructura matricial lineal invariante en el tiempo \cite{ogata2010modern}:
-\begin{align}
-    \dot{\mathbf{x}}(t) &= \mathbf{A}\mathbf{x}(t) + \mathbf{B}\mathbf{u}(t) + \mathbf{E}\mathbf{d}(t) \label{eq:espacio-estados-estado} \\
-    \mathbf{y}(t) &= \mathbf{C}\mathbf{x}(t) + \mathbf{D}\mathbf{u}(t) \label{eq:espacio-estados-salida}
-\end{align}
-donde $\mathbf{x}(t) \in \mathbb{R}^n$ es el vector de estados, $\mathbf{u}(t) \in \mathbb{R}^m$ es el vector de entradas de control (tensión de tracción y comando de dirección), $\mathbf{d}(t)$ representa perturbaciones exógenas (variaciones de pendiente, carga o caída de tensión), $\mathbf{y}(t) \in \mathbb{R}^p$ es el vector de salidas medidas, y $\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D}, \mathbf{E}$ son las matrices del sistema de dimensiones compatibles.
-
-Para el sistema vehicular bajo estudio, el vector de estados nominal se define como:
+Para la navegación autónoma entre puntos de paso (waypoints) $\mathbf{p}_r = [x_r \quad y_r]\transp$, se define el error de posición euclidiano:
 \begin{equation}
-    \mathbf{x}(t) = \begin{bmatrix} v(t) & i_a(t) & \delta(t) \end{bmatrix}\transp
-    \label{eq:vector-estados-vehiculo}
+    e_p(t) = \sqrt{\big(x_r - x(t)\big)^2 + \big(y_r - y(t)\big)^2}
+    \label{eq:error-posicion-euclidiano}
 \end{equation}
-
-% ------------------------------------------------------------------------------
-\section{Controlabilidad, observabilidad y realimentación de estados}
-\label{sec:marco-controlabilidad}
-
-La controlabilidad del sistema garantiza la existencia de una trayectoria de control capaz de transferir cualquier estado inicial a cualquier estado final en tiempo finito. Se evalúa mediante el rango de la matriz de controlabilidad $\mathcal{C}$:
+y el error de orientación angular:
 \begin{equation}
-    \mathcal{C} = \begin{bmatrix} \mathbf{B} & \mathbf{A}\mathbf{B} & \mathbf{A}^2\mathbf{B} & \cdots & \mathbf{A}^{n-1}\mathbf{B} \end{bmatrix}, \quad \text{rank}(\mathcal{C}) = n
-    \label{eq:matriz-controlabilidad}
+    e_\theta(t) = \text{atan2}\big(y_r - y(t), x_r - x(t)\big) - \theta(t)
+    \label{eq:error-orientacion}
 \end{equation}
-
-La ley de control por realimentación de estados con precompensación para seguimiento de referencias $\mathbf{r}(t) = [v_r(t) \quad \delta_r(t)]\transp$ se define como:
-\begin{equation}
-    \mathbf{u}(t) = -\mathbf{K}\mathbf{x}(t) + \mathbf{N}\mathbf{r}(t)
-    \label{eq:ley-control-estados}
-\end{equation}
-donde $\mathbf{K} \in \mathbb{R}^{m \times n}$ es la matriz de ganancias de realimentación calculada para ubicar los polos en lazo cerrado en posiciones que satisfagan el sobrepaso y el tiempo de establecimiento deseados, y $\mathbf{N} \in \mathbb{R}^{m \times p}$ es la matriz de ganancia directa para eliminar el error en régimen permanente.
+El controlador cinemático calcula las velocidades deseadas $v(t) = k_v \cos(e_\theta) e_p(t)$ y $\omega(t) = k_\theta e_\theta(t)$, garantizando la convergencia asintótica hacia el objetivo o zona de depósito.
