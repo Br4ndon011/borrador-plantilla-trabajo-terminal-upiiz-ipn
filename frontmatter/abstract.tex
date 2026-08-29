@@ -2,20 +2,17 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: frontmatter/abstract.tex
 % ==============================================================================
-% REQUISITOS INSTITUCIONALES OBLIGATORIOS:
-% - Idioma: Inglés formal y técnico.
-% - Un solo párrafo.
-% - Máximo 200 palabras.
-% - Redactado en tiempo pasado (past tense) y tercera persona impersonal.
-% - Keywords: Máximo seis términos en orden alfabético correspondientes a las
-%   palabras clave en español.
+% REGLAS INSTITUCIONALES PARA EL ABSTRACT:
+% 1. Máximo 200 palabras.
+% 2. Redactado en un solo párrafo y en idioma inglés.
+% 3. Redactado en tiempo pasado ("Was designed...", "Was validated...").
+% 4. Máximo 6 keywords en orden alfabético.
 % ==============================================================================
 
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-In this Final Degree Project, a mechatronic system was designed and integrated to address the specified operational problem through an interdisciplinary engineering approach combining mechanical design, electronics, automatic control, and embedded software. Design specifications were established based on operational requirements, while kinematic and dynamic models were formulated to simulate system behavior under diverse disturbance conditions. Power and electronic components were selected, the mechanical structure was manufactured, and control algorithms were developed for stabilization and trajectory tracking. Experimental results and simulations demonstrated the technical feasibility of the proposed design, achieving steady-state error reduction and validating the fulfillment of project objectives through verifiable performance metrics and quantitative system analysis.
+A state-space mechatronic control system was designed and implemented for the regulation of longitudinal speed and steering angle in a 1:10 scale ground vehicle. The coupled dynamics of traction and steering were modeled analytically and experimentally, deriving a matrix state-space representation to formally evaluate controllability and observability properties. A comprehensive mechatronic architecture was integrated, comprising speed and angular position sensors, electronic power drivers, a steering servo actuator, a direct-current traction motor, and a digital processing unit for real-time periodic execution of the state-feedback control law. The system performance was quantitatively evaluated under step reference changes, load disturbances, and power supply voltage drops on controlled surfaces, successfully reducing steady-state speed error and stabilizing transient orientation response within the specified design criteria.
 
 \vspace{1.5em}
-
-\noindent\textbf{Keywords:} Automation, control algorithms, dynamic modeling, electronic instrumentation, embedded systems, mechatronic design.
+\noindent\textbf{Keywords:} 1:10 scale vehicle, mechatronic integration, speed regulation, state-space control, steering regulation, vehicular dynamics.

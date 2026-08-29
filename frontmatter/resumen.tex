@@ -2,27 +2,17 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: frontmatter/resumen.tex
 % ==============================================================================
-% REQUISITOS INSTITUCIONALES OBLIGATORIOS:
-% - Un solo párrafo.
-% - Máximo 200 palabras.
-% - Redactado estrictamente en tiempo pasado y tercera persona impersonal.
-% - Palabras clave: Máximo seis palabras o frases breves, en orden alfabético,
-%   empleando preferentemente terminología IEEE.
+% REGLAS INSTITUCIONALES PARA EL RESUMEN:
+% 1. Máximo 200 palabras.
+% 2. Redactado en un solo párrafo.
+% 3. Redactado estrictamente en TIEMPO PASADO ("Se diseñó...", "Se validó...").
+% 4. Máximo 6 palabras clave en orden alfabético.
 % ==============================================================================
 
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
 
-% ==============================================================================
-% INSTRUCCIONES PEDAGÓGICAS:
-% El resumen debe sintetizar la problemática abordada, la metodología mecatrónica
-% empleada, los subsistemas diseñados/implementados y los principales resultados
-% y conclusiones alcanzados. Debe constituir una unidad textual autocontenida sin
-% citas bibliográficas ni referencias a figuras o tablas del cuerpo del documento.
-% ==============================================================================
-
-En este Trabajo Terminal se diseñó e integró un sistema mecatrónico orientado a resolver la problemática planteada mediante un enfoque interdisciplinario que combinó ingeniería mecánica, electrónica, control automático y software embebido. Se establecieron las especificaciones de diseño a partir de los requerimientos operativos, modelando cinemática y dinámicamente el sistema para simular su comportamiento ante diversas condiciones de perturbación. Se seleccionaron los componentes electrónicos y de potencia, fabricando la estructura mecánica y desarrollando algoritmos de control para la estabilización y seguimiento de trayectoria. Los resultados obtenidos mediante pruebas experimentales y simulaciones demostraron la viabilidad técnica de la propuesta, alcanzando una reducción del error en régimen permanente y validando el cumplimiento de los objetivos planteados con base en métricas verificables y análisis cuantitativos del rendimiento global.
+Se diseñó e implementó un sistema mecatrónico de control en espacio de estados para regular la velocidad longitudinal y el ángulo de dirección en un vehículo a escala 1:10. Se modeló analítica y experimentalmente la dinámica acoplada de tracción y dirección, derivando una representación matricial en espacio de estados para evaluar formalmente las propiedades de controlabilidad y observabilidad. Se integró una arquitectura mecatrónica compuesta por sensores de velocidad y posición angular, etapas de potencia electrónicas, un servomotor de dirección, un motor de tracción de corriente continua y una unidad de procesamiento digital para la ejecución periódica en tiempo real de la ley de control por realimentación de estados. Se evaluó cuantitativamente el desempeño del sistema ante cambios de referencia, perturbaciones de carga y variaciones en la tensión de alimentación sobre superficies controladas, logrando reducir el error estacionario de velocidad y estabilizar la respuesta transitoria de orientación dentro de los umbrales de diseño establecidos.
 
 \vspace{1.5em}
-
-\noindent\textbf{Palabras clave:} Algoritmos de control, automatización, diseño mecatrónico, instrumentación electrónica, modelado dinámico, sistemas embebidos.
+\noindent\textbf{Palabras clave:} Control en espacio de estados, dinámica vehicular, integración mecatrónica, regulación de dirección, regulación de velocidad, vehículo a escala 1:10.

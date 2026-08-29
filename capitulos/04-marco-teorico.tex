@@ -2,47 +2,76 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: capitulos/04-marco-teorico.tex
 % ==============================================================================
+% LÍMITE INSTITUCIONAL: Máximo 3 páginas.
+% ==============================================================================
 
-\chapter{Marco teórico}
+\chapter{Marco Teórico}
 \label{cap:marco-teorico}
 
-% ==============================================================================
-% REQUISITO INSTITUCIONAL:
-% Extensión: Máximo TRES páginas.
-%
-% INSTRUCCIONES PEDAGÓGICAS:
-% Sintetice los conceptos teóricos, leyes físicas, modelos matemáticos, principios
-% de control y fundamentos de ingeniería necesarios para comprender el desarrollo.
-% NO transcriba libros de texto completos; concéntrese exclusivamente en los modelos
-% y ecuaciones que serán utilizados directamente en los capítulos de desarrollo y validación.
-% ==============================================================================
+En este capítulo se presentan los fundamentos físico-matemáticos indispensables para el modelado dinámico del vehículo a escala 1:10, la representación en variables de estado y la formulación analítica de la ley de control por realimentación de estados.
 
-\section{Fundamentos mecatrónicos y modelado físico}
-\label{sec:marco-modelado}
+% ------------------------------------------------------------------------------
+\section{Modelado dinámico del tren motriz y tracción}
+\label{sec:marco-modelo-motor}
 
-% Escriba aquí la teoría y ecuaciones clave del sistema...
-El modelado dinámico de sistemas mecatrónicos permite predecir la respuesta temporal y frecuencial de los actuadores y mecanismos ante entradas de control y perturbaciones externas. Para un sistema mecánico con traslación o rotación, las ecuaciones de movimiento se derivan a partir de las leyes de Newton-Euler o la formulación de Euler-Lagrange:
+La dinámica del subsistema de tracción longitudinal está gobernada por el comportamiento electromecánico del motor de corriente continua acoplado a la transmisión y a las ruedas motrices. La ecuación eléctrica de armadura y la ecuación mecánica de par se expresan como:
+\begin{align}
+    V_a(t) &= R_a i_a(t) + L_a \frac{d i_a(t)}{dt} + K_b \omega_m(t) \label{eq:electrica-motor} \\
+    J_{\text{eq}} \frac{d \omega_m(t)}{dt} &= K_t i_a(t) - B_{\text{eq}} \omega_m(t) - \tau_L(t) \label{eq:mecanica-motor}
+\end{align}
+donde $V_a(t)$ es la tensión de armadura en \unit{\volt}, $i_a(t)$ es la corriente de armadura en \unit{\ampere}, $R_a$ es la resistencia en \unit{\ohm}, $L_a$ es la inductancia en \unit{\henry}, $K_b$ es la constante contraelectromotriz en \unit{\volt\second\per\radian}, $K_t$ es la constante de par en \unit{\newton\meter\per\ampere}, $J_{\text{eq}}$ es el momento de inercia equivalente del conjunto en \unit{\kilo\gram\meter\squared}, $B_{\text{eq}}$ es el coeficiente de fricción viscosa en \unit{\newton\meter\second\per\radian} y $\tau_L(t)$ representa el par de carga por resistencia a la rodadura.
 
+La velocidad longitudinal del vehículo $v(t)$ en \unit{\meter\per\second} se relaciona con la velocidad angular del motor $\omega_m(t)$ mediante el radio efectivo de la rueda $r_w$ en \unit{\meter} y la relación de reducción de la transmisión $N_g$:
 \begin{equation}
-    \frac{d}{dt}\left( \frac{\partial L}{\partial \dot{q}} \right) - \frac{\partial L}{\partial q} = \tau
-    \label{eq:lagrange}
+    v(t) = \frac{r_w}{N_g} \omega_m(t)
+    \label{eq:relacion-velocidad}
 \end{equation}
 
-\noindent donde $L = K - P$ representa el Lagrangiano del sistema (diferencia entre energía cinética $K$ y energía potencial $P$), $q$ son las coordenadas generalizadas y $\tau$ corresponde al vector de fuerzas o pares generalizados aplicados por los actuadores.
+% ------------------------------------------------------------------------------
+\section{Cinemática del mecanismo de dirección Ackermann}
+\label{sec:marco-direccion-ackermann}
 
-\section{Estrategias de control y estabilidad}
-\label{sec:marco-control}
-
-La ley de control se diseña para garantizar la estabilidad del sistema en lazo cerrado, minimizando el error en régimen permanente y optimizando el tiempo de establecimiento. Un esquema clásico de control proporcional-integral-derivativo (PID) en el dominio del tiempo se expresa como:
-
+El vehículo a escala 1:10 implementa una geometría de dirección tipo Ackermann en el eje delantero. Para maniobras a velocidades bajas y medias donde el deslizamiento lateral es despreciable, el modelo cinemático de bicicleta relaciona el ángulo promedio de dirección $\delta(t)$ en \unit{\radian}, la distancia entre ejes $L$ en \unit{\meter} y la tasa de guiñada $\dot{\psi}(t)$ en \unit{\radian\per\second}:
 \begin{equation}
-    u(t) = K_p \, e(t) + K_i \int_{0}^{t} e(\tau)\,d\tau + K_d \, \frac{de(t)}{dt}
-    \label{eq:pid}
+    \dot{\psi}(t) = \frac{v(t)}{L} \tan\big(\delta(t)\big)
+    \label{eq:cinematica-guiada}
+\end{equation}
+El servomotor de dirección se modela como un sistema de primer orden con retardo respecto a la señal de control $u_\delta(t)$:
+\begin{equation}
+    \tau_\delta \dot{\delta}(t) + \delta(t) = K_\delta u_\delta(t)
+    \label{eq:dinamica-servo}
 \end{equation}
 
-\noindent donde $u(t)$ es la señal de control, $e(t) = r(t) - y(t)$ representa el error de seguimiento entre la referencia $r(t)$ y la salida medida $y(t)$, y $K_p$, $K_i$, $K_d$ son las ganancias del controlador.
+% ------------------------------------------------------------------------------
+\section{Representación general en espacio de estados}
+\label{sec:marco-espacio-estados}
 
-\section{Instrumentación y adquisición de datos}
-\label{sec:marco-instrumentacion}
+El sistema mecatrónico acoplado continuo se representa mediante la estructura matricial lineal invariante en el tiempo \cite{ogata2010modern}:
+\begin{align}
+    \dot{\mathbf{x}}(t) &= \mathbf{A}\mathbf{x}(t) + \mathbf{B}\mathbf{u}(t) + \mathbf{E}\mathbf{d}(t) \label{eq:espacio-estados-estado} \\
+    \mathbf{y}(t) &= \mathbf{C}\mathbf{x}(t) + \mathbf{D}\mathbf{u}(t) \label{eq:espacio-estados-salida}
+\end{align}
+donde $\mathbf{x}(t) \in \mathbb{R}^n$ es el vector de estados, $\mathbf{u}(t) \in \mathbb{R}^m$ es el vector de entradas de control (tensión de tracción y comando de dirección), $\mathbf{d}(t)$ representa perturbaciones exógenas (variaciones de pendiente, carga o caída de tensión), $\mathbf{y}(t) \in \mathbb{R}^p$ es el vector de salidas medidas, y $\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D}, \mathbf{E}$ son las matrices del sistema de dimensiones compatibles.
 
-El acondicionamiento de señales y el filtrado digital resultan indispensables para eliminar ruido de alta frecuencia proveniente de los sensores. La discretización de señales analógicas se rige por el teorema de muestreo de Nyquist-Shannon, garantizando una frecuencia de muestreo $f_s \ge 2 f_{\max}$.
+Para el sistema vehicular bajo estudio, el vector de estados nominal se define como:
+\begin{equation}
+    \mathbf{x}(t) = \begin{bmatrix} v(t) & i_a(t) & \delta(t) \end{bmatrix}\transp
+    \label{eq:vector-estados-vehiculo}
+\end{equation}
+
+% ------------------------------------------------------------------------------
+\section{Controlabilidad, observabilidad y realimentación de estados}
+\label{sec:marco-controlabilidad}
+
+La controlabilidad del sistema garantiza la existencia de una trayectoria de control capaz de transferir cualquier estado inicial a cualquier estado final en tiempo finito. Se evalúa mediante el rango de la matriz de controlabilidad $\mathcal{C}$:
+\begin{equation}
+    \mathcal{C} = \begin{bmatrix} \mathbf{B} & \mathbf{A}\mathbf{B} & \mathbf{A}^2\mathbf{B} & \cdots & \mathbf{A}^{n-1}\mathbf{B} \end{bmatrix}, \quad \text{rank}(\mathcal{C}) = n
+    \label{eq:matriz-controlabilidad}
+\end{equation}
+
+La ley de control por realimentación de estados con precompensación para seguimiento de referencias $\mathbf{r}(t) = [v_r(t) \quad \delta_r(t)]\transp$ se define como:
+\begin{equation}
+    \mathbf{u}(t) = -\mathbf{K}\mathbf{x}(t) + \mathbf{N}\mathbf{r}(t)
+    \label{eq:ley-control-estados}
+\end{equation}
+donde $\mathbf{K} \in \mathbb{R}^{m \times n}$ es la matriz de ganancias de realimentación calculada para ubicar los polos en lazo cerrado en posiciones que satisfagan el sobrepaso y el tiempo de establecimiento deseados, y $\mathbf{N} \in \mathbb{R}^{m \times p}$ es la matriz de ganancia directa para eliminar el error en régimen permanente.

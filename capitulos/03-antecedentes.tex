@@ -2,23 +2,16 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: capitulos/03-antecedentes.tex
 % ==============================================================================
+% LÍMITE INSTITUCIONAL: 1 cuartilla (aproximadamente 1 página).
+% ==============================================================================
 
 \chapter{Antecedentes}
 \label{cap:antecedentes}
 
-% ==============================================================================
-% REQUISITO INSTITUCIONAL:
-% Extensión: UNA cuartilla (aproximadamente una página).
-%
-% INSTRUCCIONES PEDAGÓGICAS:
-% Describa los trabajos previos, proyectos de investigación o Trabajos Terminales
-% desarrollados con anterioridad en la UPIIZ, en otras unidades del IPN o por
-% grupos de trabajo afines que sirvan como punto de partida para este proyecto.
-% ==============================================================================
+El desarrollo de plataformas vehiculares a escala como bancos de prueba para sistemas de control y robótica móvil ha evolucionado significativamente en los últimos años en el ámbito académico internacional y nacional. Proyectos de referencia global, como la iniciativa \textit{F1TENTH} desarrollada por la Universidad de Pensilvania y el consorcio \textit{MIT Racecar}, han demostrado que los chasises comerciales a escala 1:10 poseen características dinámicas que reproducen fielmente los fenómenos de transferencia de carga, aceleración angular y comportamiento en curvas de vehículos a tamaño real.
 
-% Escriba aquí los antecedentes del proyecto...
-Los antecedentes de este Trabajo Terminal se fundamentan en investigaciones previas desarrolladas en el área de ingeniería mecatrónica y sistemas de control en el Instituto Politécnico Nacional. En años recientes, diversos grupos de trabajo han explorado arquitecturas modulares para la automatización de plataformas robóticas y mecanismos de precisión, sentando las bases metodológicas para el modelado y simulación de sistemas no lineales.
+En el contexto del Instituto Politécnico Nacional y de la Unidad Profesional Interdisciplinaria de Ingeniería Campus Zacatecas (UPIIZ), se han desarrollado diversos Trabajos Terminales enfocados en robótica móvil diferencial y control de posición para manipuladores seriales. Sin embargo, la gran mayoría de las plataformas móviles previas se han basado en configuraciones de tipo diferencial (dos ruedas motrices independientes con rueda loca), las cuales presentan cinemáticas simplificadas pero no permiten estudiar la dinámica no holonómica propia de los vehículos con dirección tipo Ackermann y tracción delantera o trasera.
 
-En la UPIIZ, proyectos precedentes han abordado aspectos particulares de instrumentación electrónica, adquisición de datos en tiempo real y diseño de actuadores mecatrónicos. No obstante, dichos desarrollos evidenciaron áreas de oportunidad en cuanto a la integración integral de subsistemas, la robustez del control ante perturbaciones y la estandarización de procesos de validación experimental.
+Históricamente, los sistemas de control implementados en plataformas móviles a nivel licenciatura han recurrido de forma preponderante a lazos desacoplados de control clásico proporcional-integral-derivativo (PID) sintonizados de manera empírica. Si bien este esquema resulta funcional en condiciones de velocidad constante y trayectorias rectilíneas, presenta limitaciones severas ante acoplamientos dinámicos entre la aceleración longitudinal y la velocidad angular de guiñada, saturaciones en los actuadores y perturbaciones por fricción variable.
 
-A partir de estas experiencias previas, el presente trabajo toma como base los conocimientos adquiridos y busca superar las limitaciones identificadas mediante la implementación de una metodología de diseño rigurosa, un esquema de control más eficiente y una arquitectura de hardware escalable orientada a aplicaciones industriales y académicas.
+Por tanto, este Trabajo Terminal toma como base los desarrollos instrumentales y de procesamiento embebido previos de la academia de Mecatrónica, avanzando hacia la formulación matemática rigurosa en espacio de estados, el análisis explícito de controlabilidad y la síntesis de leyes de control matriciales ejecutadas en microcontroladores de arquitectura ARM de 32 bits.

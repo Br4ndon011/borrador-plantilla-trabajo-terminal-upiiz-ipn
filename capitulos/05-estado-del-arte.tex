@@ -2,54 +2,46 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: capitulos/05-estado-del-arte.tex
 % ==============================================================================
+% LÍMITE INSTITUCIONAL: Máximo 4 páginas.
+% ==============================================================================
 
-\chapter{Estado del arte}
+\chapter{Estado del Arte}
 \label{cap:estado-del-arte}
 
-% ==============================================================================
-% REQUISITO INSTITUCIONAL:
-% Extensión: Máximo CUATRO páginas.
-%
-% INSTRUCCIONES PEDAGÓGICAS:
-% Realice una revisión crítica y comparativa de las tecnologías, productos comerciales,
-% patentes y publicaciones científicas recientes (últimos 5 años preferentemente)
-% relacionadas directamente con el problema que resuelve su proyecto.
-%
-% No se limite a listar artículos; elabore un análisis comparativo destacando:
-% - Ventajas y desventajas de cada enfoque existente.
-% - Parámetros de desempeño, costos, complejidad y limitaciones.
-% - La brecha tecnológica u oportunidad que justifica la solución propuesta en este TT.
-% ==============================================================================
+En este capítulo se analizan las plataformas tecnológicas, arquitecturas de control embebido y desarrollos experimentales existentes para la regulación dinámica de vehículos terrestres a escala en la literatura científica reciente.
 
-\section{Tecnologías y soluciones existentes}
-\label{sec:arte-tecnologias}
+% ------------------------------------------------------------------------------
+\section{Revisión de plataformas y enfoques de control vehicular}
+\label{sec:arte-plataformas}
 
-% Escriba aquí la revisión de soluciones comerciales y académicas...
-En el ámbito internacional, el desarrollo de soluciones mecatrónicas para este tipo de aplicaciones ha experimentado un crecimiento notable impulsado por avances en microelectrónica y algoritmos de optimización. Diversos autores han propuesto arquitecturas basadas en controladores lógicos programables, microcontroladores de 32 bits y computadoras de placa reducida (SBC) \cite{ogata2010modern, arizona2023embedded}.
+El desarrollo de vehículos terrestres a escala reducida ha transitado por tres generaciones tecnológicas principales:
 
-Asimismo, en la literatura especializada se reportan implementaciones con diferentes grados de autonomía y precisión, empleando esquemas de comunicación inalámbrica y protocolos industriales \cite{smith2022control, ieee2021robotics}.
+\begin{enumerate}
+    \item \textbf{Plataformas comerciales de radio control (RC) en lazo abierto:} Utilizan transmisores de radiofrecuencia para enviar señales moduladas por ancho de pulso (PWM) directamente a un controlador electrónico de velocidad (ESC) y a un servomotor estándar. Carecen por completo de sensores a bordo, estimación de variables y lazo cerrado de control, por lo que su velocidad y trayectoria dependen exclusivamente de la compensación visual manual del usuario.
+    \item \textbf{Plataformas instrumentadas con control clásico monovariable (PID desacoplado):} Incorporan microcontroladores básicos de 8 bits y encoders ópticos para regular la velocidad de las ruedas de forma independiente del mecanismo de dirección. Aunque reducen el error estacionario de tracción, no contemplan el acoplamiento dinámico entre la aceleración longitudinal y la fuerza lateral en curvas, resultando inestables ante perturbaciones súbitas.
+    \item \textbf{Plataformas mecatrónicas en espacio de estados con procesamiento embebido de 32 bits:} Integran unidades de medición inercial (IMU), encoders de alta resolución, etapas de potencia configurables y microcontroladores con unidades de punto flotante (FPU) como arquitecturas ARM Cortex-M4/M7 o ESP32. Permiten la ejecución determinista de leyes de control matriciales en tiempo real ($f_s \ge \qty{1}{\kilo\hertz}$), estimación de variables mediante observadores y comunicación telemática.
+\end{enumerate}
 
-\section{Comparativa técnica de enfoques}
+% ------------------------------------------------------------------------------
+\section{Comparativa técnica de tecnologías existentes}
 \label{sec:arte-comparativa}
 
-A fin de situar la presente propuesta frente a las alternativas documentadas, la \tabref{tab:comparativa-arte} resume las principales características operativas de las tecnologías analizadas.
+En la \tabref{tab:comparativa-arte} se sintetizan las ventajas, limitaciones y pertinencia de los enfoques reportados en la literatura respecto a los objetivos de este Trabajo Terminal.
 
 \begin{table}[htbp]
     \centering
-    \caption{Comparación técnica de tecnologías y enfoques existentes.}
+    \caption{Comparación técnica de tecnologías y enfoques de control vehicular a escala.}
     \label{tab:comparativa-arte}
     \begin{tabularx}{\textwidth}{p{3.0cm} X X p{3.2cm}}
         \toprule
         \textbf{Enfoque / Solución} & \textbf{Ventajas} & \textbf{Desventajas} & \textbf{Aplicabilidad en este TT} \\
         \midrule
-        Sistemas comerciales propietarios & Alta robustez y soporte de fábrica & Costo elevado y nula personalización & Limitada para fines académicos \\
-        Plataformas abiertas modulares & Bajo costo y alta flexibilidad & Mayor complejidad de integración & Base fundamental de este trabajo \\
-        Control clásico analógico & Simplicidad circuital & Sensibilidad a ruido y deriva térmica & Superado por control digital \\
+        Plataformas comerciales RC propietarias & Bajo costo inicial y componentes mecánicos integrados & Electrónica cerrada, nula programabilidad y sin sensado & Se aprovecha únicamente el chasis y la suspensión \\
+        Control PID clásico desacoplado & Simplicidad de cálculo e implementación en microcontroladores básicos & Incapacidad para compensar acoplamientos multivariables y retardos & Superado por la formulación matricial en espacio de estados \\
+        Arquitecturas ROS / Linux embebido en SBC & Alto nivel de abstracción y librerías de navegación avanzada & Consumo de potencia elevado ($> \qty{10}{\watt}$) y latencias no deterministas & Excesivo para control bajo nivel de velocidad y dirección \\
+        Microcontrolador de 32 bits con control en espacio de estados & Determinismo estricto en tiempo real, bajo consumo y control multivariable & Requiere modelado e identificación dinámica rigurosa & \textbf{Enfoque seleccionado para este proyecto} \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-\section{Oportunidad y aportación de la propuesta}
-\label{sec:arte-oportunidad}
-
-A partir de la revisión realizada, se identifica una oportunidad de desarrollo enfocada en optimizar la relación costo-rendimiento mediante la integración de hardware de procesamiento accesible y técnicas de control robustas adaptadas a las condiciones operativas locales.
+A partir de esta comparativa, se concluye que la implementación de una arquitectura mecatrónica basada en microcontrolador de 32 bits ejecutando una ley de control en espacio de estados representa la alternativa óptima en costo, determinismo temporal y rigor analítico.

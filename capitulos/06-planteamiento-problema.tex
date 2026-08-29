@@ -3,48 +3,33 @@
 % Archivo: capitulos/06-planteamiento-problema.tex
 % ==============================================================================
 
-\chapter{Planteamiento del problema}
+\chapter{Planteamiento del Problema}
 \label{cap:planteamiento}
 
-% ==============================================================================
-% REQUISITOS INSTITUCIONALES:
-% El planteamiento debe contemplar de forma explícita:
-% 1. Exposición clara y concisa del problema (necesidad, deficiencia o limitación).
-% 2. Solución propuesta al problema (enfoque mecatrónico propuesto).
-% ==============================================================================
+En este capítulo se formula el problema de ingeniería que motiva el proyecto, se delimitan los alcances y se expone la solución mecatrónica propuesta para la regulación de velocidad y dirección del vehículo.
 
-\section{Exposición del problema}
-\label{sec:problema-exposicion}
+% ------------------------------------------------------------------------------
+\section{Formulación del problema de ingeniería}
+\label{sec:planteamiento-problema}
 
-% ==============================================================================
-% INSTRUCCIONES PEDAGÓGICAS:
-% Describa la problemática concreta que da origen al Trabajo Terminal:
-% - ¿Qué problema u obstáculo se presenta?
-% - ¿En qué condiciones ocurre y a quién afecta?
-% - ¿Cuáles son las consecuencias de no resolverlo?
-% - Delimite con precisión el alcance y las restricciones del problema.
-% ==============================================================================
-
-% Escriba aquí la exposición detallada del problema...
-En los procesos de manufactura, automatización e instrumentación actuales, se presentan dificultades operativas vinculadas a la falta de precisión en el posicionamiento, elevados tiempos de respuesta y vulnerabilidad ante perturbaciones externas en sistemas mecánicos convencionales. La ausencia de un monitoreo en tiempo real y la carencia de algoritmos adaptables limitan la repetibilidad y elevan los índices de error operativo.
-
-Asimismo, los equipos disponibles comercialmente que resuelven parcialmente esta problemática suelen implicar costos de adquisición y mantenimiento excesivos, con arquitecturas de software cerradas que impiden su modificación o integración con otros subsistemas de la planta o laboratorio.
-
-\section{Solución propuesta}
-\label{sec:problema-solucion}
-
-% ==============================================================================
-% INSTRUCCIONES PEDAGÓGICAS:
-% Exponga de manera conceptual y técnica cómo su proyecto resuelve el problema:
-% - Enfoque mecatrónico adoptado (mecánica + electrónica + control + software).
-% - Criterios de diseño y especificaciones clave a satisfacer.
-% - Beneficios esperados respecto a las soluciones tradicionales.
-% ==============================================================================
-
-Para resolver la problemática planteada, se propone el diseño e integración de un sistema mecatrónico modular compuesto por:
-\begin{enumerate}[label=\alph*)]
-    \item \textbf{Subsistema mecánico:} Estructura rígida de bajo peso con guiado lineal y acoplamientos de baja holgura.
-    \item \textbf{Subsistema electrónico e instrumentación:} Sensores de posición y corriente de alta resolución con etapas de filtrado y acondicionamiento.
-    \item \textbf{Subsistema de control:} Algoritmo de control digital en lazo cerrado ejecutado en microcontrolador de alto rendimiento para garantizar estabilidad y minimización de error.
-    \item \textbf{Subsistema de software e interfaz:} Módulo de supervisión y adquisición de datos en tiempo real para calibración y visualización del desempeño.
+El control preciso de la velocidad longitudinal y de la orientación de un vehículo a escala 1:10 presenta restricciones dinámicas significativas derivadas del acoplamiento entre los subsistemas mecánicos, eléctricos y de procesamiento digital. En una plataforma a escala no instrumentada o comandada en lazo abierto, los comandos de tensión o PWM enviados al motor de tracción y al servomotor de dirección no garantizan una velocidad constante ni un ángulo de trayectoria estable debido a diversos factores críticos:
+\begin{enumerate}
+    \item \textbf{Variaciones en la tensión de la batería:} La descarga progresiva de los acumuladores de polímero de litio modifica sustancialmente la relación entre el ciclo de trabajo PWM y la velocidad efectiva de desplazamiento.
+    \item \textbf{Perturbaciones de carga y fricción:} Los cambios en la rugosidad de la superficie, la pendiente del terreno o la adición de instrumental modifican la resistencia a la rodadura y la inercia total.
+    \item \textbf{Holguras mecánicas y no linealidades:} El mecanismo de dirección presenta zonas muertas, fricción estática y saturaciones angulares que desvían al vehículo de la trayectoria deseada.
+    \item \textbf{Carencia de realimentación cuantitativa:} La ausencia de sensores a bordo y de un algoritmo formal de control en variables de estado impide cuantificar y asegurar el tiempo de establecimiento, el sobrepaso máximo y el error estacionario.
 \end{enumerate}
+
+Por consiguiente, el problema técnico consiste en diseñar, integrar y validar un sistema mecatrónico que represente matemáticamente la dinámica vehicular en espacio de estados, estime o mida las variables de interés en tiempo real y ejecute una ley de control capaz de mantener la velocidad y el ángulo de dirección dentro de especificaciones cuantitativas rigurosas ante perturbaciones externas.
+
+% ------------------------------------------------------------------------------
+\section{Solución mecatrónica propuesta}
+\label{sec:solucion-propuesta}
+
+La solución desarrollada se fundamenta en la integración coordinada de las cuatro áreas de la ingeniería mecatrónica:
+\begin{itemize}
+    \item \textbf{Mecánica:} Caracterización geométrica del mecanismo Ackermann (distancia entre ejes $L$, trocha $W$), relación de transmisión del diferencial $N_g$ y diseño de soportes rígidos para la fijación de sensores y electrónica.
+    \item \textbf{Electrónica:} Instrumentación con encoder incremental de alta resolución en el eje motriz, sensor inercial (IMU) de 6 grados de libertad, puente H con modulación PWM a alta frecuencia ($> \qty{20}{\kilo\hertz}$) y módulo de regulación de potencia con aislamiento galvánico.
+    \item \textbf{Control:} Formulación matricial continua y discreta en espacio de estados, cálculo analítico de ganancias de realimentación $\mathbf{K}$ por asignación de polos o LQR, precompensación de referencia $\mathbf{N}$ y análisis formal de estabilidad.
+    \item \textbf{Programación:} Implementación de firmware determinista en lenguaje C/C++ sobre microcontrolador de 32 bits, ejecutado mediante interrupciones temporizadas de alta prioridad ($T_s = \qty{1}{\milli\second}$), con filtrado digital de señales y registro telemático de datos.
+\end{itemize}

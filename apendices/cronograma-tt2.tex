@@ -2,43 +2,27 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: apendices/cronograma-tt2.tex
 % ==============================================================================
-% NOTA INSTITUCIONAL:
-% Esta sección es EXCLUSIVA de Trabajo Terminal I. Representa la planeación y
-% cronograma de actividades para la fase de implementación en Trabajo Terminal II.
-% La plantilla la oculta automáticamente cuando se compila en modalidad TT II.
+% Cronograma detallado de actividades para Trabajo Terminal II.
 % ==============================================================================
 
-\chapter{Cronograma de actividades para Trabajo Terminal II}
+\chapter{Cronograma de Actividades para Trabajo Terminal II}
 \label{ap:cronograma-tt2}
 
-% ==============================================================================
-% INSTRUCCIONES PEDAGÓGICAS:
-% Presente el plan de trabajo detallado por semanas o meses para la ejecución
-% de Trabajo Terminal II, contemplando:
-% - Adquisición y manufactura de piezas mecánicas.
-% - Fabricación de PCB y ensamble de circuitos electrónicos.
-% - Integración electromecánica y programación de firmware.
-% - Protocolo de pruebas experimentales y ajustes.
-% - Redacción del reporte final y preparación de la defensa oral.
-% ==============================================================================
-
-A continuación se detalla el cronograma de actividades propuesto para el desarrollo e implementación en la etapa de Trabajo Terminal II en la \tabref{tab:cronograma-tt2}.
+En el presente apéndice se detalla la planeación temporal de las fases de implementación, pruebas unitarias, integración mecatrónica y validación experimental que se llevarán a cabo en la asignatura de Trabajo Terminal II para culminar el proyecto.
 
 \begin{table}[htbp]
     \centering
-    \caption{Cronograma de actividades proyectado para Trabajo Terminal II.}
+    \caption{Cronograma de actividades y entregables para Trabajo Terminal II.}
     \label{tab:cronograma-tt2}
-    \begin{tabularx}{\textwidth}{l p{6cm} c c c c}
+    \begin{tabularx}{\textwidth}{p{4.5cm} c c c c X}
         \toprule
-        \textbf{Fase} & \textbf{Actividad / Entregable} & \textbf{Mes 1} & \textbf{Mes 2} & \textbf{Mes 3} & \textbf{Mes 4} \\
+        \textbf{Fase / Actividad} & \textbf{Mes 1} & \textbf{Mes 2} & \textbf{Mes 3} & \textbf{Mes 4} & \textbf{Entregable / Evidencia} \\
         \midrule
-        1 & Adquisición de insumos y componentes & $\bullet$ & & & \\
-        2 & Maquinado de partes mecánicas y manufactura & $\bullet$ & $\bullet$ & & \\
-        3 & Fabricación y soldado de PCB electrónica & & $\bullet$ & & \\
-        4 & Integración de subsistemas y cableado & & $\bullet$ & $\bullet$ & \\
-        5 & Programación y sintonización de control & & & $\bullet$ & \\
-        6 & Pruebas experimentales y validación & & & $\bullet$ & $\bullet$ \\
-        7 & Redacción del Reporte Final y Defensa Oral & & & & $\bullet$ \\
+        Fase 10: Montaje físico e instrumentación en chasis 1:10 & $\blacksquare$ & & & & Prototipo mecánico instrumentado \\
+        Fase 11: Pruebas unitarias de sensado y potencia & & $\blacksquare$ & & & Reporte de caracterización sensorial \\
+        Fase 12: Integración de firmware y lazo cerrado & & $\blacksquare$ & $\blacksquare$ & & Controlador en tiempo real ($f_s = \qty{1}{\kilo\hertz}$) \\
+        Fase 13: Validación experimental y perturbaciones & & & $\blacksquare$ & $\blacksquare$ & Base de datos experimental (MAE, RMSE) \\
+        Fase 14: Reporte final y preparación de defensa & & & & $\blacksquare$ & Documento final y prototipo validado \\
         \bottomrule
     \end{tabularx}
 \end{table}

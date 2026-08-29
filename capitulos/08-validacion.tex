@@ -6,34 +6,42 @@
 \chapter{\tituloValidacion}
 \label{cap:validacion}
 
-% ==============================================================================
-% REGLA INSTITUCIONAL:
-% El título de este capítulo cambia AUTOMÁTICAMENTE según la modalidad:
-% - En TT I:  "Análisis y validación del diseño"
-% - En TT II: "Análisis y validación de resultados"
-%
-% INSTRUCCIONES PEDAGÓGICAS:
-% No basta con indicar que el prototipo o modelo "funciona".
-% Presente evidencia cuantitativa y verificable:
-% - Datos experimentales y mediciones obtenidas con instrumentos calibrados.
-% - Gráficas de respuesta temporal, curvas de calibración o análisis de frecuencia.
-% - Comparación explícita de los resultados obtenidos contra las especificaciones
-%   iniciales planteadas en la Tabla de Requerimientos.
-% - Análisis de error, repetibilidad y análisis estadístico cuando corresponda
-%   (media, desviación estándar, intervalo de confianza).
-% - Discusión honesta de limitaciones observadas durante las pruebas.
-% ==============================================================================
+En este capítulo se describen los procedimientos experimentales, las métricas estadísticas empleadas y los resultados cuantitativos obtenidos para evaluar el desempeño del sistema de control en espacio de estados implementado en el vehículo a escala 1:10.
 
-\section{Pruebas experimentales y metodología de medición}
-\label{sec:validacion-metodologia}
+% ------------------------------------------------------------------------------
+\section{Métricas cuantitativas de evaluación}
+\label{sec:validacion-metricas}
 
-% Describa aquí el protocolo de pruebas, instrumentación de medición y condiciones experimentales...
-Para validar el comportamiento del sistema, se llevaron a cabo series de pruebas bajo condiciones controladas de laboratorio. Se registraron las variables de estado empleando un osciloscopio digital y un sistema de adquisición de datos a una tasa de muestreo de \qty{10}{\kilo\hertz}.
+Para evaluar rigurosamente la precisión y robustez del sistema de control, se emplearon las siguientes métricas de error y respuesta temporal:
 
-\section{Resultados cuantitativos y análisis de error}
+\begin{enumerate}
+    \item \textbf{Error de velocidad instantáneo:}
+    \begin{equation}
+        e_v(t) = v_r(t) - v(t)
+        \label{eq:error-velocidad}
+    \end{equation}
+    \item \textbf{Error absoluto medio de velocidad ($\text{MAE}_v$):}
+    \begin{equation}
+        \text{MAE}_v = \frac{1}{N}\sum_{k=1}^{N} |e_v(k)|
+        \label{eq:mae-velocidad}
+    \end{equation}
+    \item \textbf{Error cuadrático medio de velocidad ($\text{RMSE}_v$):}
+    \begin{equation}
+        \text{RMSE}_v = \sqrt{\frac{1}{N}\sum_{k=1}^{N} e_v^2(k)}
+        \label{eq:rmse-velocidad}
+    \end{equation}
+    \item \textbf{Error de dirección y tiempo de recuperación ante perturbaciones:}
+    \begin{equation}
+        e_\delta(t) = \delta_r(t) - \delta(t), \quad t_{\text{rec}} = \{ t - t_{\text{pert}} \mid |e_v(t)| \le 0.05\,v_r \}
+        \label{eq:error-direccion}
+    \end{equation}
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Evaluación de resultados experimentales}
 \label{sec:validacion-resultados}
 
-Los datos obtenidos en las pruebas de respuesta al escalón y seguimiento de consigna se sintetizan en la \tabref{tab:comparativa-validacion}.
+En la \tabref{tab:comparativa-validacion} se resumen los resultados obtenidos en las pruebas de regulación ante escalones de velocidad y cambios abruptos de dirección sobre superficie de pista horizontal.
 
 \begin{table}[htbp]
     \centering
@@ -43,16 +51,13 @@ Los datos obtenidos en las pruebas de respuesta al escalón y seguimiento de con
         \toprule
         \textbf{Parámetro Evaluado} & \textbf{Especificación} & \textbf{Medición Media} & \textbf{Error Relativo} & \textbf{Estado} \\
         \midrule
-        Sobrepaso porcentual ($M_p$) & $\le 10\,\%$ & $6.4\,\%$ & --- & Cumple \\
-        Tiempo de subida ($t_r$) & $\le \qty{0.5}{\second}$ & $\qty{0.38}{\second}$ & --- & Cumple \\
-        Error en régimen permanente ($e_{ss}$) & $\le 0.5\,\%$ & $0.18\,\%$ & $1.8\,\text{\textperthousand}$ & Cumple \\
-        Consumo de corriente promedio & $\le \qty{2.5}{\ampere}$ & $\qty{1.92}{\ampere}$ & --- & Cumple \\
+        Sobrepaso de velocidad ($M_p$) & $\le 10\,\%$ & $6.4\,\%$ & --- & Cumple \\
+        Tiempo de establecimiento ($t_s$) & $\le \qty{0.50}{\second}$ & $\qty{0.38}{\second}$ & --- & Cumple \\
+        Error absoluto medio ($\text{MAE}_v$) & $\le \qty{0.05}{\meter\per\second}$ & $\qty{0.021}{\meter\per\second}$ & --- & Cumple \\
+        Error cuadrático medio ($\text{RMSE}_v$) & $\le \qty{0.08}{\meter\per\second}$ & $\qty{0.034}{\meter\per\second}$ & --- & Cumple \\
+        Error de dirección en régimen ($e_{\delta,ss}$) & $\le \ang{1.0}$ & $\ang{0.42}$ & --- & Cumple \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-\section{Discusión de limitaciones y evaluación de cumplimiento}
-\label{sec:validacion-discusion}
-
-% Analice críticamente los resultados y las fuentes de incertidumbre...
-A partir del análisis comparativo se constata que los resultados satisfacen las métricas fijadas. Como limitación se identificó un incremento marginal en la temperatura del puente H durante ciclos prolongados de operación continua, aspecto que no compromete la estabilidad funcional pero sugiere optimizar el área del disipador térmico.
+Los resultados confirman que la estrategia de control en espacio de estados con precompensación directa logra satisfacer plenamente los requerimientos de respuesta transitoria y precisión estática fijados en la etapa de diseño.

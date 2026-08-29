@@ -6,54 +6,40 @@
 \chapter{Introducción}
 \label{cap:introduccion}
 
-% ==============================================================================
-% REGLA INSTITUCIONAL:
-% A partir de esta sección inicia la numeración de páginas en números arábigos (1, 2, 3...).
-%
-% INSTRUCCIONES PEDAGÓGICAS:
-% La introducción debe contextualizar el proyecto, describir la motivación y el
-% alcance general del trabajo mecatrónico desarrollado, así como presentar un
-% resumen estructurado del contenido de los capítulos que componen el documento.
-% ==============================================================================
+El control automático de sistemas vehiculares terrestres constituye uno de los campos de mayor relevancia en la ingeniería mecatrónica contemporánea. La regulación precisa de la velocidad longitudinal y del ángulo de dirección en vehículos a escala reducida presenta desafíos de ingeniería asociados al modelado dinámico, la no linealidad de los componentes electromecánicos, el retardo temporal en la actuación y la sensibilidad ante perturbaciones externas del entorno.
 
-% Escriba aquí la descripción general y contextualización de su proyecto...
-El presente Trabajo Terminal aborda el diseño y desarrollo de una solución mecatrónica orientada a resolver las necesidades identificadas en el ámbito de la ingeniería aplicada. En este documento se presentan de manera secuencial los fundamentos teóricos, metodológicos y de ingeniería que sustentan el proyecto.
+El presente Trabajo Terminal aborda el diseño, desarrollo, implementación e integración mecatrónica de una estrategia de control formulada en espacio de estados sobre una plataforma vehicular a escala 1:10. A diferencia de un enfoque centrado exclusivamente en lazo abierto o control manual no realimentado, esta propuesta articula formalmente las cuatro disciplinas esenciales de la mecatrónica: mecánica (geometría de dirección y transmisión), electrónica (instrumentación, sensado y etapas de potencia), control (modelado dinámico, controlabilidad, observabilidad y realimentación de estados) y programación (firmware embebido en tiempo real y adquisición de datos).
 
-A continuación se detalla la estructura capitular del reporte:
+A continuación se detalla la estructura capitular del documento:
 \begin{itemize}
-    \item El \capref{cap:justificacion} expone la justificación técnica, social y económica del proyecto.
-    \item El \capref{cap:antecedentes} presenta los antecedentes y trabajos previos relacionados.
-    \item El \capref{cap:marco-teorico} sintetiza los fundamentos teóricos y modelos físico-matemáticos empleados.
-    \item El \capref{cap:estado-del-arte} revisa el estado del arte y las tecnologías vigentes afines.
-    \item El \capref{cap:planteamiento} define el planteamiento del problema y la solución propuesta.
-    \item El \capref{cap:desarrollo} describe el desarrollo técnico detallado de la ingeniería mecatrónica.
-    \item El \capref{cap:validacion} presenta el análisis y validación conforme a las especificaciones planteadas.
+    \item El \capref{cap:justificacion} expone la justificación técnica, académica y social del proyecto.
+    \item El \capref{cap:antecedentes} presenta los antecedentes y desarrollos previos en plataformas vehiculares.
+    \item El \capref{cap:marco-teorico} sintetiza el modelado físico-matemático y la formulación en espacio de estados.
+    \item El \capref{cap:estado-del-arte} revisa las tecnologías y enfoques de control vehicular existentes.
+    \item El \capref{cap:planteamiento} define formalmente el problema de ingeniería y la solución mecatrónica.
+    \item El \capref{cap:desarrollo} describe la arquitectura del sistema, el diseño y la integración de subsistemas.
+    \item El \capref{cap:validacion} presenta los procedimientos de prueba, métricas cuantitativas y resultados.
     \item El \capref{cap:conclusiones} establece las conclusiones derivadas del cumplimiento de los objetivos.
     \ifTTII
     \item El \capref{cap:trabajo-futuro} plantea las líneas de trabajo a futuro e iteraciones posteriores.
     \fi
 \end{itemize}
 
-% ==============================================================================
-% OBJETIVOS DEL PROYECTO
-% Copie aquí los objetivos EXACTAMENTE como fueron aprobados en el protocolo registrado.
-% NO los modifique ni parafrasee sin aprobación formal del comité evaluador.
-% ==============================================================================
+% ------------------------------------------------------------------------------
+% OBJETIVOS (COPIAR TEXTUALMENTE DEL PROTOCOLO APROBADO)
+% ------------------------------------------------------------------------------
 
 \section{Objetivo general}
-\label{sec:obj-general}
+\label{sec:objetivo-general}
 
-% Escriba aquí el objetivo general aprobado en el protocolo...
-Desarrollar un sistema mecatrónico integral para la automatización y control del proceso definido, mediante el diseño e integración de subsistemas mecánicos, electrónicos y de software, a fin de validar su rendimiento ante especificaciones operativas cuantitativas.
+Diseñar e implementar un sistema mecatrónico de control en espacio de estados para regular la velocidad longitudinal y la dirección de un vehículo a escala 1:10, mediante el modelado de su dinámica, la integración de sensores, actuadores, electrónica y programación, y su validación experimental bajo diferentes condiciones de operación.
 
 \section{Objetivos específicos}
-\label{sec:obj-especificos}
+\label{sec:objetivos-especificos}
 
-% Escriba aquí la lista de objetivos específicos aprobados en el protocolo...
 \begin{enumerate}
-    \item Establecer la lista de requerimientos y especificaciones de diseño mecatrónico a partir de las condiciones de operación.
-    \item Diseñar y modelar los componentes mecánicos, estructurales y cinemáticos requeridos por el sistema.
-    \item Diseñar y seleccionar la instrumentación electrónica, sensores, actuadores y etapas de potencia.
-    \item Desarrollar los algoritmos de control, lógica de programación e interfaz de usuario para el sistema embebido.
-    \item Evaluar y validar cuantitativamente el desempeño global del sistema mediante pruebas experimentales y análisis de error.
+    \item \textbf{Objetivo Específico 1:} Obtener un modelo dinámico del vehículo para representar las variables asociadas con su velocidad longitudinal y dirección, y formularlo en espacio de estados a partir de parámetros físicos y/o datos experimentales.
+    \item \textbf{Objetivo Específico 2:} Diseñar el sistema de control en espacio de estados, determinando su controlabilidad y observabilidad y, cuando resulte necesario, incorporando un método de estimación de estados para satisfacer las especificaciones de desempeño establecidas.
+    \item \textbf{Objetivo Específico 3:} Diseñar e integrar la arquitectura mecatrónica necesaria para la implementación del sistema de control, incluyendo sensores, actuadores, electrónica de acondicionamiento y potencia, sistema de procesamiento y software de control.
+    \item \textbf{Objetivo Específico 4:} Implementar y validar experimentalmente el sistema desarrollado en el vehículo a escala 1:10 mediante pruebas de regulación y seguimiento, respuesta transitoria, rechazo a perturbaciones y operación bajo diferentes condiciones, empleando métricas cuantificables de desempeño.
 \end{enumerate}

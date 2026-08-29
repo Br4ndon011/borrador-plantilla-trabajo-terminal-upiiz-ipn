@@ -3,78 +3,52 @@
 % Archivo: capitulos/07-desarrollo.tex
 % ==============================================================================
 
-\chapter{Desarrollo del trabajo}
+\chapter{Desarrollo del Sistema Mecatrónico}
 \label{cap:desarrollo}
 
-% ==============================================================================
-% REQUISITOS INSTITUCIONALES Y METODOLÓGICOS:
-%
-% PARA TRABAJO TERMINAL I:
-% Esta sección debe orientarse al DISEÑO DETALLADO del sistema mecatrónico.
-% Documente según la naturaleza de su proyecto:
-% - Especificaciones de diseño y tabla de requerimientos vs. métricas.
-% - Cálculos de ingeniería (esfuerzos, pares motores, consumos eléctricos).
-% - Selección y justificación técnica de componentes.
-% - Diseño mecánico y planos (manufactura, ensamble, tolerancias).
-% - Diseño electrónico y diagramas esquemáticos (potencia, control, sensado).
-% - Diseño de control y modelado matemático.
-% - Diseño de software, diagramas de flujo, algoritmos o máquinas de estados.
-% - Simulaciones computacionales y pruebas preliminares de concepto.
-% - Plan de manufactura y cronograma de TT II.
-%
-% NOTA: No es obligatorio incluir todos los elementos si alguno no aplica a la
-% naturaleza particular de su proyecto mecatrónico.
-%
-% PARA TRABAJO TERMINAL II:
-% Esta sección documenta la IMPLEMENTACIÓN Y PUESTA EN MARCHA:
-% - Fabricación de piezas mecánicas y ensamble físico.
-% - Ensamble de circuitos electrónicos y arneses de cableado.
-% - Programación definitiva y calibración del firmware.
-% - Puesta en operación, ajustes mecánicos y correcciones electrónicas justificadas.
-% ==============================================================================
+En este capítulo se describe la arquitectura mecatrónica general, el modelado paramétrico, la selección e integración de componentes y la formulación discreta de la ley de control en espacio de estados.
 
-\section{Especificaciones de diseño y requerimientos}
+% ------------------------------------------------------------------------------
+\section{Arquitectura general del sistema y flujo funcional}
+\label{sec:desarrollo-arquitectura}
+
+El sistema mecatrónico opera bajo una estructura de lazo cerrado en tiempo real cuyo flujo de información secuencial se estructura de la siguiente manera:
+\begin{enumerate}
+    \item \textbf{Sensado y Adquisición:} La velocidad angular de tracción $\omega_m(t)$ es capturada mediante interrupciones de cuadratura generadas por un encoder óptico incremental ($1024\text{ PPR}$), mientras que la tasa de guiñada $\dot{\psi}(t)$ y la aceleración longitudinal son medidas por una IMU vía bus I2C a \qty{400}{\kilo\hertz}.
+    \item \textbf{Filtrado y Procesamiento:} Las señales analógicas y digitales son procesadas por un filtro digital pasabajas Butterworth de segundo orden para atenuar el ruido de vibración mecánica.
+    \item \textbf{Cálculo del Vector de Estados:} Se ensambla el vector $\mathbf{x}(k) = [v(k) \quad i_a(k) \quad \delta(k)]\transp$ en el microcontrolador.
+    \item \textbf{Evaluación de la Ley de Control:} Se calcula la acción de control $\mathbf{u}(k) = -\mathbf{K}\mathbf{x}(k) + \mathbf{N}\mathbf{r}(k)$ dentro de la rutina de servicio de interrupción del temporizador principal ($T_s = \qty{1}{\milli\second}$).
+    \item \textbf{Actuación y Modulación:} Se generan señales PWM complementarias hacia el puente H del motor DC y pulsos periódicos de \qty{50}{\hertz} (\qty{1.0}{\milli\second} a \qty{2.0}{\milli\second}) para el servomotor de dirección.
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Matriz de requerimientos y especificaciones de diseño}
 \label{sec:desarrollo-especificaciones}
 
-Para orientar el desarrollo de la ingeniería de detalle, se definen las especificaciones cuantitativas del sistema en la \tabref{tab:especificaciones-diseno}.
+En la \tabref{tab:especificaciones-diseno} se resumen las especificaciones cuantitativas que norman el diseño del sistema de control y la selección de hardware.
 
 \begin{table}[htbp]
     \centering
-    \caption{Lista de especificaciones de diseño mecatrónico.}
+    \caption{Especificaciones cuantitativas de desempeño para el vehículo 1:10.}
     \label{tab:especificaciones-diseno}
-    \begin{tabularx}{\textwidth}{l p{5cm} c c X}
+    \begin{tabular}{llr}
         \toprule
-        \textbf{Métrica} & \textbf{Descripción} & \textbf{Valor Marginal} & \textbf{Valor Ideal} & \textbf{Unidad} \\
+        \textbf{Parámetro de Desempeño} & \textbf{Símbolo / Métrica} & \textbf{Valor Especificado} \\
         \midrule
-        M1 & Error de posicionamiento angular & $\le 1.0$ & $\le 0.2$ & \unit{\degree} \\
-        M2 & Tiempo de respuesta transitorio & $\le 1.5$ & $\le 0.5$ & \unit{\second} \\
-        M3 & Consumo de potencia nominal & $\le 60$ & $\le 35$ & \unit{\watt} \\
-        M4 & Masa total del conjunto móvil & $\le 4.5$ & $\le 3.0$ & \unit{\kilo\gram} \\
+        Rango de velocidad longitudinal & $v(t)$ & $\qty{0.2}{\meter\per\second}$ a $\qty{2.0}{\meter\per\second}$ \\
+        Rango angular de dirección & $\delta(t)$ & $\ang{-25}$ a $\ang{+25}$ \\
+        Tiempo de establecimiento ($2\,\%$) & $t_s$ & $\le \qty{0.50}{\second}$ \\
+        Sobrepaso porcentual máximo & $M_p$ & $\le 10\,\%$ \\
+        Error en régimen permanente de velocidad & $|e_v|$ & $\le \qty{0.05}{\meter\per\second}$ \\
+        Frecuencia de muestreo del lazo de control & $f_s = 1/T_s$ & $\ge \qty{1.0}{\kilo\hertz}$ \\
+        Masa total del vehículo instrumentado & $m_{\text{total}}$ & $\le \qty{2.5}{\kilo\gram}$ \\
+        Tensión nominal de alimentación & $V_{\text{bat}}$ & $\qty{7.4}{\volt}$ (LiPo 2S) \\
         \bottomrule
-    \end{tabularx}
+    \end{tabular}
 \end{table}
 
-\section{Diseño y análisis mecánico}
-\label{sec:desarrollo-mecanico}
+% ------------------------------------------------------------------------------
+\section{Diseño e integración de subsistemas}
+\label{sec:desarrollo-integracion}
 
-% Escriba aquí el diseño mecánico, selección de materiales, cálculos estructurales...
-El diseño estructural se dimensionó para soportar las cargas estáticas y dinámicas operativas garantizando un factor de seguridad $n_s \ge 2.0$. Los cálculos de esfuerzos se realizaron considerando el límite de fluencia del material seleccionado:
-
-\begin{equation}
-    \sigma_{\text{adm}} = \frac{S_y}{n_s}
-    \label{eq:esfuerzo-adm}
-\end{equation}
-
-\noindent Los planos mecánicos de detalle y vistas en explosión se presentan en el \apref{ap:planos}.
-
-\section{Diseño electrónico y de potencia}
-\label{sec:desarrollo-electronico}
-
-% Escriba aquí la instrumentación, diagramas esquemáticos, PCB y alimentación...
-La etapa de potencia y el acondicionamiento sensorial se integraron en una tarjeta de circuito impreso dedicada. Se incorporaron protecciones contra sobretensión, diodos de libre rueda y aislamiento optoelectrónico en las líneas de conmutación.
-
-\section{Diseño del sistema de control y software}
-\label{sec:desarrollo-control-software}
-
-% Escriba aquí los algoritmos, máquinas de estado y código de control...
-La arquitectura de software se organizó mediante una máquina de estados finitos ejecutada de forma periódica con interrupciones por temporizador a una frecuencia de \qty{1}{\kilo\hertz}. Los cálculos de dimensionamiento y la formulación analítica se detallan en el \apref{ap:calculos}.
+La integración física del prototipo se realizó sobre un chasis de tracción trasera escala 1:10 con diferencial mecánico. Los soportes del sensor encoder, la bahía de la batería y la plataforma para la tarjeta electrónica de control se diseñaron en SolidWorks y se manufacturaron en ácido poliláctico (PLA) mediante impresión 3D con una densidad de relleno del $60\,\%$, garantizando rigidez estructural ante aceleraciones transitorias.
