@@ -4,6 +4,16 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/), y este proyecto se adhiere a [Versionado Semántico](https://semver.org/lang/es/).
 
+## [1.1.0] - 2026-08-29
+
+### Agregado
+- Sistema centralizado de selección de tipo de documento mediante la API `\TipoDocumento{PROTOCOLO|TTI|TTII}` en `config/datos.tex`.
+- Despachador modular de portadas en `frontmatter/portada.tex`.
+- Portada institucional exclusiva para Protocolo de Trabajo Terminal (`frontmatter/portada-protocolo.tex`) con área de ubicación, línea de trabajo e intención de titulación.
+- Portada institucional unificada para reportes de Trabajo Terminal I y II (`frontmatter/portada-tt.tex`).
+- Inclusión condicional de portada interna de firmas (exclusiva para TT I y TT II).
+- Advertencias de validación de campos obligatorios mediante `\validarDatosDocumento`.
+
 ## [1.0.0] - 2026-08-29
 
 ### Agregado

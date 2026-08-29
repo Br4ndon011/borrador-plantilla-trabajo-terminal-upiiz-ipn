@@ -2,24 +2,35 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: config/datos.tex
 % ==============================================================================
-% ESTE ES EL ÚNICO ARCHIVO QUE DEBES EDITAR PARA CONFIGURAR TUS DATOS PERSONALES
-% Y LOS DEL PROYECTO. NO ES NECESARIO MODIFICAR main.tex.
+% FUENTE ÚNICA DE VERDAD: Configure aquí los datos de su Trabajo Terminal.
+% Todos los datos se propagarán automáticamente a la portada, portada interna,
+% encabezados y metadatos del documento.
 % ==============================================================================
 
-% ------------------------------------------------------------------------------
-% 1. MODALIDAD DEL TRABAJO TERMINAL
-% ------------------------------------------------------------------------------
-% Descomenta EXACTAMENTE UNA de las siguientes dos líneas:
-\TTItrue   % Para Trabajo Terminal I (Diseño detallado)
-%\TTIfalse  % Para Trabajo Terminal II / Reporte Final (Implementación y Validación)
+% ==============================================================================
+% 1. SELECCIÓN DEL TIPO DE DOCUMENTO
+% ==============================================================================
+% Opciones válidas:
+%   PROTOCOLO  -> Protocolo de Trabajo Terminal (registro de proyecto)
+%   TTI        -> Trabajo Terminal I (diseño detallado)
+%   TTII       -> Trabajo Terminal II / Reporte Final (implementación y validación)
+%
+% Escriba ÚNICAMENTE una de las tres opciones:
+\TipoDocumento{TTI}
 
-% ------------------------------------------------------------------------------
-% 2. INFORMACIÓN DEL PROYECTO
-% ------------------------------------------------------------------------------
-\newcommand{\tituloProyecto}{Título Completo del Trabajo Terminal en Español}
-\newcommand{\tituloIngles}{Full Title of the Final Degree Project in English}
+% ==============================================================================
+% 2. DATOS DEL PROYECTO
+% ==============================================================================
+\newcommand{\tituloProyecto}{Diseño e Integración de un Sistema Mecatrónico de Posicionamiento Angular}
+\newcommand{\tituloIngles}{Design and Integration of an Angular Positioning Mechatronic System}
 
-% Línea de trabajo institucional (Elige la que corresponda a tu proyecto):
+% Área de ubicación (Aplica principalmente para PROTOCOLO)
+\newcommand{\areaUbicacion}{Ingeniería Mecatrónica}
+
+% Intención de titulación (Aplica principalmente para PROTOCOLO)
+\newcommand{\intencionTitulacion}{Opción curricular / Trabajo Terminal}
+
+% Línea de investigación institucional de la UPIIZ (Seleccione una de las 6):
 % I.   Diseño e implementación de un sistema robótico, dispositivos o sistemas mecatrónicos.
 % II.  Diseño e implementación de una máquina o mecanismo.
 % III. Diseño e implementación de componentes o sistemas electrónicos.
@@ -28,56 +39,43 @@
 % VI.  Puesta en operación, optimización o automatización de un proceso o sistema industrial.
 \newcommand{\lineaTrabajo}{Línea de investigación: IV. Diseño e implementación de sistemas o técnicas de control.}
 
-% Fecha de presentación y defensa oral (Ejemplo: "enero de 2026"):
 \newcommand{\fechaDefensa}{enero de 2026}
 
-% ------------------------------------------------------------------------------
-% 3. INTEGRANTES DEL EQUIPO (ALUMNOS)
-% ------------------------------------------------------------------------------
-% La plantilla soporta automáticamente 1, 2 o 3 alumnos.
-% Si tu equipo es de 1 o 2 integrantes, deja vacíos los campos no utilizados.
+% ==============================================================================
+% 3. INTEGRANTES DEL PROYECTO (1, 2 o 3 ALUMNOS)
+% ==============================================================================
+% Si su equipo tiene 1 o 2 integrantes, deje completamente vacías las llaves
+% de los alumnos no utilizados (ej. \newcommand{\alumnoBNombre}{})
+\newcommand{\alumnoANombre}{Mariana Robles Reynoso}
+\newcommand{\alumnoABoleta}{2020670001}
 
-% Alumno 1 (Obligatorio)
-\newcommand{\alumnoANombre}{Nombre Completo del Alumno 1}
-\newcommand{\alumnoABoleta}{2020XXXXXX}
+\newcommand{\alumnoBNombre}{}
+\newcommand{\alumnoBBoleta}{}
 
-% Alumno 2 (Opcional - dejar vacío si es individual)
-\newcommand{\alumnoBNombre}{Nombre Completo del Alumno 2}
-\newcommand{\alumnoBBoleta}{2020XXXXXX}
-
-% Alumno 3 (Opcional - dejar vacío si son 2 o individual)
 \newcommand{\alumnoCNombre}{}
 \newcommand{\alumnoCBoleta}{}
 
-% ------------------------------------------------------------------------------
-% 4. ASESORES DEL PROYECTO
-% ------------------------------------------------------------------------------
-% La plantilla soporta automáticamente 1, 2 o 3 asesores.
-% Si tienes menos de 3 asesores, deja vacíos los campos no utilizados.
-
-% Asesor 1 (Obligatorio)
-\newcommand{\asesorANombre}{M. en C. Nombre del Primer Asesor}
-
-% Asesor 2 (Opcional - dejar vacío si no aplica)
-\newcommand{\asesorBNombre}{Dra. Nombre del Segundo Asesor}
-
-% Asesor 3 (Opcional - dejar vacío si no aplica)
+% ==============================================================================
+% 4. ASESORES / DIRECCIÓN (1 A 3 ASESORES)
+% ==============================================================================
+% Deje vacías las llaves de los asesores no utilizados
+\newcommand{\asesorANombre}{M. en C. Rafael Reveles Martínez}
+\newcommand{\asesorBNombre}{Dra. Ma. Auxiliadora Araiza Esquivel}
 \newcommand{\asesorCNombre}{}
 
-% ------------------------------------------------------------------------------
-% 5. JURADO CALIFICADOR / SÍNODO (PORTADA INTERNA)
-% ------------------------------------------------------------------------------
-% Estos datos se imprimen en la portada interna con sus líneas de firma.
+% ==============================================================================
+% 5. JURADO EVALUADOR (SÍNODO)
+% ==============================================================================
+% Requerido para la Portada Interna en TT I y TT II / Reporte Final
+\newcommand{\juradoPresidente}{Dr. Umanel A. Hernández González}
+\newcommand{\juradoSecretario}{M. en C. Eleazar Pacheco Reyes}
+\newcommand{\juradoPrimerVocal}{Dr. Primer Vocal del Sínodo}
+\newcommand{\juradoSegundoVocal}{M. en C. Segundo Vocal del Sínodo}
+\newcommand{\juradoTercerVocal}{}
 
-\newcommand{\juradoPresidente}{Dr. Nombre del Presidente del Jurado}
-\newcommand{\juradoSecretario}{M. en C. Nombre del Secretario del Jurado}
-\newcommand{\juradoPrimerVocal}{Dr. Nombre del Primer Vocal}
-\newcommand{\juradoSegundoVocal}{M. en C. Nombre del Segundo Vocal}
-\newcommand{\juradoTercerVocal}{Ing. Nombre del Tercer Vocal (Suplente)}
-
-% ------------------------------------------------------------------------------
-% 6. DATOS INSTITUCIONALES (Generalmente no requieren edición)
-% ------------------------------------------------------------------------------
+% ==============================================================================
+% 6. DATOS INSTITUCIONALES (NO MODIFICAR SALVO INDICACIÓN OFICIAL)
+% ==============================================================================
 \newcommand{\institucionNombre}{INSTITUTO POLITÉCNICO NACIONAL}
 \newcommand{\unidadAcademica}{UNIDAD PROFESIONAL INTERDISCIPLINARIA DE INGENIERÍA CAMPUS ZACATECAS}
 \newcommand{\siglasUnidad}{UPIIZ}

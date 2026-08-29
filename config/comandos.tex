@@ -2,81 +2,167 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: config/comandos.tex
 % ==============================================================================
-% Macros y comandos auxiliares para la automatización de portada, jurado,
-% referencias cruzadas y lógica condicional.
+% Macros, lógica de selección de tipo de documento (PROTOCOLO / TTI / TTII),
+% despacho de portadas, firmas dinámicas y referencias cruzadas.
 % ==============================================================================
 
 \usepackage{etoolbox}
 
 % ------------------------------------------------------------------------------
-% 1. COMANDOS DE IDENTIFICACIÓN DINÁMICA DE AUTORES
+% 1. SISTEMA CENTRALIZADO DE TIPO DE DOCUMENTO (PROTOCOLO / TTI / TTII)
+% ------------------------------------------------------------------------------
+% Definición de booleanos de estado global
+\newif\ifProtocolo
+\newif\ifTTI
+\newif\ifTTII
+
+% Macro principal de configuración
+\newcommand{\TipoDocumento}[1]{%
+  \edef\tipoDocParam{\detokenize{#1}}%
+  \Protocolofalse
+  \TTIfalse
+  \TTIIfalse
+  % Comparación normalizada
+  \ifstrequal{#1}{PROTOCOLO}{%
+    \Protocolotrue
+    \def\TipoDocCodigo{PROTOCOLO}%
+  }{%
+  \ifstrequal{#1}{protocolo}{%
+    \Protocolotrue
+    \def\TipoDocCodigo{PROTOCOLO}%
+  }{%
+  \ifstrequal{#1}{TTI}{%
+    \TTItrue
+    \def\TipoDocCodigo{TTI}%
+  }{%
+  \ifstrequal{#1}{tti}{%
+    \TTItrue
+    \def\TipoDocCodigo{TTI}%
+  }{%
+  \ifstrequal{#1}{TT1}{%
+    \TTItrue
+    \def\TipoDocCodigo{TTI}%
+  }{%
+  \ifstrequal{#1}{TTII}{%
+    \TTIItrue
+    \def\TipoDocCodigo{TTII}%
+  }{%
+  \ifstrequal{#1}{ttii}{%
+    \TTIItrue
+    \def\TipoDocCodigo{TTII}%
+  }{%
+  \ifstrequal{#1}{TT2}{%
+    \TTIItrue
+    \def\TipoDocCodigo{TTII}%
+  }{%
+    \PackageWarning{PlantillaUPIIZ}{%
+      Tipo de documento '#1' no reconocido. Opciones validas: PROTOCOLO, TTI, TTII. %
+      Se usara TTI por defecto.%
+    }%
+    \TTItrue
+    \def\TipoDocCodigo{TTI}%
+  }}}}}}}}%
+}
+
+% Macros auxiliares para consulta de estado
+\newcommand{\EsProtocolo}[1]{\ifProtocolo #1\fi}
+\newcommand{\EsTTI}[1]{\ifTTI #1\fi}
+\newcommand{\EsTTII}[1]{\ifTTII #1\fi}
+
+% Nombres legibles para títulos y texto
+\newcommand{\NombreTipoDocumento}{%
+  \ifProtocolo Protocolo de Trabajo Terminal\fi%
+  \ifTTI Trabajo Terminal I\fi%
+  \ifTTII Trabajo Terminal II\fi%
+}
+
+\newcommand{\NombreTipoDocumentoMayusculas}{%
+  \ifProtocolo PROTOCOLO DE TRABAJO TERMINAL\fi%
+  \ifTTI TRABAJO TERMINAL I\fi%
+  \ifTTII TRABAJO TERMINAL II\fi%
+}
+
+\newcommand{\subtituloPortada}{%
+  \ifProtocolo PROTOCOLO DE TRABAJO TERMINAL\fi%
+  \ifTTI REPORTE TÉCNICO DE TRABAJO TERMINAL I\fi%
+  \ifTTII REPORTE FINAL DE TRABAJO TERMINAL\fi%
+}
+
+\newcommand{\tituloValidacion}{%
+  \ifTTI Análisis y validación del diseño\else Análisis y validación de resultados\fi%
+}
+
+% ------------------------------------------------------------------------------
+% 2. VALIDACIÓN DE CAMPOS OBLIGATORIOS (ADVERTENCIAS EN LOG)
+% ------------------------------------------------------------------------------
+\newcommand{\validarDatosDocumento}{%
+  \ifcsvoid{tituloProyecto}{%
+    \PackageWarning{PlantillaUPIIZ}{Falta definir \protect\tituloProyecto en config/datos.tex}%
+  }{}%
+  \ifcsvoid{alumnoANombre}{%
+    \PackageWarning{PlantillaUPIIZ}{Falta definir \protect\alumnoANombre en config/datos.tex}%
+  }{}%
+  \ifcsvoid{asesorANombre}{%
+    \PackageWarning{PlantillaUPIIZ}{Falta definir \protect\asesorANombre en config/datos.tex}%
+  }{}%
+  \ifProtocolo
+    \ifcsvoid{areaUbicacion}{%
+      \PackageWarning{PlantillaUPIIZ}{Para PROTOCOLO se sugiere definir \protect\areaUbicacion en config/datos.tex}%
+    }{}%
+    \ifcsvoid{intencionTitulacion}{%
+      \PackageWarning{PlantillaUPIIZ}{Para PROTOCOLO se sugiere definir \protect\intencionTitulacion en config/datos.tex}%
+    }{}%
+  \fi
+}
+
+% ------------------------------------------------------------------------------
+% 3. COMANDOS DE IDENTIFICACIÓN DINÁMICA DE AUTORES Y ASESORES
 % ------------------------------------------------------------------------------
 
 % Imprime los autores en la Portada Principal
 \newcommand{\imprimirAutoresPortada}{%
-    \begin{minipage}[t]{0.9\textwidth}
-        \centering\fontsize{13}{16}\selectfont
-        \textbf{Presenta(n):}\\[0.5em]
-        \alumnoANombre%
-        \ifcsvoid{alumnoBNombre}{}{%
-            \\[0.3em]\alumnoBNombre%
-        }%
-        \ifcsvoid{alumnoCNombre}{}{%
-            \\[0.3em]\alumnoCNombre%
-        }%
-    \end{minipage}%
+  \begin{minipage}[t]{0.9\textwidth}
+    \centering\fontsize{13}{16}\selectfont
+    \textbf{Presenta(n):}\\[0.5em]
+    \alumnoANombre%
+    \ifcsvoid{alumnoBNombre}{}{%
+      \\[0.3em]\alumnoBNombre%
+    }%
+    \ifcsvoid{alumnoCNombre}{}{%
+      \\[0.3em]\alumnoCNombre%
+    }%
+  \end{minipage}%
 }
 
 % Imprime los asesores en la Portada Principal
 \newcommand{\imprimirAsesoresPortada}{%
-    \begin{minipage}[t]{0.9\textwidth}
-        \centering\fontsize{13}{16}\selectfont
-        \textbf{Asesor(es):}\\[0.5em]
-        \asesorANombre%
-        \ifcsvoid{asesorBNombre}{}{%
-            \\[0.3em]\asesorBNombre%
-        }%
-        \ifcsvoid{asesorCNombre}{}{%
-            \\[0.3em]\asesorCNombre%
-        }%
-    \end{minipage}%
+  \begin{minipage}[t]{0.9\textwidth}
+    \centering\fontsize{13}{16}\selectfont
+    \textbf{Asesor(es):}\\[0.5em]
+    \asesorANombre%
+    \ifcsvoid{asesorBNombre}{}{%
+      \\[0.3em]\asesorBNombre%
+    }%
+    \ifcsvoid{asesorCNombre}{}{%
+      \\[0.3em]\asesorCNombre%
+    }%
+  \end{minipage}%
 }
 
 % Línea de firma para portada interna
 \newcommand{\lineaFirma}[2]{%
-    \parbox[t]{0.42\textwidth}{%
-        \centering
-        \vspace{2.5em}
-        \rule{0.38\textwidth}{0.6pt}\\
-        \textbf{#1}\\[0.2em]
-        {\small #2}
-    }%
+  \parbox[t]{0.42\textwidth}{%
+    \centering
+    \vspace{2.5em}
+    \rule{0.38\textwidth}{0.6pt}\\
+    \textbf{#1}\\[0.2em]
+    {\small #2}
+  }%
 }
 
 % ------------------------------------------------------------------------------
-% 2. TÍTULOS DINÁMICOS SEGÚN LA MODALIDAD TT I / TT II
+% 4. COMANDOS RÁPIDOS DE REFERENCIAS CRUZADAS
 % ------------------------------------------------------------------------------
-
-\newcommand{\tituloValidacion}{%
-    \ifTTI
-        Análisis y validación del diseño%
-    \else
-        Análisis y validación de resultados%
-    \fi
-}
-
-\newcommand{\subtituloPortada}{%
-    \ifTTI
-        REPORTE TÉCNICO DE TRABAJO TERMINAL I%
-    \else
-        REPORTE FINAL DE TRABAJO TERMINAL%
-    \fi
-}
-
-% ------------------------------------------------------------------------------
-% 3. COMANDOS RÁPIDOS DE REFERENCIAS CRUZADAS
-% ------------------------------------------------------------------------------
-% Estos comandos generan referencias automáticas evitando escribir "Figura X" a mano.
 \newcommand{\figref}[1]{Figura~\ref{#1}}
 \newcommand{\tabref}[1]{Tabla~\ref{#1}}
 \newcommand{\secref}[1]{Sección~\ref{#1}}
@@ -85,7 +171,7 @@
 \newcommand{\eqrefcmd}[1]{Ecuación~\eqref{#1}}
 
 % ------------------------------------------------------------------------------
-% 4. COMANDOS MECATRÓNICOS Y MATEMÁTICOS COMUNES
+% 5. COMANDOS MECATRÓNICOS Y MATEMÁTICOS COMUNES
 % ------------------------------------------------------------------------------
 \newcommand{\matriz}[1]{\begin{bmatrix}#1\end{bmatrix}}
 \newcommand{\vectorv}[1]{\begin{pmatrix}#1\end{pmatrix}}

@@ -1,0 +1,60 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: frontmatter/portada-protocolo.tex
+% ==============================================================================
+% Portada oficial reglamentaria para el PROTOCOLO DE TRABAJO TERMINAL.
+% ==============================================================================
+
+\begin{titlepage}
+\thispagestyle{empty}
+\newgeometry{left=1.5cm, right=1.5cm, top=2.0cm, bottom=2.0cm}
+
+\begin{minipage}[c][0.96\textheight][s]{0.16\textwidth}
+    \centering
+    \includegraphics[height=0.94\textheight, keepaspectratio]{figuras/institucional/portada.png}
+\end{minipage}%
+\hfill
+\begin{minipage}[c][0.96\textheight][s]{0.80\textwidth}
+    \centering
+    \vspace{0.2cm}
+
+    {\fontsize{18}{22}\bfseries\sffamily \institucionNombre}\\[0.6em]
+    {\fontsize{13}{16}\bfseries\sffamily \unidadAcademica}\\[0.3em]
+    {\fontsize{14}{17}\bfseries\sffamily (\siglasUnidad)}\\[1.0em]
+
+    {\fontsize{14}{17}\bfseries\sffamily PROGRAMA ACADÉMICO DE \programaAcademico}\\[1.2em]
+
+    \vfill
+
+    {\fontsize{16}{20}\bfseries\sffamily ``\tituloProyecto''}\\[1.0em]
+    {\fontsize{14}{17}\bfseries\sffamily PROTOCOLO DE TRABAJO TERMINAL}\\[1.0em]
+
+    \begin{minipage}[t]{0.95\textwidth}
+        \centering\fontsize{10}{13}\sffamily
+        \ifcsvoid{areaUbicacion}{}{%
+            \textbf{Área de ubicación:} \areaUbicacion\\[0.3em]
+        }%
+        \ifcsvoid{lineaTrabajo}{}{%
+            \textbf{\lineaTrabajo}\\[0.3em]
+        }%
+        \ifcsvoid{intencionTitulacion}{}{%
+            \textbf{Intención de titulación:} \intencionTitulacion\\[0.3em]
+        }%
+    \end{minipage}
+
+    \vfill
+
+    \imprimirAutoresPortada\\[1.2em]
+
+    \vfill
+
+    \imprimirAsesoresPortada\\[1.2em]
+
+    \vfill
+
+    {\fontsize{12}{15}\sffamily \lugarDefensa, \fechaDefensa}
+    \vspace{0.2cm}
+\end{minipage}
+
+\restoregeometry
+\end{titlepage}

@@ -1,0 +1,48 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: frontmatter/portada-tt.tex
+% ==============================================================================
+% Portada oficial institucional para REPORTE DE TRABAJO TERMINAL (TT I y TT II).
+% ==============================================================================
+
+\begin{titlepage}
+\thispagestyle{empty}
+\newgeometry{left=1.5cm, right=1.5cm, top=2.0cm, bottom=2.0cm}
+
+\begin{minipage}[c][0.96\textheight][s]{0.16\textwidth}
+    \centering
+    \includegraphics[height=0.94\textheight, keepaspectratio]{figuras/institucional/portada.png}
+\end{minipage}%
+\hfill
+\begin{minipage}[c][0.96\textheight][s]{0.80\textwidth}
+    \centering
+    \vspace{0.2cm}
+
+    {\fontsize{18}{22}\bfseries\sffamily \institucionNombre}\\[0.6em]
+    {\fontsize{13}{16}\bfseries\sffamily \unidadAcademica}\\[0.3em]
+    {\fontsize{14}{17}\bfseries\sffamily (\siglasUnidad)}\\[1.2em]
+
+    {\fontsize{14}{17}\bfseries\sffamily PROGRAMA ACADÉMICO DE \programaAcademico}\\[1.5em]
+
+    \vfill
+
+    {\fontsize{16}{20}\bfseries\sffamily ``\tituloProyecto''}\\[1.2em]
+    {\fontsize{13}{16}\bfseries\sffamily \subtituloPortada}\\[1.0em]
+    {\fontsize{12}{15}\itshape\sffamily Que para obtener el título de \gradoObtener}\\[1.5em]
+
+    \vfill
+
+    \imprimirAutoresPortada\\[1.5em]
+
+    \vfill
+
+    \imprimirAsesoresPortada\\[1.5em]
+
+    \vfill
+
+    {\fontsize{12}{15}\sffamily \lugarDefensa, \fechaDefensa}
+    \vspace{0.2cm}
+\end{minipage}
+
+\restoregeometry
+\end{titlepage}

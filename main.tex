@@ -4,28 +4,23 @@
 % PROGRAMA ACADÉMICO DE INGENIERÍA MECATRÓNICA
 % ==============================================================================
 % PLANTILLA INSTITUCIONAL DE TRABAJO TERMINAL
-% Compatible con: Trabajo Terminal I, Trabajo Terminal II y Reporte Final
-% Motor de compilación recomendado: LuaLaTeX (o XeLaTeX)
+% Compatible con: Protocolo, Trabajo Terminal I y Trabajo Terminal II (Reporte Final)
+% Motor de compilación recomendado: XeLaTeX o LuaLaTeX (vía latexmk)
 % ==============================================================================
 
 \documentclass[12pt,letterpaper,oneside]{report}
 
 % ------------------------------------------------------------------------------
-% SWITCH CONDICIONAL DE MODALIDAD (TT I / TT II)
-% ------------------------------------------------------------------------------
-\newif\ifTTI
-
-% ------------------------------------------------------------------------------
 % CARGA DE CONFIGURACIONES MODULARES
 % ------------------------------------------------------------------------------
-% 1. Datos del proyecto y alumnos (EDITA ESTE ARCHIVO con tus datos personales)
-\input{config/datos.tex}
-
-% 2. Formato institucional, paquetes y tipografía Arial (NO MODIFICAR)
+% 1. Formato institucional, paquetes y tipografía Arial (NO MODIFICAR)
 \input{config/formato.tex}
 
-% 3. Macros y comandos personalizados (NO MODIFICAR)
+% 2. Macros, lógica condicional y dispatcher (NO MODIFICAR)
 \input{config/comandos.tex}
+
+% 3. Datos del proyecto y selección de tipo de documento (EDITA ESTE ARCHIVO)
+\input{config/datos.tex}
 
 % ==============================================================================
 % INICIO DEL DOCUMENTO
@@ -35,20 +30,22 @@
 % ------------------------------------------------------------------------------
 % PÁGINAS PRELIMINARES (FRONTMATTER)
 % ------------------------------------------------------------------------------
-% Portada oficial reglamentaria
+% Portada oficial reglamentaria (despacho automático: Protocolo / TT I / TT II)
 \input{frontmatter/portada.tex}
 
-% Portada interna con firmas de jurado y asesores
-\input{frontmatter/portada-interna.tex}
+% Portada interna con firmas de jurado (exclusiva para reportes de TT I y TT II)
+\ifProtocolo
+    % En Protocolo no se incluye portada interna de defensa
+\else
+    \input{frontmatter/portada-interna.tex}
+\fi
 
 % Numeración romana para páginas preliminares
 \pagenumbering{roman}
 \setcounter{page}{1}
 
 % Agradecimientos y Dedicatorias (EXCLUSIVO para TT II / Reporte Final)
-\ifTTI
-    % En TT I no se incluyen agradecimientos ni dedicatorias por norma institucional
-\else
+\ifTTII
     \input{frontmatter/agradecimientos.tex}
     \input{frontmatter/dedicatorias.tex}
 \fi
@@ -83,9 +80,7 @@
 \input{capitulos/09-conclusiones.tex}
 
 % Trabajo a Futuro (EXCLUSIVO para TT II / Reporte Final)
-\ifTTI
-    % En TT I el trabajo hacia TT II se documenta en el Apéndice de Cronograma
-\else
+\ifTTII
     \input{capitulos/10-trabajo-futuro.tex}
 \fi
 
@@ -103,7 +98,7 @@
 \clearpage
 \input{apendices/apendices.tex}
 
-% Cronograma de TT II (EXCLUSIVO para el Reporte Final de TT I)
+% Cronograma de TT II (EXCLUSIVO para el Reporte de TT I)
 \ifTTI
     \input{apendices/cronograma-tt2.tex}
 \fi

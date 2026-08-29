@@ -4,42 +4,59 @@ El archivo **`config/datos.tex`** es la **fuente única de verdad** de la planti
 
 ---
 
-## 1. Selección de Modalidad (TT I o TT II)
+## 1. Seleccionar el Tipo de Documento
 
-Al inicio de `config/datos.tex`, encontrarás las siguientes dos líneas:
+Al inicio de `config/datos.tex`, encontrarás la instrucción principal de configuración:
 
 ```latex
-\TTItrue   % Para Trabajo Terminal I (Diseño detallado)
-%\TTIfalse  % Para Trabajo Terminal II / Reporte Final (Implementación y Validación)
+% Opciones válidas: PROTOCOLO | TTI | TTII
+\TipoDocumento{TTI}
 ```
 
-- **Para Trabajo Terminal I:** Deja activa `\TTItrue` y comenta con `%` la línea `\TTIfalse`.
-  - Oculta automáticamente Agradecimientos y Dedicatorias.
-  - Asigna el título *"Análisis y validación del diseño"* al Capítulo 8.
-  - Oculta el Capítulo 10 (*Trabajo a futuro*).
-  - Muestra el Apéndice del *Cronograma para Trabajo Terminal II*.
+### Opciones disponibles:
 
-- **Para Trabajo Terminal II / Reporte Final:** Comenta con `%` la línea `\TTItrue` y activa `\TTIfalse`.
-  - Muestra Agradecimientos y Dedicatorias en las páginas preliminares.
-  - Asigna el título *"Análisis y validación de resultados"* al Capítulo 8.
-  - Muestra el Capítulo 10 (*Trabajo a futuro*).
-  - Oculta el Cronograma hacia TT II.
+1. **`\TipoDocumento{PROTOCOLO}` (Protocolo de Trabajo Terminal):**
+   - Carga automáticamente la portada oficial de registro de protocolo.
+   - Muestra el **Área de ubicación**, **Línea de trabajo** e **Intención de titulación**.
+   - **No incluye portada interna de defensa ni firmas de sínodo.**
+   - Oculta Agradecimientos, Dedicatorias y Trabajo a Futuro.
+
+2. **`\TipoDocumento{TTI}` (Trabajo Terminal I - Diseño Detallado):**
+   - Carga automáticamente la portada de Trabajo Terminal con el rótulo:
+     *"REPORTE TÉCNICO DE TRABAJO TERMINAL I"*.
+   - Incluye la **Portada Interna con firmas de alumnos, asesores y jurado calificador**.
+   - Asigna el título *"Análisis y validación del diseño"* al Capítulo 8.
+   - Oculta Agradecimientos, Dedicatorias y el Capítulo 10 (*Trabajo a futuro*).
+   - Muestra el Apéndice del *Cronograma para Trabajo Terminal II*.
+
+3. **`\TipoDocumento{TTII}` (Trabajo Terminal II - Reporte Final):**
+   - Carga automáticamente la portada de Trabajo Terminal con el rótulo:
+     *"REPORTE FINAL DE TRABAJO TERMINAL"*.
+   - Incluye la **Portada Interna con firmas de alumnos, asesores y jurado calificador**.
+   - Muestra Agradecimientos y Dedicatorias en las páginas preliminares.
+   - Asigna el título *"Análisis y validación de resultados"* al Capítulo 8.
+   - Muestra el Capítulo 10 (*Trabajo a futuro*).
+   - Oculta el Cronograma hacia TT II.
 
 ---
 
-## 2. Título y Línea de Investigación
+## 2. Título, Área y Línea de Investigación
 
 ```latex
 \newcommand{\tituloProyecto}{Diseño e Integración de un Sistema Mecatrónico de Posicionamiento Angular}
 \newcommand{\tituloIngles}{Design and Integration of an Angular Positioning Mechatronic System}
+
+% Campos específicos para PROTOCOLO (dejar como aplique a su registro):
+\newcommand{\areaUbicacion}{Ingeniería Mecatrónica}
+\newcommand{\intencionTitulacion}{Opción curricular / Trabajo Terminal}
 ```
 
-Selecciona una de las 6 líneas de investigación registradas en el programa:
+Selecciona una de las 6 líneas de investigación registradas en la UPIIZ:
 ```latex
 \newcommand{\lineaTrabajo}{Línea de investigación: IV. Diseño e implementación de sistemas o técnicas de control.}
 ```
 
-Las 6 líneas institucionales son:
+Las 6 líneas institucionales aprobadas son:
 1. *I. Diseño e implementación de un sistema robótico, dispositivos o sistemas mecatrónicos.*
 2. *II. Diseño e implementación de una máquina o mecanismo.*
 3. *III. Diseño e implementación de componentes o sistemas electrónicos.*
@@ -51,7 +68,7 @@ Las 6 líneas institucionales son:
 
 ## 3. Configuración de Alumnos (1, 2 o 3 Integrantes)
 
-La plantilla adapta dinámicamente el diseño y las líneas de firma según la cantidad de alumnos:
+La plantilla adapta dinámicamente el diseño y las líneas de firma en las portadas:
 
 ### Caso A: Proyecto Individual (1 Alumno)
 ```latex
@@ -96,13 +113,12 @@ La plantilla adapta dinámicamente el diseño y las líneas de firma según la c
 ```latex
 \newcommand{\asesorANombre}{M. en C. Rafael Reveles Martínez}
 \newcommand{\asesorBNombre}{Dra. Ma. Auxiliadora Araiza Esquivel}
-\newcommand{\asesorCNombre}{M. en C. Ramón Jaramillo Martínez}
+\newcommand{\asesorCNombre}{}
 ```
-*(Si tienes 1 o 2 asesores, deja vacíos `\asesorBNombre` o `\asesorCNombre`).*
 
 ---
 
-## 5. Jurado Evaluador / Sínodo
+## 5. Jurado Evaluador / Sínodo (Para TT I y TT II)
 
 Estos nombres aparecerán en la Portada Interna con sus respectivas líneas de firma:
 ```latex

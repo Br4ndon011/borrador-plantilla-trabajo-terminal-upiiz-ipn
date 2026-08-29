@@ -20,13 +20,18 @@ Esta plantilla ha sido diseñada para ser **modular, robusta, fácil de usar y 1
 
 ---
 
-## 🎯 Propósito y Modalidades Soportadas
+## 🎯 Propósito y Documentos Soportados
 
-La plantilla cubre todo el ciclo de titulación curricular de Trabajo Terminal:
-- **Trabajo Terminal I (TT I):** Orientado al diseño mecatrónico detallado (cálculos, selección de componentes, planos mecánicos, esquemáticos electrónicos, algoritmos, simulaciones y cronograma de TT II).
-- **Trabajo Terminal II (TT II) / Reporte Final:** Orientado a la manufactura, integración física, programación de firmware, puesta en marcha, validación experimental, resultados, conclusiones y trabajo a futuro.
+La plantilla cubre todo el ciclo formal de titulación curricular de Trabajo Terminal en la UPIIZ:
+- **1. Protocolo de Trabajo Terminal (`PROTOCOLO`):** Registro formal del proyecto con área de ubicación, línea de trabajo e intención de titulación.
+- **2. Trabajo Terminal I (`TTI`):** Reporte de diseño mecatrónico detallado (cálculos, selección de componentes, planos mecánicos, esquemáticos electrónicos, algoritmos, simulaciones y cronograma hacia TT II).
+- **3. Trabajo Terminal II (`TTII`):** Reporte final con manufactura, integración física, programación de firmware, validación experimental, resultados, conclusiones y trabajo a futuro.
 
-La selección de modalidad se realiza cambiando una sola línea en `config/datos.tex`. La plantilla adapta automáticamente la portada, los agradecimientos, las dedicatorias, los títulos de validación, el trabajo a futuro y los apéndices.
+La selección se realiza configurando una sola línea en `config/datos.tex`:
+```latex
+\TipoDocumento{PROTOCOLO} % o TTI o TTII
+```
+La plantilla adapta automáticamente la portada correspondiente, la inclusión de portada interna de firmas, agradecimientos, dedicatorias, títulos de validación y apéndices.
 
 ---
 
