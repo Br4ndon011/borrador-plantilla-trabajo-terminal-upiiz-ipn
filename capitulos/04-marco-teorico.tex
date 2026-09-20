@@ -11,11 +11,11 @@
 \section{Robots móviles de servicio}
 \label{sec:robot-movil-de-servicio}
 
-Un robot de servicio, según la Federación Internacional de Robótica, es aquel robot que se puede usar de manera personal o profesional para realizar tareas útiles para los humanos o para distintos equipos [MT 1].
+Un robot de servicio, según la Federación Internacional de Robótica, es aquel robot que se puede usar de manera personal o profesional para realizar tareas útiles para los humanos o para distintos equipos \cite{MT1}.
 
 Existen varios tipos de robots de este estilo, están los AGV y los AMR, por sus siglas en inglés. Los AGV son robots que siguen una ruta predefinida que se realizó desde antes mediante algún método físico o digital para que lleguen a su destino, mientras que los AMR son robots capaces de moverse por un entorno de manera autónoma, trazando por sí solos rutas nuevas por si ocurren cambios en el entorno.
 
-Para ello pueden utilizar una técnicas que hacen que los robots sean capaces de construir un mapa y determinar su ubicación en el mismo [MT 2].
+Para ello pueden utilizar una técnicas que hacen que los robots sean capaces de construir un mapa y determinar su ubicación en el mismo \cite{MT2}.
 %\begin{align}
 %    \dot{\mathbf{x}}(t) &= \mathbf{A}\mathbf{x}(t) + \mathbf{B}\mathbf{u}(t) \label{eq:espacio-estados-continuo} \\
 %    \mathbf{y}(t) &= \mathbf{C}\mathbf{x}(t) + \mathbf{D}\mathbf{u}(t) \label{eq:salida-continuo}
@@ -26,49 +26,49 @@ Para ello pueden utilizar una técnicas que hacen que los robots sean capaces de
 \section{Locomoción y cinemática}
 \label{sec:locomocion-y-cinematica}
 
-Los robots móviles se pueden clasificar por la configuración de locomoción, se puede separar por 3 tipos los cuales son: Por patas, orugas y por ruedas, siendo esta última configuración la que ha tenido un mayor desarrollo [MT 3].
+Los robots móviles se pueden clasificar por la configuración de locomoción, se puede separar por 3 tipos los cuales son: Por patas, orugas y por ruedas, siendo esta última configuración la que ha tenido un mayor desarrollo \cite{MT3}.
 
-En los RMR (Robots Móviles con Ruedas), la configuración cinemática nos dice cómo es que están configuradas las ruedas del robot y también estudia la relación del movimiento del robot y el movimiento de sus elementos de locomoción. Entre las configuraciones más comunes, se encuentran Ackerman, triciclo clásico, tracción diferencial, skid steer, síncrona y tracción omnidireccional y dependiendo de la configuración cinemática, se tiene que escoger un tipo de ruedas [MT 3]. 
+En los RMR (Robots Móviles con Ruedas), la configuración cinemática nos dice cómo es que están configuradas las ruedas del robot y también estudia la relación del movimiento del robot y el movimiento de sus elementos de locomoción. Entre las configuraciones más comunes, se encuentran Ackerman, triciclo clásico, tracción diferencial, skid steer, síncrona y tracción omnidireccional y dependiendo de la configuración cinemática, se tiene que escoger un tipo de ruedas \cite{MT3}. 
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.45\textwidth]{figuras/proyecto/tiposDeRueda.png}
-    \caption{Tipos de Ruedas [MT 3].}
+    \caption{Tipos de Ruedas \cite{MT3}.}
     \label{fig:tipos-rueda}
 \end{figure}
 
 \section{Percepción del entorno}
 \label{sec:percepcion-del-entorno}
 
-La visión artificial es la tecnología que le permite a un robot adquirir, analizar y procesar las imágenes mediante sensores como cámaras para obtener información respecto a lo que están “viendo” y con ello obtener características e información del entorno que es relevante, como la presencia, posición o características de determinados objetos [MT 4].
+La visión artificial es la tecnología que le permite a un robot adquirir, analizar y procesar las imágenes mediante sensores como cámaras para obtener información respecto a lo que están “viendo” y con ello obtener características e información del entorno que es relevante, como la presencia, posición o características de determinados objetos \cite{MT4}.
 
-Esta misma se puede apoyar de técnicas de aprendizaje automático y redes neuronales para que se puedan utilizar herramientas de detección, clasificación y reconocimiento de objetos [MT 5] para actuar en consecuencia. Esto es esencial para su funcionamiento en aplicaciones del mundo real, como la logística o la atención médica [MT 6].
+Esta misma se puede apoyar de técnicas de aprendizaje automático y redes neuronales para que se puedan utilizar herramientas de detección, clasificación y reconocimiento de objetos para actuar en consecuencia \cite{MT5}. Esto es esencial para su funcionamiento en aplicaciones del mundo real, como la logística o la atención médica \cite{MT6}.
 
 \section{Localización, mapeo y navegación}
 \label{sec:localizacion-mapeo-navegacion}
 
 El robot puede percibir y analizar las imágenes mediante la visión artificial, sin embargo, aún con esa información adquirida no le es posible localizarse o trazar una ruta para ir de un punto a otro, aquí es donde entra la localización y el mapeo.
 
-La localización es la que permite estimar la posición del robot en un entorno y el mapeo permite construir una representación del mismo entorno. Cuando se tiene cierto conocimiento sobre el mapa, conviene usar el algoritmo de trazado de ruta de Hoja de Ruta Probabilística (PRM); cuando no se tiene ninguna información previa sobre el mapa, funcionan las técnicas como SLAM, que permiten construir el mapa mientras se desplaza [MT 7]. 
+La localización es la que permite estimar la posición del robot en un entorno y el mapeo permite construir una representación del mismo entorno. Cuando se tiene cierto conocimiento sobre el mapa, conviene usar el algoritmo de trazado de ruta de Hoja de Ruta Probabilística (PRM); cuando no se tiene ninguna información previa sobre el mapa, funcionan las técnicas como SLAM, que permiten construir el mapa mientras se desplaza \cite{MT7}. 
 
-Se pueden dividir las técnicas de navegación visual en 2: métodos directos y métodos por características [MT 8]. Los primeros utilizan toda la información que les da la imagen, en cambio, los métodos por características van construyendo un mapa utilizando la información proporcionada por un método que extrae las características.
+Se pueden dividir las técnicas de navegación visual en 2: métodos directos y métodos por características \cite{MT8}. Los primeros utilizan toda la información que les da la imagen, en cambio, los métodos por características van construyendo un mapa utilizando la información proporcionada por un método que extrae las características.
 
 
 \section{Control}
 \label{sec:control}
 
-El control es el proceso con el cual se le dan las acciones a un robot o a un sistema con el objetivo de que su comportamiento se aproxime a uno deseado. Con el control, se interpretan las órdenes de entradas que se les dan al sistema y traduce estas entradas en movimientos precisos [MT 9].
+El control es el proceso con el cual se le dan las acciones a un robot o a un sistema con el objetivo de que su comportamiento se aproxime a uno deseado. Con el control, se interpretan las órdenes de entradas que se les dan al sistema y traduce estas entradas en movimientos precisos \cite{MT9}.
 
-El problema con esto es que puede existir cierto ruido o cierto error al momento de no aplicar las estrategias de control adecuadas. Existen diferentes estrategias de control, entre las más comunes se encuentran el PID, control basado en Lyapunov (LBC), control predictivo de modelo (MPC), por mencionar algunas estrategias [MT 10]. Dependiendo del tipo de sistema que se tenga, se tiene que ver qué tan factible es cada estrategia de control para que el robot actúe justo como se quiere.
+El problema con esto es que puede existir cierto ruido o cierto error al momento de no aplicar las estrategias de control adecuadas. Existen diferentes estrategias de control, entre las más comunes se encuentran el PID, control basado en Lyapunov (LBC), control predictivo de modelo (MPC), por mencionar algunas estrategias \cite{MT10}. Dependiendo del tipo de sistema que se tenga, se tiene que ver qué tan factible es cada estrategia de control para que el robot actúe justo como se quiere.
 
 \section{Arquitectura del sistema}
 \label{sec:arq-del-sistema}
 
-La arquitectura define cómo van a interactuar los módulos que integran al robot. Es importante escoger una arquitectura que permita controlar, comunicar e integrar todos los módulos del robot, sin el riesgo de dañar el equipo físico al realizar pruebas y tener facilidad para depurar errores [MT 11].
+La arquitectura define cómo van a interactuar los módulos que integran al robot. Es importante escoger una arquitectura que permita controlar, comunicar e integrar todos los módulos del robot, sin el riesgo de dañar el equipo físico al realizar pruebas y tener facilidad para depurar errores \cite{MT11}.
 
 En un robot móvil autónomo, la arquitectura puede estar integrada de módulos de percepción, localización y planificación de ruta, así como de control y de comunicación entre los sensores y los actuadores. Toda esta información obtenida se puede utilizar para saber el estado del robot y actuar en consecuencia.
 
 \section{HMI}
 \label{sec:HMI}
 
-La interfaz humano-máquina (HMI) básicamente es el principal medio de comunicación que tienen las personas con el sistema tecnológico. Esta es la forma en la que las personas pueden dar instrucciones a los robots y así facilitar la supervisión de algún proceso, interpretación de información, etc. [MT 12]. Puede ser, por ejemplo, una pantalla táctil o botones para controlar al robot. Aquel medio con el que el usuario pueda darle instrucciones al robot y visualizar variables o contenido del robot, es el HMI.
+La interfaz humano-máquina (HMI) básicamente es el principal medio de comunicación que tienen las personas con el sistema tecnológico. Esta es la forma en la que las personas pueden dar instrucciones a los robots y así facilitar la supervisión de algún proceso, interpretación de información, etc. \cite{MT12}. Puede ser, por ejemplo, una pantalla táctil o botones para controlar al robot. Aquel medio con el que el usuario pueda darle instrucciones al robot y visualizar variables o contenido del robot, es el HMI.
