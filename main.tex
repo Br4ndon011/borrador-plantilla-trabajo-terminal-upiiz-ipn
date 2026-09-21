@@ -74,44 +74,69 @@
 \clearpage
 
 % ------------------------------------------------------------------------------
-% CUERPO PRINCIPAL DEL TRABAJO TERMINAL (MAINMATTER)
+% CUERPO PRINCIPAL DEL DOCUMENTO (MAINMATTER)
 % ------------------------------------------------------------------------------
-% La numeración arábiga (1, 2, 3...) inicia formalmente en la Introducción
+% La numeración arábiga (1, 2, 3...) inicia formalmente en el primer capítulo
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\input{capitulos/01-introduccion.tex}
-\input{capitulos/02-justificacion.tex}
-\input{capitulos/03-antecedentes.tex}
-\input{capitulos/04-marco-teorico.tex}
-\input{capitulos/05-estado-del-arte.tex}
-\input{capitulos/06-planteamiento-problema.tex}
-\input{capitulos/07-desarrollo.tex}
-\input{capitulos/08-validacion.tex}
-\input{capitulos/09-conclusiones.tex}
+\ifProtocolo
+    % ==========================================================================
+    % ESTRUCTURA INSTITUCIONAL: PROTOCOLO DE TRABAJO TERMINAL (ANEXO 1)
+    % ==========================================================================
+    \input{capitulos/protocolo/01-objetivos.tex}
+    \input{capitulos/protocolo/02-justificacion.tex}
+    \input{capitulos/protocolo/03-antecedentes.tex}
+    \input{capitulos/protocolo/04-marco-teorico.tex}
+    \input{capitulos/protocolo/05-estado-del-arte.tex}
+    \input{capitulos/protocolo/06-descripcion-trabajo-propuesto.tex}
+    \input{capitulos/protocolo/07-metodologia-trabajo.tex}
+    \input{capitulos/protocolo/08-productos-resultados-esperados.tex}
+    \input{capitulos/protocolo/09-viabilidad.tex}
 
-% Trabajo a Futuro (EXCLUSIVO para TT II / Reporte Final)
-\ifTTII
-    \input{capitulos/10-trabajo-futuro.tex}
-\fi
+    % Bibliografía en formato IEEE
+    \clearpage
+    \addcontentsline{toc}{chapter}{Bibliografía}
+    \bibliographystyle{IEEEtran}
+    \bibliography{bibliografia/referencias}
 
-% ------------------------------------------------------------------------------
-% BIBLIOGRAFÍA EN FORMATO IEEE
-% ------------------------------------------------------------------------------
-\clearpage
-\addcontentsline{toc}{chapter}{Bibliografía}
-\bibliographystyle{IEEEtran}
-\bibliography{bibliografia/referencias}
+    % Hoja de firmas de conformidad (Alumnos y Asesores)
+    \clearpage
+    \input{capitulos/protocolo/10-firmas.tex}
 
-% ------------------------------------------------------------------------------
-% APÉNDICES
-% ------------------------------------------------------------------------------
-\clearpage
-\input{apendices/apendices.tex}
+\else
+    % ==========================================================================
+    % ESTRUCTURA DE REPORTE TÉCNICO (TRABAJO TERMINAL I Y TRABAJO TERMINAL II)
+    % ==========================================================================
+    \input{capitulos/01-introduccion.tex}
+    \input{capitulos/02-justificacion.tex}
+    \input{capitulos/03-antecedentes.tex}
+    \input{capitulos/04-marco-teorico.tex}
+    \input{capitulos/05-estado-del-arte.tex}
+    \input{capitulos/06-planteamiento-problema.tex}
+    \input{capitulos/07-desarrollo.tex}
+    \input{capitulos/08-validacion.tex}
+    \input{capitulos/09-conclusiones.tex}
 
-% Cronograma de TT II (EXCLUSIVO para el Reporte de TT I)
-\ifTTI
-    \input{apendices/cronograma-tt2.tex}
+    % Trabajo a Futuro (EXCLUSIVO para TT II / Reporte Final)
+    \ifTTII
+        \input{capitulos/10-trabajo-futuro.tex}
+    \fi
+
+    % Bibliografía en formato IEEE
+    \clearpage
+    \addcontentsline{toc}{chapter}{Bibliografía}
+    \bibliographystyle{IEEEtran}
+    \bibliography{bibliografia/referencias}
+
+    % Apéndices
+    \clearpage
+    \input{apendices/apendices.tex}
+
+    % Cronograma de TT II (EXCLUSIVO para el Reporte de TT I)
+    \ifTTI
+        \input{apendices/cronograma-tt2.tex}
+    \fi
 \fi
 
 \end{document}

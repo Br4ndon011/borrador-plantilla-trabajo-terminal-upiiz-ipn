@@ -1,0 +1,189 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: capitulos/protocolo/09-viabilidad.tex
+% ==============================================================================
+% ESTRUCTURA NORMATIVA DE PROTOCOLO: CAPÍTULO 9 - VIABILIDAD DEL PROYECTO
+% ==============================================================================
+% LÍMITE INSTITUCIONAL: Máximo 5 páginas.
+%
+% Requisitos normativos (Anexo 1):
+% 9.1 Recursos humanos:
+%     - Alumnos participantes y datos de contacto.
+%     - Asesores en orden jerárquico (máximo 3 asesores).
+% 9.2 Equipo e instalaciones necesarias:
+%     - Equipos, dispositivos, herramientas y laboratorios requeridos.
+%     - Actividad asociada a cada recurso.
+%     - Disponibilidad actual, compra o arrendamiento según corresponda.
+% 9.3 Costo estimado y fuente de financiamiento:
+%     - Desglose por etapas.
+%     - Costo mínimo aproximado y costo máximo aproximado.
+%     - Fuente de financiamiento y disponibilidad actual o forma prevista de obtenerlo.
+% 9.4 Cronograma de actividades de Trabajo Terminal I y II:
+%     - Calendario semanal.
+%     - Actividades por alumno.
+%     - Gráfica de Gantt (figuras externas mediante \includegraphics o tablas).
+% - Bloque de firmas de conformidad del cronograma de actividades (Alumnos y Asesores).
+% ==============================================================================
+
+\chapter{Viabilidad del proyecto}
+\label{cap:proto-viabilidad}
+
+% [INSTRUCCIÓN PARA EL ALUMNO]:
+% Desarrolle este capítulo en un máximo de 5 páginas cumpliendo puntualmente los cuatro apartados:
+
+% ------------------------------------------------------------------------------
+\section{Recursos humanos}
+\label{sec:proto-recursos-humanos}
+
+\subsection{Alumnos proponentes}
+% Indique nombre completo, número de boleta y datos de contacto de cada alumno:
+
+\begin{itemize}
+    \item \textbf{Alumno(a) 1:} \alumnoANombre
+    \begin{itemize}
+        \item Boleta: \alumnoABoleta
+        \item Correo institucional: [correo@alumno.ipn.mx]
+        \item Teléfono de contacto: [Teléfono de contacto]
+    \end{itemize}
+    \ifcsvoid{alumnoBNombre}{}{%
+        \item \textbf{Alumno(a) 2:} \alumnoBNombre
+        \begin{itemize}
+            \item Boleta: \alumnoBBoleta
+            \item Correo institucional: [correo@alumno.ipn.mx]
+            \item Teléfono de contacto: [Teléfono de contacto]
+        \end{itemize}
+    }%
+    \ifcsvoid{alumnoCNombre}{}{%
+        \item \textbf{Alumno(a) 3:} \alumnoCNombre
+        \begin{itemize}
+            \item Boleta: \alumnoCBoleta
+            \item Correo institucional: [correo@alumno.ipn.mx]
+            \item Teléfono de contacto: [Teléfono de contacto]
+        \end{itemize}
+    }%
+\end{itemize}
+
+\subsection{Asesores del proyecto (orden jerárquico, máximo 3)}
+% Liste a los asesores en orden de prelación jerárquica conforme al Anexo 1:
+
+\begin{enumerate}
+    \item \textbf{Primer Asesor:} \asesorANombre
+    \begin{itemize}
+        \item Correo institucional: [correo@ipn.mx]
+    \end{itemize}
+    \ifcsvoid{asesorBNombre}{}{%
+        \item \textbf{Segundo Asesor:} \asesorBNombre
+        \begin{itemize}
+            \item Correo institucional: [correo@ipn.mx]
+        \end{itemize}
+    }%
+    \ifcsvoid{asesorCNombre}{}{%
+        \item \textbf{Tercer Asesor:} \asesorCNombre
+        \begin{itemize}
+            \item Correo institucional: [correo@ipn.mx]
+        \end{itemize}
+    }%
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+\section{Equipo e instalaciones necesarias}
+\label{sec:proto-instalaciones}
+
+% [INSTRUCCIÓN PARA EL ALUMNO]:
+% Especifique en la siguiente tabla los recursos necesarios, la actividad en la que
+% intervienen y su condición (disponible en UPIIZ, compra requerida o arrendamiento):
+
+\begin{table}[htbp]
+    \centering
+    \caption{Relación de equipo, dispositivos, herramientas e instalaciones requeridas.}
+    \label{tab:proto-recursos-materiales}
+    \begin{tabularx}{\textwidth}{p{4.2cm} p{3.0cm} X c}
+        \toprule
+        \textbf{Equipo / Instalación} & \textbf{Tipo de recurso} & \textbf{Actividad asociada} & \textbf{Condición} \\
+        \midrule
+        {[Nombre del laboratorio]} & Instalación & [Pruebas o ensamble del sistema] & Disponible en UPIIZ \\
+        {[Equipo o maquinaria]} & Equipo principal & [Maquinado o caracterización] & Disponible en UPIIZ \\
+        {[Dispositivo / Sensor]} & Componente & [Medición de variables del proceso] & Compra requerida \\
+        {[Herramienta específica]} & Herramienta & [Ensamble o ajuste mecánico] & Compra / Arrendamiento \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\section{Costo estimado y fuente de financiamiento}
+\label{sec:proto-costos-financiamiento}
+
+% [INSTRUCCIÓN PARA EL ALUMNO]:
+% Presente el desglose presupuestal estimado por etapas, especificando el costo
+% mínimo aproximado y el costo máximo aproximado:
+
+\begin{table}[htbp]
+    \centering
+    \caption{Presupuesto estimado por etapas del proyecto.}
+    \label{tab:proto-presupuesto-etapas}
+    \begin{tabularx}{\textwidth}{X c c}
+        \toprule
+        \textbf{Etapa del Proyecto} & \textbf{Costo mínimo aprox. (MXN)} & \textbf{Costo máximo aprox. (MXN)} \\
+        \midrule
+        Etapa 1: Componentes y materiales de diseño & [\$ 0.00] & [\$ 0.00] \\
+        Etapa 2: Fabricación, maquinado e insumos & [\$ 0.00] & [\$ 0.00] \\
+        Etapa 3: Integración de circuitos y sensores & [\$ 0.00] & [\$ 0.00] \\
+        Etapa 4: Pruebas y validación experimental & [\$ 0.00] & [\$ 0.00] \\
+        \midrule
+        \textbf{Costo total estimado del proyecto:} & \textbf{[\$ 0.00]} & \textbf{[\$ 0.00]} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\noindent\textbf{Fuente de financiamiento y disponibilidad:}\\[0.3em]
+[Especifique la fuente de financiamiento prevista (recursos propios, proyectos de investigación institucional SIP-IPN, apoyos de vinculación o fondos externos), indicando si el recurso se encuentra actualmente disponible o la forma prevista de obtenerlo].
+
+% ------------------------------------------------------------------------------
+\section{Cronograma de actividades de Trabajo Terminal I y II}
+\label{sec:proto-cronograma-actividades}
+
+% [INSTRUCCIÓN PARA EL ALUMNO]:
+% El cronograma debe contemplar un calendario semanal detallando las actividades
+% específicas asignadas a cada alumno para TT I y TT II.
+% Puede incluirse mediante tablas estructuradas o figuras externas de gráficas de Gantt
+% generadas con herramientas de gestión de proyectos mediante \includegraphics.
+
+\subsection{Cronograma semanal de actividades de Trabajo Terminal I}
+
+[Describa la planificación semanal de TT I, indicando la distribución de tareas entre los alumnos del equipo].
+
+\begin{figure}[htbp]
+    \centering
+    % Inserte aquí su gráfica de Gantt exportada en PDF o PNG:
+    % \includegraphics[width=0.95\textwidth]{figuras/proyecto/gantt-semanal-tt1.pdf}
+    \fbox{\parbox[c][5cm][c]{0.9\textwidth}{\centering\textbf{[Espacio para Gráfica de Gantt Semanal de Trabajo Terminal I]}\\[0.5em]
+    \small Inserte aquí el cronograma gráfico generado externamente mediante:\\
+    \texttt{\textbackslash includegraphics[width=0.9\textbackslash textwidth]\{figuras/proyecto/gantt-semanal-tt1.pdf\}}}}
+    \caption{Gráfica de Gantt semanal con actividades por alumno para Trabajo Terminal I.}
+    \label{fig:proto-gantt-semanal-tt1}
+\end{figure}
+
+\subsection{Cronograma semanal de actividades de Trabajo Terminal II}
+
+[Describa la planificación semanal de TT II, indicando la distribución de tareas entre los alumnos del equipo].
+
+\begin{figure}[htbp]
+    \centering
+    % Inserte aquí su gráfica de Gantt exportada en PDF o PNG:
+    % \includegraphics[width=0.95\textwidth]{figuras/proyecto/gantt-semanal-tt2.pdf}
+    \fbox{\parbox[c][5cm][c]{0.9\textwidth}{\centering\textbf{[Espacio para Gráfica de Gantt Semanal de Trabajo Terminal II]}\\[0.5em]
+    \small Inserte aquí el cronograma gráfico generado externamente mediante:\\
+    \texttt{\textbackslash includegraphics[width=0.9\textbackslash textwidth]\{figuras/proyecto/gantt-semanal-tt2.pdf\}}}}
+    \caption{Gráfica de Gantt semanal con actividades por alumno para Trabajo Terminal II.}
+    \label{fig:proto-gantt-semanal-tt2}
+\end{figure}
+
+% ------------------------------------------------------------------------------
+% CONFORMIDAD DEL CRONOGRAMA DE ACTIVIDADES (FIRMAS DE ALUMNOS Y ASESORES)
+% ------------------------------------------------------------------------------
+\vspace{1.5cm}
+\begin{center}
+    {\fontsize{11}{13}\bfseries\sffamily Conformidad del Cronograma de Actividades}\\[0.3em]
+    {\fontsize{9}{11}\sffamily Con la firma de esta sección, los alumnos y asesores avalan el calendario de actividades y la viabilidad del proyecto.}\\[1.0em]
+    \bloqueFirmasProtocolo[0.8cm]
+\end{center}
