@@ -14,19 +14,31 @@ En este capítulo se define de manera formal y precisa la problemática de ingen
 
 Redacte de forma clara los síntomas y causas de la problemática que se pretende resolver. Identifique las limitaciones que presentan los sistemas actuales y formule la necesidad concreta de diseño o automatización:
 \begin{enumerate}
-    \item \textbf{Deficiencia o limitación principal:} Describa qué fenómeno físico, ineficiencia de proceso o restricción operacional impide alcanzar el desempeño óptimo.
-    \item \textbf{Causas técnicas identificadas:} Explique los factores electromecánicos, perturbaciones ambientales o carencias sensoriales asociadas.
-    \item \textbf{Consecuencias de no resolver el problema:} Puntualice los riesgos de falla, pérdidas económicas o desviaciones de calidad.
+    \item \textbf{Deficiencia o limitación principal:} Existen robots móviles diseñados para transportar y entregar objetos de un punto a otro dentro de espacios interiores. Sin embargo, algunos de estos robots, como los AGV \cite{MT2}, funcionan siguiendo rutas que fueron establecidas previamente, por lo que su desplazamiento depende de las condiciones que se tomaron en cuenta al momento de definir el recorrido. Mientras el espacio se mantenga igual, el robot puede seguir la ruta y realizar la tarea para la que fue programado.
+    
+    El problema aparece cuando este tipo de robots se encuentran con un obstáculo inesperado, cuando cambia la distribución del espacio o cuando se necesita dirigirse a un punto diferente. En estas situaciones, la ruta que tenía establecida puede ya no ser la adecuada y el robot puede tener dificultades para continuar con su recorrido. Por ello, sería necesario modificar la ruta o establecer una nueva, lo que limita la capacidad del robot para adaptarse por sí mismo a cambios en el entorno que no fueron considerados inicialmente y también se toma como una pérdida de tiempo al tener que reprogramar el robot en el peor de los casos.
+
+    \item \textbf{Causas técnicas identificadas:} Las causas técnicas o dificultades que se identifican para la elaboración de este proyecto no solo consisten en aspectos que se relacionan con la trayectoria establecida, sino también a factores externos que pueden modificar el comportamiento o causas directamente del diseño realizado. Para lograr un buen funcionamiento en el sistema, es necesario considerar todos estos aspectos y perturbaciones.
+    
+    En cuanto a las dificultades relacionadas con el movimiento, se deben considerar factores relacionados con el consumo energético del sistema y con los actuadores, como la potencia que existe en los motores y la velocidad lineal y angular que ofrece cada uno. Así mismo, se tiene que considerar la masa del robot junto con la carga de 1.5 kg para tomar en cuenta cuánta fuerza se necesitará para desplazarse de un punto a otro de manera constante y sin que pierda estabilidad.
+    
+    Para aquellas perturbaciones que pueden darse en el entorno, debemos considerar cosas como los obstáculos que pueden aparecer, así como la presencia de personas u objetos inesperados. Al mismo tiempo, aunque se plantea que el sistema trabajará en un entorno cerrado, es importante considerar momentos en los que exista mucha luz ambiental, cosa que puede dificultar el sistema de visión artificial que se esté implementando.
+    
+    También pueden existir algunas limitaciones con los sensores y a nivel computacional. En cuanto a los sensores, las principales limitaciones están asociadas con su precisión y distancia máxima de detección, ya que estos factores pueden afectar la información que recibe el robot sobre lo que se encuentra alrededor. Finalmente, la limitación computacional radica en el procesamiento de la información obtenida por los sensores. Aquí entran problemas como la latencia, el tiempo de respuesta entre cada componente, etc.
+
+    \item \textbf{Consecuencias de no resolver el problema:} En cuanto a las consecuencias que se pueden presentar si no se consideran este tipo de problemas están las siguientes: puede existir una desviación de la trayectoria; que el robot no sea capaz de llegar al punto solicitado; que exista alguna pérdida en la estabilidad del movimiento; que exista una pérdida de comunicación; consumo excesivo de energía; errores de localización; incapacidad de lograr transportar la carga correctamente.
+    
+    Si no se consideran los puntos anteriores y por lo tanto el sistema no logra mantener una navegación autónoma confiable, puede ser necesaria la intervención humana para corregir el problema ocasionado, lo que reduciría el grado de autonomía planteado para este proyecto. 
+
 \end{enumerate}
 
 % ------------------------------------------------------------------------------
 \section{Solución mecatrónica propuesta}
 \label{sec:solucion-propuesta}
 
-Exponga la propuesta técnica de solución, detallando explícitamente cómo participará cada una de las cuatro áreas de la Ingeniería Mecatrónica:
-\begin{itemize}
-    \item \textbf{Mecánica:} Diseño del mecanismo, análisis cinemático y dinámico, cálculo de esfuerzos estructurales y modelado CAD 3D de piezas y ensambles.
-    \item \textbf{Electrónica:} Selección y acondicionamiento de sensores, diseño de etapas de potencia, aislamiento galvánico y gestión eficiente de la energía.
-    \item \textbf{Control:} Formulación de modelos dinámicos, diseño de observadores/estimadores y síntesis de leyes de control en lazo cerrado para garantizar estabilidad y seguimiento.
-    \item \textbf{Programación:} Implementación de firmware determinista en tiempo real, comunicación por buses industriales/digitales e interfaz de supervisión telemática.
-\end{itemize}
+Para su desarrollo, se contará con una estructura mecánica que permita soportar la carga y colocar los diferentes componentes necesarios para su funcionamiento. También se implementará un sistema de locomoción que permita realizar los movimientos necesarios durante el recorrido y un sistema electrónico encargado del acondicionamiento de señales y de administrar la energía disponible.
+
+El dispositivo recibirá mediante una interfaz la indicación del lugar al cual se desea realizar el traslado. A partir de esta información, el sistema de navegación determinará la trayectoria necesaria para llegar al punto establecido sin que el usuario tenga que definir previamente una ruta. Durante el desplazamiento, se utilizarán sensores para detectar posibles obstáculos y realizar los cambios necesarios en la trayectoria, con el propósito de evitarlos y continuar el recorrido hasta llegar al destino indicado.
+
+El sistema de control permitirá regular el movimiento y la velocidad del dispositivo de acuerdo con las condiciones que se presenten durante el recorrido. Para ello, se considerarán aspectos relacionados con visión artificial para la planificación y seguimiento de trayectoria, así como la detección y evasión de obstáculos. Finalmente, la programación permitirá integrar los diferentes elementos del sistema mediante los métodos de comunicación que sean necesarios, considerando alternativas como UART, I2C, Wi-Fi y ROS 2. También se contempla el procesamiento de la información obtenida por los sensores y una interfaz que permita al usuario seleccionar el destino y consultar información del sistema, considerando el tiempo de funcionamiento establecido.
+
