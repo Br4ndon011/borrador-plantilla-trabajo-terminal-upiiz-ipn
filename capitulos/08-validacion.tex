@@ -9,55 +9,14 @@
 En este capítulo se exponen los protocolos de prueba experimentales, las métricas cuantitativas empleadas y los resultados obtenidos para evaluar rigurosamente el desempeño del sistema mecatrónico.
 
 % ------------------------------------------------------------------------------
-\section{Métricas cuantitativas de evaluación}
-\label{sec:validacion-metricas}
+\section{Resultados Esperados}
+\label{sec:Res_esperados}
 
-Para cuantificar el desempeño del sistema, se emplean las siguientes métricas estadísticas de error y respuesta transitoria:
+Como resultado del desarrollo del proyecto, se espera obtener un sistema de transporte y entrega que pueda desplazarse de manera autónoma dentro de un espacio interior de hasta 5×5 m. El usuario podrá seleccionar mediante una interfaz el lugar al que desea enviar el producto y, a partir de esta indicación, el sistema determinará la trayectoria que deberá seguir para llegar al destino, sin que sea necesario establecer previamente una ruta.
 
-\begin{enumerate}
-    \item \textbf{Error instantáneo del sistema:}
-    \begin{equation}
-        e(t) = r(t) - y(t)
-        \label{eq:error-instantaneo-gen}
-    \end{equation}
-    \item \textbf{Error Absoluto Medio ($\text{MAE}$):}
-    \begin{equation}
-        \text{MAE} = \frac{1}{N}\sum_{k=1}^{N} |e(k)|
-        \label{eq:mae-gen}
-    \end{equation}
-    \item \textbf{Error Cuadrático Medio ($\text{RMSE}$):}
-    \begin{equation}
-        \text{RMSE} = \sqrt{\frac{1}{N}\sum_{k=1}^{N} e^2(k)}
-        \label{eq:rmse-gen}
-    \end{equation}
-    \item \textbf{Eficiencia de cumplimiento de tareas o misiones ($\eta$):}
-    \begin{equation}
-        \eta = \frac{N_{\text{éxitos}}}{N_{\text{ensayos totales}}} \times 100\,\%
-        \label{eq:eficiencia-gen}
-    \end{equation}
-\end{enumerate}
+Durante el recorrido, los sensores proporcionarán información sobre lo que se encuentra alrededor del sistema, permitiendo detectar obstáculos y realizar los cambios necesarios en la trayectoria gracias al sistema de visión artificial implementado. De esta manera, el dispositivo podrá continuar su recorrido hasta el punto indicado sin depender de una intervención constante del usuario.
 
-% ------------------------------------------------------------------------------
-\section{Evaluación de resultados y contraste de especificaciones}
-\label{sec:validacion-resultados}
+El prototipo también estará diseñado para transportar una carga de hasta 1.5 kg y mantener un movimiento adecuado durante el recorrido. Además, se considerará un tiempo de funcionamiento de hasta 15 minutos y una interfaz que permita al usuario seleccionar el destino. 
 
-En la \tabref{tab:comparativa-validacion} se resumen los criterios de evaluación y el grado de cumplimiento de los requerimientos de diseño.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Matriz de validación y contraste con especificaciones de diseño.}
-    \label{tab:comparativa-validacion}
-    \begin{tabularx}{\textwidth}{p{3.8cm} c p{3.8cm} X}
-        \toprule
-        \textbf{Parámetro Evaluado} & \textbf{Especificación} & \textbf{Método de Medición} & \textbf{Criterio de Aceptación} \\
-        \midrule
-        Sobrepaso porcentual ($M_p$) & $\le 10\,\%$ & Adquisición digital de salida & Cumplimiento estricto \\
-        Tiempo de establecimiento ($t_s$) & $\le \qty{0.50}{\second}$ & Registro temporal a \qty{1}{\kilo\hertz} & Banda de tolerancia $\pm 2\,\%$ \\
-        Error absoluto medio ($\text{MAE}$) & $\le \qty{0.05}{\unit{\meter}}$ & Análisis estadístico de prueba & Media en régimen estacionario \\
-        Error cuadrático medio ($\text{RMSE}$) & $\le \qty{0.08}{\unit{\meter}}$ & Cálculo de varianza & Dispersión acotada \\
-        Tasa de éxito de operación ($\eta$) & $\ge 80\,\%$ & Repetibilidad de $N \ge 10$ ensayos & Operación confiable \\
-        \bottomrule
-    \end{tabularx}
-\end{table}
-
-\noindent Presente gráficas comparativas entre la referencia deseada y la respuesta real del sistema, detallando el comportamiento ante perturbaciones y variaciones paramétricas.
+Finalmente, para poder comprobar el funcionamiento de la propuesta especificada en el protocolo, se realizarán distintas pruebas que tengan relación con el desplazamiento, como la llegada al destino, el seguimiento de la trayectoria, detección de obstáculos y el tiempo de operación. Principalmente se buscará que cumpla con el objetivo general de transportar un objeto con una masa de máximo 1.5kg de un punto a otro. 
+Para comprobar el funcionamiento de la propuesta, se realizarán diferentes pruebas relacionadas con el desplazamiento, la llegada al destino, el seguimiento de trayectoria, la detección de obstáculos, el transporte de la carga y el tiempo de operación. A partir de los resultados obtenidos se podrá determinar si el sistema cumple con las condiciones establecidas para el proyecto y qué aspectos podrían necesitar ajustes.
