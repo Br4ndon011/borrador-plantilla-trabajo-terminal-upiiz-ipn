@@ -194,6 +194,17 @@
   \end{minipage}%
 }
 
+% Helper macros para intención de titulación en la portada de Protocolo
+\newcommand{\obtenerIntencionA}{%
+  \ifcsvoid{intencionTitulacionA}{\intencionTitulacion}{\intencionTitulacionA}%
+}
+\newcommand{\obtenerIntencionB}{%
+  \ifcsvoid{intencionTitulacionB}{\intencionTitulacion}{\intencionTitulacionB}%
+}
+\newcommand{\obtenerIntencionC}{%
+  \ifcsvoid{intencionTitulacionC}{\intencionTitulacion}{\intencionTitulacionC}%
+}
+
 % Línea para firmas en la Portada Interna
 \newcommand{\lineaFirma}[2]{%
   \begin{minipage}[t]{0.45\textwidth}

@@ -2,61 +2,115 @@
 % Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
 % Archivo: frontmatter/portada-protocolo.tex
 % ==============================================================================
-% Portada oficial reglamentaria para el PROTOCOLO DE TRABAJO TERMINAL.
+% Portada oficial institucional para el PROTOCOLO DE TRABAJO TERMINAL.
+% Conforme a los requisitos institucionales del Anexo 1 (UPIIZ-IPN).
 % ==============================================================================
 
 \begin{titlepage}
 \thispagestyle{empty}
-\newgeometry{left=1.5cm, right=1.5cm, top=2.0cm, bottom=2.0cm}
+\newgeometry{left=2.0cm, right=2.0cm, top=2.0cm, bottom=2.0cm}
 
-\begin{minipage}[c][0.96\textheight][s]{0.16\textwidth}
-    \centering
-    \includegraphics[height=0.94\textheight, keepaspectratio]{figuras/institucional/portada.png}
+% ------------------------------------------------------------------------------
+% 1. CABECERA INSTITUCIONAL CON LOGOS
+% ------------------------------------------------------------------------------
+\noindent
+\begin{minipage}[c]{0.16\textwidth}
+    \flushleft
+    \includegraphics[height=2.5cm, keepaspectratio]{figuras/institucional/ipn.jpg}
 \end{minipage}%
 \hfill
-\begin{minipage}[c][0.96\textheight][s]{0.80\textwidth}
+\begin{minipage}[c]{0.66\textwidth}
     \centering
-    \vspace{0.2cm}
-
-    {\fontsize{18}{22}\bfseries\sffamily \institucionNombre}\\[0.6em]
-    {\fontsize{13}{16}\bfseries\sffamily \unidadAcademica}\\[0.3em]
-    {\fontsize{14}{17}\bfseries\sffamily (\siglasUnidad)}\\[1.0em]
-
-    {\fontsize{14}{17}\bfseries\sffamily PROGRAMA ACADÉMICO DE \programaAcademico}\\[1.2em]
-
-    \vfill
-
-    {\fontsize{16}{20}\bfseries\sffamily ``\tituloProyecto''}\\[1.0em]
-    {\fontsize{14}{17}\bfseries\sffamily PROTOCOLO DE TRABAJO TERMINAL}\\[1.0em]
-
-    \begin{minipage}[t]{0.95\textwidth}
-        \centering\fontsize{10}{13}\sffamily
-        \ifcsvoid{areaUbicacion}{}{%
-            \textbf{Área de ubicación:} \areaUbicacion\\[0.3em]
-        }%
-        \ifundef{\NumeroLineaTrabajo}{}{%
-            \ifLineaTrabajoValida
-                \textbf{Línea de Trabajo:} \NumeroLineaTrabajo. \NombreLineaTrabajo\\[0.3em]
-            \fi
-        }%
-        \ifcsvoid{intencionTitulacion}{}{%
-            \textbf{Intención de titulación:} \intencionTitulacion\\[0.3em]
-        }%
-    \end{minipage}
-
-    \vfill
-
-    \imprimirAutoresPortada\\[1.2em]
-
-    \vfill
-
-    \imprimirAsesoresPortada\\[1.2em]
-
-    \vfill
-
-    {\fontsize{12}{15}\sffamily \lugarDefensa, \fechaDefensa}
-    \vspace{0.2cm}
+    {\fontsize{13}{16}\bfseries\sffamily \institucionNombre}\\[0.35em]
+    {\fontsize{10.5}{13.5}\bfseries\sffamily \unidadAcademica}\\[0.25em]
+    {\fontsize{10.5}{13.5}\bfseries\sffamily (\siglasUnidad)}\\[0.5em]
+    {\fontsize{11}{14}\bfseries\sffamily \programaAcademico}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.16\textwidth}
+    \flushright
+    \includegraphics[height=2.5cm, keepaspectratio]{figuras/institucional/upiiz.png}
 \end{minipage}
+
+\vfill
+
+% ------------------------------------------------------------------------------
+% 2. TIPO DE DOCUMENTO
+% ------------------------------------------------------------------------------
+\begin{center}
+    {\fontsize{13}{16}\bfseries\sffamily PROTOCOLO DE REGISTRO DE PROYECTO DE TRABAJO TERMINAL}
+\end{center}
+
+\vfill
+
+% ------------------------------------------------------------------------------
+% 3. TÍTULO DEL PROYECTO
+% ------------------------------------------------------------------------------
+\begin{center}
+    {\fontsize{15}{19}\bfseries\sffamily ``\tituloProyecto''}
+\end{center}
+
+\vfill
+
+% ------------------------------------------------------------------------------
+% 4. ÁREA DE UBICACIÓN Y LÍNEA DE TRABAJO
+% ------------------------------------------------------------------------------
+\begin{center}
+\begin{minipage}[t]{0.92\textwidth}
+    \centering\fontsize{10.5}{13.5}\sffamily
+    \ifcsvoid{areaUbicacion}{}{%
+        \textbf{Área de ubicación:} \areaUbicacion\\[0.5em]
+    }%
+    \ifundef{\NumeroLineaTrabajo}{}{%
+        \ifLineaTrabajoValida
+            \textbf{Línea de Trabajo:}\\[0.2em]
+            \NumeroLineaTrabajo. \NombreLineaTrabajo
+        \fi
+    }%
+\end{minipage}
+\end{center}
+
+\vfill
+
+% ------------------------------------------------------------------------------
+% 5. PRESENTAN (ALUMNOS), INTENCIÓN DE TITULACIÓN Y ASESORES
+% ------------------------------------------------------------------------------
+\begin{center}
+\begin{minipage}[t]{0.92\textwidth}
+    \begin{tabular}{@{}p{0.55\linewidth}@{\hspace{0.03\linewidth}}p{0.42\linewidth}@{}}
+        {\fontsize{11}{14}\bfseries\sffamily Presentan:} & {\fontsize{11}{14}\bfseries\sffamily Intención de Titulación:}\\[0.4em]
+        {\fontsize{10.5}{13.5}\sffamily \alumnoANombre} & {\fontsize{10.5}{13.5}\sffamily \obtenerIntencionA}%
+        \ifcsvoid{alumnoBNombre}{}{%
+            \tabularnewline[0.35em]
+            {\fontsize{10.5}{13.5}\sffamily \alumnoBNombre} & {\fontsize{10.5}{13.5}\sffamily \obtenerIntencionB}%
+        }%
+        \ifcsvoid{alumnoCNombre}{}{%
+            \tabularnewline[0.35em]
+            {\fontsize{10.5}{13.5}\sffamily \alumnoCNombre} & {\fontsize{10.5}{13.5}\sffamily \obtenerIntencionC}%
+        }%
+    \end{tabular}
+
+    \vspace{0.8cm}
+
+    {\fontsize{11}{14}\bfseries\sffamily Asesores:}\\[0.4em]
+    {\fontsize{10.5}{13.5}\sffamily \asesorANombre}%
+    \ifcsvoid{asesorBNombre}{}{%
+        \\[0.3em]{\fontsize{10.5}{13.5}\sffamily \asesorBNombre}%
+    }%
+    \ifcsvoid{asesorCNombre}{}{%
+        \\[0.3em]{\fontsize{10.5}{13.5}\sffamily \asesorCNombre}%
+    }%
+\end{minipage}
+\end{center}
+
+\vfill
+
+% ------------------------------------------------------------------------------
+% 6. LUGAR Y FECHA
+% ------------------------------------------------------------------------------
+\begin{center}
+    {\fontsize{11}{14}\sffamily \lugarDefensa, \fechaDefensa}
+\end{center}
 
 \restoregeometry
 \end{titlepage}
