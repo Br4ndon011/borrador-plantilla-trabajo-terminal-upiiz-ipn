@@ -6,48 +6,108 @@
 \chapter{Desarrollo del Sistema Mecatrónico}
 \label{cap:desarrollo}
 
-En este capítulo se expone la metodología técnica de desarrollo, la arquitectura funcional de los subsistemas, la matriz de especificaciones de diseño y el proceso de integración mecatrónica del prototipo.
+Para la realización de este proyecto, se empleará la metodología de diseño mecatrónico.
 
 % ------------------------------------------------------------------------------
-\section{Arquitectura funcional y flujo de información}
-\label{sec:desarrollo-arquitectura}
+\section{Identificación de necesidades}
+\label{sec:id-necesidades}
 
-Describa la estructura en bloques del sistema y el flujo secuencial de señales y energía entre subsistemas:
-\begin{enumerate}
-    \item \textbf{Etapa de Sensado y Adquisición:} Instrumentación y captura periódica de variables físicas del proceso.
-    \item \textbf{Etapa de Filtrado y Procesamiento:} Algoritmos digitales de acondicionamiento de señales y estimación de estados.
-    \item \textbf{Etapa de Control y Algoritmos:} Evaluación en tiempo real de la ley de control en lazo cerrado ($f_s \ge \qty{1.0}{\kilo\hertz}$).
-    \item \textbf{Etapa de Actuación y Potencia:} Modulación de señales de control hacia los actuadores electromecánicos.
-    \item \textbf{Etapa de Supervisión y Comunicación:} Transmisión telemática de datos hacia la estación de monitoreo.
-\end{enumerate}
+El presente trabajo propone el diseño y desarrollo de un robot móvil autónomo para el transporte de objetos dentro de un entorno cubierto, con superficie plana y un área de desplazamiento de hasta 5×5 m. El sistema estará diseñado para trasladar una carga de hasta 1.5 kg desde un punto base hasta un punto definido por el usuario. Para realizar está tarea, contará con un sistema de navegación que le permita reconocer el entorno, determinar su posición y establecer de manera autónoma la trayectoria necesaria para llegar al punto indicado. Se contempla un tiempo de funcionamiento de hasta 15 minutos, con el propósito de disminuir la intervención del usuario durante el traslado.
 
-% ------------------------------------------------------------------------------
-\section{Matriz de requerimientos y especificaciones cuantitativas}
-\label{sec:desarrollo-especificaciones}
-
-En la \tabref{tab:especificaciones-diseno} se presentan las especificaciones cuantitativas de desempeño objetivo fijadas para el proyecto.
+Debido a los requerimientos y las funciones que se deben de cumplir en el sistema robótico, se han identificado  una lista de necesidades del diseño (\tabref{tab:necesidades}), que se relacionan principalmente con la navegación autónoma, los costos, interacción con el usuario, entre otras necesidades. La tabla fue realizada a base de las exigencias operativas de un sistema de navegación autónoma y se toma un nivel de importancia en donde 1 es el más importante y el 5 es el menos importante:
 
 \begin{table}[htbp]
     \centering
-    \caption{Especificaciones cuantitativas de desempeño del sistema mecatrónico.}
-    \label{tab:especificaciones-diseno}
-    \begin{tabularx}{\textwidth}{p{6.5cm} c X}
+    \caption{Tabla de necesidades.}
+    \label{tab:necesidades}
+    \begin{tabularx}{\textwidth}{
+        >{\centering\arraybackslash}p{2cm}
+        X
+        >{\centering\arraybackslash}p{2cm}
+        }
         \toprule
-        \textbf{Parámetro de Desempeño} & \textbf{Símbolo / Métrica} & \textbf{Valor Objetivo} \\
+        \textbf{No. de necesidad} & \textbf{Necesidad} & \textbf{importancia} \\
         \midrule
-        Rango de operación principal & $y(t)$ & $\qty{0.0}{\meter}$ a $\qty{2.0}{\meter}$ \\
-        Tiempo de establecimiento ($2\,\%$) & $t_s$ & $\le \qty{0.50}{\second}$ \\
-        Sobrepaso porcentual máximo & $M_p$ & $\le 10\,\%$ \\
-        Error en régimen permanente & $|e_{ss}|$ & $\le \qty{0.05}{\unit{\meter}}$ \\
-        Frecuencia de muestreo del lazo digital & $f_s = 1/T_s$ & $\ge \qty{1.0}{\kilo\hertz}$ \\
-        Masa total del prototipo integrado & $m_{\text{total}}$ & $\le \qty{5.0}{\kilo\gram}$ \\
-        Tensión de alimentación nominal & $V_{\text{bat}}$ & $\qty{12.0}{\volt}$ \\
+        1 & Navegar de forma autónoma desde un punto base a un destino definido por el usuario & 1 \\
+        2 & Soportar una carga útil de hasta 1.5 kg sin perder estabilidad & 1 \\
+        3 & Que sea de bajo costo & 2 \\
+        4 & Que implemente estrategias de control para que su desplazamiento sea estable & 1 \\
+        5 & Que tenga una autonomía de hasta 15 min & 1 \\
+        6 & Facilitar la interacción del usuario mediante la interfaz humano - máquina (HMI) & 2 \\
+        7 & Cubrir un área total de hasta 5x5m & 2 \\
+        8 & Prototipo ligero, capaz de ser transportado por un operador & 4 \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-% ------------------------------------------------------------------------------
-\section{Integración física y manufactura de subsistemas}
-\label{sec:desarrollo-integracion}
+\section{Análisis del Problema}
+\label{sec:ana-problema}
+El problema que existe se presenta debido a los altos costos de los robots autónomos comerciales y a las limitaciones de los sistemas AGV que dependen de trayectorias ya definidas para su desplazamiento. Esta problemática puede solucionarse mediante el desarrollo de un prototipo de robot móvil con navegación autónoma que mantenga costos de fabricación bajos sin sacrificar su funcionamiento y estabilidad. Es por eso que se plantea la descripción de un prototipo AMR mediante los diagramas funcionales IDEF-0 que se presentan a continuación.
 
-Detalle los procesos de manufactura (impresión 3D, mecanizado CNC, corte láser, ensamble de circuitos impresos PCB) y las estrategias de acoplamiento físico empleadas para garantizar la rigidez y confiabilidad del prototipo.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\textwidth]{figuras/proyecto/idef0_a0.png}
+    \caption{Diagrama A-0.}
+    \label{fig:D_A0}
+\end{figure}
+
+\section{Preparación de especificaciones}
+\label{sec:prep_espec}
+
+Después de plantear las necesidades en \secref{sec:id-necesidades}, se procede a crear una tabla de posibles especificaciones del proyecto (\tabref{tab:metricas}). Se debe tener en cuenta que ésta puede ser modificada durante el transcurso de la unidad de aprendizaje de Trabajo Terminal I.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Tabla de métricas.}
+    \label{tab:metricas}
+    \begin{tabularx}{\textwidth}{
+        >{\centering\arraybackslash}p{1.5cm}
+        >{\centering\arraybackslash}p{2.5cm}
+        X
+        >{\centering\arraybackslash}p{1.5cm}
+        >{\centering\arraybackslash}p{1.5cm}
+        }
+        \toprule
+        \textbf{No. de métrica} & \textbf{No. de necesidad relacionada} & \textbf{Métrica} & \textbf{Importancia} & \textbf{Unidades} \\
+        \midrule
+        1 & 2 & Capacidad de Carga & 1 & Kg \\
+        2 & 7 & Área en la que va a trabajar el robot  & 2 & m^2 \\
+        3 & 5 & Tiempo de funcionamiento continuo & 1 & minutos \\
+        4 & 1,4 & Velocidad de desplazamiento & 3 & m/s \\
+        5 & 1,4 & Margen de error & 1 & cm \\
+        6 & 8 & Peso total del prototipo & 4 & Kg \\
+        7 & 3 & Costo estimado de construcción & 3 & MXN \\
+        8 & 6 & Tiempo de respuesta de interfaz & 2 & ms \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+
+\section{Generación de posibles soluciones}
+\label{sec:soluciones}
+
+A partir de las especificaciones determinadas, se plantean diferentes propuestas para el diseño del robot, considerando las alternativas disponibles para la estructura, sistema de locomoción, sensores, motores y componentes electrónicos. Se analizarán las características de cada diseño propuesto para determinar cuáles pueden cumplir con las necesidades y condiciones que se establecieron para el proyecto.   
+
+\section{Selección de la propuesta}
+\label{sec:propuesta}
+
+Una vez planteadas las diferentes propuestas, se realizará una comparación entre ellas tomando en cuenta aspectos como el funcionamiento, costo, facilidad de construcción, disponibilidad de componentes y cumplimiento de las especificaciones establecidas. A partir de esta comparación se descartaran diseños para seleccionar la propuesta que se utilizara para continuar con el desarrollo del proyecto.
+
+\section{Diseño detallado}
+\label{sec:diseño_detallado}
+Una vez seleccionada la propuesta, se realizará el diseño de los diferentes elementos que conforman el robot. Por la parte mecánica se definirá la estructura y el sistema de locomoción, considerando la carga que deberá trasladar. En la parte electrónica se seleccionan los componentes necesarios para el funcionamiento del robot y la alimentación de los diferentes elementos. También se  implementará el sistema de control para el desplazamiento y la evasión de obstáculos, así como la interfaz que permitirá al usuario definir el punto de destino y finalmente, se desarrollará la HMI, destinada para que exista una interacción con el usuario.
+
+\section{Elaboración de planos y documentación}
+\label{sec:Planos_documentacion}
+Con el diseño definido, se dará paso a desarrollar los planos y diagramas necesarios para la construcción del robot. Se incluirán los planos de la estructura, diagramas eléctricos y de conexión, así como diagramas relacionados con el sistema de control y la interfaz del usuario. En esta etapa también se realizarán simulaciones para detectar a tiempo algún error antes de la construcción del prototipo.
+
+\section{Elaboración del prototipo}
+\label{sec:Elab_prototipo}
+
+A partir del diseño y los planos realizados, se procederá a la construcción del prototipo durante la unidad de aprendizaje de Trabajo Terminal 2. En esta etapa se realizará la fabricación y ensamble de la estructura, así como la incorporación del sistema de control y visión artificial.
+
+
+\section{Pruebas y Ajustes}
+\label{sec:Pruebas_Ajustes}
+
+Una vez construido el prototipo, se realizarán las pruebas de funcionamiento en el área de trabajo establecida, considerando diferentes rutas y puntos de destino. Se comprobará el traslado del robot, el transporte de la carga, la detección y evasión de obstáculos, así como la interfaz del usuario. A partir de los resultados obtenidos se realizarán los ajustes necesarios hasta obtener el funcionamiento propuesto del prototipo. 
