@@ -3,114 +3,90 @@
 % Archivo: frontmatter/portada-protocolo.tex
 % ==============================================================================
 % Portada oficial institucional para el PROTOCOLO DE TRABAJO TERMINAL.
-% Conforme a los requisitos institucionales del Anexo 1 (UPIIZ-IPN).
+% Reproduce la composición y jerarquía visual del protocolo real de referencia
+% (Metodología de Trabajo Terminal: Robot Limpiador de Playa), incorporando la
+% franja institucional izquierda y los requisitos normativos del Anexo 1 UPIIZ-IPN.
 % ==============================================================================
 
 \begin{titlepage}
 \thispagestyle{empty}
-\newgeometry{left=2.0cm, right=2.0cm, top=2.0cm, bottom=2.0cm}
+\newgeometry{left=1.5cm, right=1.5cm, top=2.0cm, bottom=2.0cm}
 
-% ------------------------------------------------------------------------------
-% 1. CABECERA INSTITUCIONAL CON LOGOS
-% ------------------------------------------------------------------------------
-\noindent
-\begin{minipage}[c]{0.16\textwidth}
-    \flushleft
-    \includegraphics[height=2.5cm, keepaspectratio]{figuras/institucional/ipn.jpg}
-\end{minipage}%
-\hfill
-\begin{minipage}[c]{0.66\textwidth}
+% Franja institucional izquierda (Logotipo IPN, 3 líneas verticales y escudo UPIIZ-IPN)
+\begin{minipage}[c][0.96\textheight][s]{0.16\textwidth}
     \centering
-    {\fontsize{13}{16}\bfseries\sffamily \institucionNombre}\\[0.35em]
-    {\fontsize{10.5}{13.5}\bfseries\sffamily \unidadAcademica}\\[0.25em]
-    {\fontsize{10.5}{13.5}\bfseries\sffamily (\siglasUnidad)}\\[0.5em]
-    {\fontsize{11}{14}\bfseries\sffamily \programaAcademico}
+    \includegraphics[height=0.94\textheight, keepaspectratio]{figuras/institucional/portada.png}
 \end{minipage}%
 \hfill
-\begin{minipage}[c]{0.16\textwidth}
-    \flushright
-    \includegraphics[height=2.5cm, keepaspectratio]{figuras/institucional/upiiz.png}
-\end{minipage}
+% Bloque principal de información institucional
+\begin{minipage}[c][0.96\textheight][s]{0.80\textwidth}
+    \centering
+    \vspace{0.1cm}
 
-\vfill
+    % Encabezado institucional
+    {\fontsize{15}{19}\bfseries\sffamily \institucionNombre}\\[0.5em]
+    {\fontsize{11}{14}\bfseries\sffamily \unidadAcademica}\\[0.25em]
+    {\fontsize{11}{14}\bfseries\sffamily (\siglasUnidad)}\\[1.0em]
 
-% ------------------------------------------------------------------------------
-% 2. TIPO DE DOCUMENTO
-% ------------------------------------------------------------------------------
-\begin{center}
-    {\fontsize{13}{16}\bfseries\sffamily PROTOCOLO DE REGISTRO DE PROYECTO DE TRABAJO TERMINAL}
-\end{center}
+    {\fontsize{12}{15}\bfseries\sffamily \MakeUppercase{\programaAcademico}}\\[1.5em]
 
-\vfill
+    {\fontsize{11.5}{15}\bfseries\sffamily PROTOCOLO DE REGISTRO DE PROYECTO DE TRABAJO TERMINAL}\\[1.5em]
 
-% ------------------------------------------------------------------------------
-% 3. TÍTULO DEL PROYECTO
-% ------------------------------------------------------------------------------
-\begin{center}
-    {\fontsize{15}{19}\bfseries\sffamily ``\tituloProyecto''}
-\end{center}
+    \vfill
 
-\vfill
+    % Título del proyecto
+    {\fontsize{13.5}{17.5}\bfseries\sffamily ``\tituloProyecto''}\\[1.2em]
 
-% ------------------------------------------------------------------------------
-% 4. ÁREA DE UBICACIÓN Y LÍNEA DE TRABAJO
-% ------------------------------------------------------------------------------
-\begin{center}
-\begin{minipage}[t]{0.92\textwidth}
-    \centering\fontsize{10.5}{13.5}\sffamily
+    \vfill
+
+    % Área de ubicación (normativa Anexo 1) y Línea de Trabajo
     \ifcsvoid{areaUbicacion}{}{%
-        \textbf{Área de ubicación:} \areaUbicacion\\[0.5em]
+        {\fontsize{9.5}{12.5}\sffamily \textit{Área de ubicación:} \areaUbicacion}\\[0.3em]
     }%
     \ifundef{\NumeroLineaTrabajo}{}{%
         \ifLineaTrabajoValida
-            \textbf{Línea de Trabajo:}\\[0.2em]
-            \NumeroLineaTrabajo. \NombreLineaTrabajo
+            {\fontsize{9.5}{12.5}\sffamily \textit{Línea de Trabajo:} \NumeroLineaTrabajo. \NombreLineaTrabajo}\\[1.2em]
         \fi
     }%
-\end{minipage}
-\end{center}
 
-\vfill
+    \vfill
 
-% ------------------------------------------------------------------------------
-% 5. PRESENTAN (ALUMNOS), INTENCIÓN DE TITULACIÓN Y ASESORES
-% ------------------------------------------------------------------------------
-\begin{center}
-\begin{minipage}[t]{0.92\textwidth}
-    \begin{tabular}{@{}p{0.55\linewidth}@{\hspace{0.03\linewidth}}p{0.42\linewidth}@{}}
-        {\fontsize{11}{14}\bfseries\sffamily Presentan:} & {\fontsize{11}{14}\bfseries\sffamily Intención de Titulación:}\\[0.4em]
-        {\fontsize{10.5}{13.5}\sffamily \alumnoANombre} & {\fontsize{10.5}{13.5}\sffamily \obtenerIntencionA}%
-        \ifcsvoid{alumnoBNombre}{}{%
-            \tabularnewline[0.35em]
-            {\fontsize{10.5}{13.5}\sffamily \alumnoBNombre} & {\fontsize{10.5}{13.5}\sffamily \obtenerIntencionB}%
-        }%
-        \ifcsvoid{alumnoCNombre}{}{%
-            \tabularnewline[0.35em]
-            {\fontsize{10.5}{13.5}\sffamily \alumnoCNombre} & {\fontsize{10.5}{13.5}\sffamily \obtenerIntencionC}%
-        }%
-    \end{tabular}
+    % Presentan e Intención de Titulación (dos columnas conforme al protocolo de referencia)
+    \begin{minipage}{0.96\linewidth}
+        \begin{tabular}{@{}p{0.52\linewidth}@{\hspace{0.03\linewidth}}p{0.45\linewidth}@{}}
+            {\fontsize{10.5}{13}\bfseries\sffamily Presentan:} & {\fontsize{10.5}{13}\bfseries\sffamily Intención de Titulación:}\\[0.4em]
+            {\fontsize{9.5}{12.5}\sffamily \alumnoANombre} & {\fontsize{9}{12}\sffamily $\checkmark$\,Curricular \quad Otro: \underline{\hspace{1.1cm}}}%
+            \ifcsvoid{alumnoBNombre}{}{%
+                \tabularnewline[0.35em]
+                {\fontsize{9.5}{12.5}\sffamily \alumnoBNombre} & {\fontsize{9}{12}\sffamily $\checkmark$\,Curricular \quad Otro: \underline{\hspace{1.1cm}}}%
+            }%
+            \ifcsvoid{alumnoCNombre}{}{%
+                \tabularnewline[0.35em]
+                {\fontsize{9.5}{12.5}\sffamily \alumnoCNombre} & {\fontsize{9}{12}\sffamily $\checkmark$\,Curricular \quad Otro: \underline{\hspace{1.1cm}}}%
+            }%
+        \end{tabular}
+    \end{minipage}\\[1.4em]
 
-    \vspace{0.8cm}
+    \vfill
 
-    {\fontsize{11}{14}\bfseries\sffamily Asesores:}\\[0.4em]
-    {\fontsize{10.5}{13.5}\sffamily \asesorANombre}%
+    % Asesores del proyecto (centrado)
+    {\fontsize{10.5}{13}\bfseries\sffamily Asesores:}\\[0.4em]
+    {\fontsize{9.5}{12.5}\sffamily \asesorANombre}%
     \ifcsvoid{asesorBNombre}{}{%
-        \\[0.3em]{\fontsize{10.5}{13.5}\sffamily \asesorBNombre}%
+        \\[0.3em]{\fontsize{9.5}{12.5}\sffamily \asesorBNombre}%
     }%
     \ifcsvoid{asesorCNombre}{}{%
-        \\[0.3em]{\fontsize{10.5}{13.5}\sffamily \asesorCNombre}%
+        \\[0.3em]{\fontsize{9.5}{12.5}\sffamily \asesorCNombre}%
     }%
+
+    \vfill
+
+    % Lugar y fecha alineados a la derecha
+    \begin{flushright}
+        {\fontsize{9.5}{12}\sffamily \lugarDefensa, \fechaDefensa}
+    \end{flushright}
+    \vspace{0.1cm}
 \end{minipage}
-\end{center}
-
-\vfill
-
-% ------------------------------------------------------------------------------
-% 6. LUGAR Y FECHA
-% ------------------------------------------------------------------------------
-\begin{center}
-    {\fontsize{11}{14}\sffamily \lugarDefensa, \fechaDefensa}
-\end{center}
 
 \restoregeometry
 \end{titlepage}

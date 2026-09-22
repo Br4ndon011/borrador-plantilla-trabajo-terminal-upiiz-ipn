@@ -47,21 +47,40 @@ def compile_document(repo_dir, tipo_doc, datos_path, original_content):
     if res.returncode != 0:
         raise RuntimeError(f"Fallo la compilacion para {tipo_doc}:\n{res.stderr[:600]}")
 
-def check_toc_protocolo(toc_content):
+def check_toc_protocolo(toc_content, repo_dir=None):
     print("Verificando estructura de PROTOCOLO...")
-    required_patterns = [
-        r"Objetivos del proyecto",
-        r"Justificación",
-        r"Antecedentes",
-        r"Marco [Tt]eórico",
-        r"Estado del [Aa]rte",
-        r"Descripción del trabajo propuesto",
-        r"Metodología de trabajo",
-        r"Productos o resultados esperados",
-        r"Viabilidad del proyecto",
-        r"Bibliografía",
-        r"Firmas",
+    # 1. Verificación de capítulos numerados y secciones requeridas
+    required_numbered = [
+        (r"\\numberline\s*\{\s*1\s*\}\s*Objetivos del proyecto", "Capítulo 1: Objetivos del proyecto"),
+        (r"\\numberline\s*\{\s*2\s*\}\s*Justificación", "Capítulo 2: Justificación"),
+        (r"\\numberline\s*\{\s*3\s*\}\s*Antecedentes", "Capítulo 3: Antecedentes"),
+        (r"\\numberline\s*\{\s*4\s*\}\s*Marco\s+[Tt]eórico", "Capítulo 4: Marco Teórico"),
+        (r"\\numberline\s*\{\s*5\s*\}\s*Estado\s+del\s+[Aa]rte", "Capítulo 5: Estado del Arte"),
+        (r"\\numberline\s*\{\s*6\s*\}\s*Descripción del trabajo propuesto", "Capítulo 6: Descripción del trabajo propuesto"),
+        (r"\\numberline\s*\{\s*7\s*\}\s*Metodología de trabajo", "Capítulo 7: Metodología de trabajo"),
+        (r"\\numberline\s*\{\s*8\s*\}\s*Productos o resultados esperados", "Capítulo 8: Productos o resultados esperados"),
+        (r"\\numberline\s*\{\s*9\s*\}\s*Viabilidad del proyecto", "Capítulo 9: Viabilidad del proyecto"),
+        (r"\\numberline\s*\{\s*10\s*\}\s*Bibliografía", "Capítulo 10: Bibliografía"),
+        (r"\\numberline\s*\{\s*11\s*\}\s*Firmas", "Capítulo 11: Firmas"),
     ]
+
+    for pattern, name in required_numbered:
+        if not re.search(pattern, toc_content):
+            print(f"ERROR: PROTOCOLO debe contener '{name}' numerado exactamente en main.toc")
+            return False
+
+    # 2. Verificación de Anexo posterior a Firmas
+    firmas_match = re.search(r"\\numberline\s*\{\s*11\s*\}\s*Firmas", toc_content)
+    anexo_match = re.search(r"\{chapter\}\{Anexo\}", toc_content)
+    if not anexo_match:
+        print("ERROR: PROTOCOLO debe contener el Anexo institucional en main.toc")
+        return False
+    if firmas_match and anexo_match:
+        if anexo_match.start() < firmas_match.start():
+            print("ERROR: El Anexo debe figurar con posterioridad a Firmas en main.toc")
+            return False
+
+    # 3. Capítulos prohibidos (exclusivos de TTI y TTII)
     forbidden_patterns = [
         r"Introducción",
         r"Planteamiento del Problema",
@@ -71,17 +90,35 @@ def check_toc_protocolo(toc_content):
         r"Trabajo a Futuro",
     ]
 
-    for req in required_patterns:
-        if not re.search(req, toc_content):
-            print(f"ERROR: PROTOCOLO debe contener '{req}' en main.toc")
-            return False
-
     for forb in forbidden_patterns:
         if re.search(forb, toc_content):
             print(f"ERROR: PROTOCOLO NO debe contener '{forb}' en main.toc")
             return False
 
-    print("[OK] Estructura de PROTOCOLO validada correctamente.")
+    # 4. Verificación en el PDF generado: Índices antes de Resumen
+    if repo_dir:
+        pdf_path = os.path.join(repo_dir, "main.pdf")
+        if os.path.exists(pdf_path):
+            try:
+                import pypdf
+                reader = pypdf.PdfReader(pdf_path)
+                toc_page = None
+                resumen_page = None
+                for idx, page in enumerate(reader.pages):
+                    text = page.extract_text() or ""
+                    if "ÍNDICE" in text and toc_page is None:
+                        toc_page = idx + 1
+                    if "Resumen" in text and "Palabras clave:" in text and resumen_page is None:
+                        resumen_page = idx + 1
+                if toc_page is not None and resumen_page is not None:
+                    if not (toc_page < resumen_page):
+                        print(f"ERROR: Índices (pág {toc_page}) deben preceder a Resumen (pág {resumen_page})")
+                        return False
+                    print(f"[OK] Orden físico verificado en PDF: Índices (pág {toc_page}) -> Resumen (pág {resumen_page})")
+            except Exception as ex:
+                print(f"Advertencia al verificar PDF: {ex}")
+
+    print("[OK] Estructura de PROTOCOLO validada correctamente (Capítulos 1-9, 10 Bibliografía, 11 Firmas, Anexo).")
     return True
 
 def check_toc_tti(toc_content):
@@ -161,7 +198,7 @@ def run_tests():
         compile_document(repo_dir, "PROTOCOLO", datos_path, original_content)
         with open(toc_path, "r", encoding="utf-8") as f:
             proto_toc = f.read()
-        if not check_toc_protocolo(proto_toc):
+        if not check_toc_protocolo(proto_toc, repo_dir):
             success = False
 
         # 2. Probar TTI

@@ -1,0 +1,85 @@
+% ==============================================================================
+% Plantilla Institucional de Trabajo Terminal — UPIIZ IPN
+% Archivo: capitulos/protocolo/11-firmas.tex
+% ==============================================================================
+% ESTRUCTURA NORMATIVA DE PROTOCOLO: CAPÍTULO 11 - FIRMAS
+% ==============================================================================
+% Reproduce la estructura y jerarquía de la referencia institucional:
+% 11. Firmas
+% 11.1 Alumnos
+% 11.2 Asesores
+% Dinámico para 1, 2 o 3 alumnos y 1, 2 o 3 asesores.
+% ==============================================================================
+
+\chapter{Firmas}
+\label{cap:proto-firmas}
+
+\section{Alumnos}
+\label{sec:proto-firmas-alumnos}
+
+\vspace{0.8cm}
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{minipage}[t]{0.45\textwidth}
+            \centering
+            \underline{\hspace{6.0cm}}\\[0.4em]
+            {\fontsize{10.5}{13}\bfseries\sffamily \alumnoANombre}\\[0.2em]
+            {\fontsize{9}{11}\sffamily Alumno(a) - Boleta: \alumnoABoleta}
+        \end{minipage}%
+        \ifcsvoid{alumnoBNombre}{}{%
+            \hfill
+            \begin{minipage}[t]{0.45\textwidth}
+                \centering
+                \underline{\hspace{6.0cm}}\\[0.4em]
+                {\fontsize{10.5}{13}\bfseries\sffamily \alumnoBNombre}\\[0.2em]
+                {\fontsize{9}{11}\sffamily Alumno(a) - Boleta: \alumnoBBoleta}
+            \end{minipage}%
+        }%
+        \ifcsvoid{alumnoCNombre}{}{%
+            \par\vspace{1.2cm}
+            \begin{minipage}[t]{0.45\textwidth}
+                \centering
+                \underline{\hspace{6.0cm}}\\[0.4em]
+                {\fontsize{10.5}{13}\bfseries\sffamily \alumnoCNombre}\\[0.2em]
+                {\fontsize{9}{11}\sffamily Alumno(a) - Boleta: \alumnoCBoleta}
+            \end{minipage}%
+        }%
+    \end{minipage}
+\end{center}
+
+\vspace{1.2cm}
+
+\section{Asesores}
+\label{sec:proto-firmas-asesores}
+
+\vspace{0.8cm}
+\begin{center}
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{minipage}[t]{0.45\textwidth}
+            \centering
+            \underline{\hspace{6.0cm}}\\[0.4em]
+            {\fontsize{10.5}{13}\bfseries\sffamily \asesorANombre}\\[0.2em]
+            {\fontsize{9}{11}\sffamily Asesor(a) Principal}
+        \end{minipage}%
+        \ifcsvoid{asesorBNombre}{}{%
+            \hfill
+            \begin{minipage}[t]{0.45\textwidth}
+                \centering
+                \underline{\hspace{6.0cm}}\\[0.4em]
+                {\fontsize{10.5}{13}\bfseries\sffamily \asesorBNombre}\\[0.2em]
+                {\fontsize{9}{11}\sffamily Asesor(a)}
+            \end{minipage}%
+        }%
+        \ifcsvoid{asesorCNombre}{}{%
+            \par\vspace{1.2cm}
+            \begin{minipage}[t]{0.45\textwidth}
+                \centering
+                \underline{\hspace{6.0cm}}\\[0.4em]
+                {\fontsize{10.5}{13}\bfseries\sffamily \asesorCNombre}\\[0.2em]
+                {\fontsize{9}{11}\sffamily Asesor(a)}
+            \end{minipage}%
+        }%
+    \end{minipage}
+\end{center}

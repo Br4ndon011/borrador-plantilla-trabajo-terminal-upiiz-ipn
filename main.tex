@@ -51,27 +51,66 @@
     \input{frontmatter/portada-interna.tex}
 \fi
 
-% Numeración romana para páginas preliminares
-\pagenumbering{roman}
-\setcounter{page}{1}
+\ifProtocolo
+    % ==========================================================================
+    % ORDEN DE PRELIMINARES PARA PROTOCOLO (Conforme a referencia real)
+    % 1. Portada
+    % 2. Índice general (ÍNDICE)
+    % 3. Índice de figuras
+    % 4. Índice de tablas
+    % 5. Resumen + Palabras clave (página I)
+    % 6. Abstract + Keywords (página II)
+    % ==========================================================================
+    \renewcommand{\contentsname}{ÍNDICE}
 
-% Agradecimientos y Dedicatorias (EXCLUSIVO para TT II / Reporte Final)
-\ifTTII
-    \input{frontmatter/agradecimientos.tex}
-    \input{frontmatter/dedicatorias.tex}
+    % Índices generados automáticamente sin número de página visible
+    \begingroup
+    \renewcommand{\thispagestyle}[1]{}%
+    \pagestyle{empty}
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \clearpage
+    \listoftables
+    \clearpage
+    \endgroup
+
+    % Numeración romana mayúscula a partir de Resumen
+    \pagestyle{plain}
+    \pagenumbering{Roman}
+    \setcounter{page}{1}
+
+    \input{frontmatter/resumen.tex}
+    \clearpage
+    \input{frontmatter/abstract.tex}
+    \clearpage
+
+\else
+    % ==========================================================================
+    % ORDEN DE PRELIMINARES PARA REPORTE FINAL (TT I Y TT II)
+    % Se conserva exactamente el orden institucional reglamentario
+    % ==========================================================================
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+
+    % Agradecimientos y Dedicatorias (EXCLUSIVO para TT II / Reporte Final)
+    \ifTTII
+        \input{frontmatter/agradecimientos.tex}
+        \input{frontmatter/dedicatorias.tex}
+    \fi
+
+    % Resumen en español y Abstract en inglés
+    \input{frontmatter/resumen.tex}
+    \input{frontmatter/abstract.tex}
+
+    % Índices generados automáticamente
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \clearpage
+    \listoftables
+    \clearpage
 \fi
-
-% Resumen en español y Abstract en inglés
-\input{frontmatter/resumen.tex}
-\input{frontmatter/abstract.tex}
-
-% Índices generados automáticamente
-\tableofcontents
-\clearpage
-\listoffigures
-\clearpage
-\listoftables
-\clearpage
 
 % ------------------------------------------------------------------------------
 % CUERPO PRINCIPAL DEL DOCUMENTO (MAINMATTER)
@@ -94,15 +133,25 @@
     \input{capitulos/protocolo/08-productos-resultados-esperados.tex}
     \input{capitulos/protocolo/09-viabilidad.tex}
 
-    % Bibliografía en formato IEEE
+    % Capítulo 10: Bibliografía (numerado en PROTOCOLO como en la referencia)
     \clearpage
-    \addcontentsline{toc}{chapter}{Bibliografía}
+    \chapter{Bibliografía}
+    \label{cap:proto-bibliografia}
+    \begingroup
+    \makeatletter
+    \def\chapter{\@ifstar{\@gobble}{\@gobble}}%
+    \makeatother
     \bibliographystyle{IEEEtran}
-    \bibliography{bibliografia/referencias}
+    \bibliography{bibliografia/referencias}%
+    \endgroup
 
-    % Hoja de firmas de conformidad (Alumnos y Asesores)
+    % Capítulo 11: Firmas (Alumnos y Asesores)
     \clearpage
-    \input{capitulos/protocolo/10-firmas.tex}
+    \input{capitulos/protocolo/11-firmas.tex}
+
+    % Anexo institucional: CV de Asesores y Anexo 2
+    \clearpage
+    \input{apendices/protocolo-anexo.tex}
 
 \else
     % ==========================================================================

@@ -6,23 +6,21 @@
 % ==============================================================================
 % LÍMITE INSTITUCIONAL: Máximo 5 páginas.
 %
-% Requisitos normativos (Anexo 1):
+% Requisitos normativos (Anexo 1) y jerarquía de referencia:
 % 9.1 Recursos humanos:
-%     - Alumnos participantes y datos de contacto.
-%     - Asesores en orden jerárquico (máximo 3 asesores).
+%     9.1.1 Alumnos (Tabla de alumnos con datos de contacto).
+%     9.1.2 Asesores (Tabla de asesores en orden jerárquico con datos de contacto).
 % 9.2 Equipo e instalaciones necesarias:
-%     - Equipos, dispositivos, herramientas y laboratorios requeridos.
+%     - Equipos, dispositivos, herramientas y laboratorios requeridos (Tabla).
 %     - Actividad asociada a cada recurso.
 %     - Disponibilidad actual, compra o arrendamiento según corresponda.
 % 9.3 Costo estimado y fuente de financiamiento:
-%     - Desglose por etapas.
-%     - Costo mínimo aproximado y costo máximo aproximado.
-%     - Fuente de financiamiento y disponibilidad actual o forma prevista de obtenerlo.
-% 9.4 Cronograma de actividades de Trabajo Terminal I y II:
-%     - Calendario semanal.
-%     - Actividades por alumno.
-%     - Gráfica de Gantt (figuras externas mediante \includegraphics o tablas).
-% - Bloque de firmas de conformidad del cronograma de actividades (Alumnos y Asesores).
+%     - Desglose presupuestal por etapas con costos mínimos y máximos (Tabla).
+%     - Fuente de financiamiento y disponibilidad actual o previsión de obtención.
+% 9.4 Cronograma de actividades:
+%     9.4.1 Trabajo Terminal 1 (Gráfica de Gantt semanal por alumno).
+%     9.4.2 Trabajo Terminal 2 (Gráfica de Gantt semanal por alumno).
+%     - Bloque de firmas de conformidad del cronograma (Alumnos y Asesores).
 % ==============================================================================
 
 \chapter{Viabilidad del proyecto}
@@ -35,55 +33,55 @@
 \section{Recursos humanos}
 \label{sec:proto-recursos-humanos}
 
-\subsection{Alumnos proponentes}
-% Indique nombre completo, número de boleta y datos de contacto de cada alumno:
+\subsection{Alumnos}
+\label{subsec:proto-recursos-alumnos}
 
-\begin{itemize}
-    \item \textbf{Alumno(a) 1:} \alumnoANombre
-    \begin{itemize}
-        \item Boleta: \alumnoABoleta
-        \item Correo institucional: [correo@alumno.ipn.mx]
-        \item Teléfono de contacto: [Teléfono de contacto]
-    \end{itemize}
-    \ifcsvoid{alumnoBNombre}{}{%
-        \item \textbf{Alumno(a) 2:} \alumnoBNombre
-        \begin{itemize}
-            \item Boleta: \alumnoBBoleta
-            \item Correo institucional: [correo@alumno.ipn.mx]
-            \item Teléfono de contacto: [Teléfono de contacto]
-        \end{itemize}
-    }%
-    \ifcsvoid{alumnoCNombre}{}{%
-        \item \textbf{Alumno(a) 3:} \alumnoCNombre
-        \begin{itemize}
-            \item Boleta: \alumnoCBoleta
-            \item Correo institucional: [correo@alumno.ipn.mx]
-            \item Teléfono de contacto: [Teléfono de contacto]
-        \end{itemize}
-    }%
-\end{itemize}
+% Relación de alumnos proponentes del proyecto y datos de contacto institucional:
+\begin{table}[H]
+    \centering
+    \caption{Alumnos.}
+    \label{tab:proto-alumnos}
+    \begin{tabularx}{\textwidth}{c >{\raggedright\arraybackslash}p{6.0cm} >{\raggedright\arraybackslash}X}
+        \toprule
+        \textbf{No.} & \textbf{Nombres de los Alumnos} & \textbf{Datos de contacto} \\
+        \midrule
+        1 & \alumnoANombre & Teléfono: [Teléfono de contacto] \newline Correo: [correo@alumno.ipn.mx] \\
+        \ifcsvoid{alumnoBNombre}{}{%
+            \midrule
+            2 & \alumnoBNombre & Teléfono: [Teléfono de contacto] \newline Correo: [correo@alumno.ipn.mx] \\
+        }%
+        \ifcsvoid{alumnoCNombre}{}{%
+            \midrule
+            3 & \alumnoCNombre & Teléfono: [Teléfono de contacto] \newline Correo: [correo@alumno.ipn.mx] \\
+        }%
+        \bottomrule
+    \end{tabularx}
+\end{table}
 
-\subsection{Asesores del proyecto (orden jerárquico, máximo 3)}
-% Liste a los asesores en orden de prelación jerárquica conforme al Anexo 1:
+\subsection{Asesores}
+\label{subsec:proto-recursos-asesores}
 
-\begin{enumerate}
-    \item \textbf{Primer Asesor:} \asesorANombre
-    \begin{itemize}
-        \item Correo institucional: [correo@ipn.mx]
-    \end{itemize}
-    \ifcsvoid{asesorBNombre}{}{%
-        \item \textbf{Segundo Asesor:} \asesorBNombre
-        \begin{itemize}
-            \item Correo institucional: [correo@ipn.mx]
-        \end{itemize}
-    }%
-    \ifcsvoid{asesorCNombre}{}{%
-        \item \textbf{Tercer Asesor:} \asesorCNombre
-        \begin{itemize}
-            \item Correo institucional: [correo@ipn.mx]
-        \end{itemize}
-    }%
-\end{enumerate}
+% Relación de asesores del proyecto en orden jerárquico conforme al Anexo 1:
+\begin{table}[H]
+    \centering
+    \caption{Asesores.}
+    \label{tab:proto-asesores}
+    \begin{tabularx}{\textwidth}{c >{\raggedright\arraybackslash}p{6.0cm} >{\raggedright\arraybackslash}X}
+        \toprule
+        \textbf{No.} & \textbf{Nombres de los Asesores} & \textbf{Datos de contacto} \\
+        \midrule
+        1 & \asesorANombre & Teléfono: [Teléfono de contacto] \newline Correo: [correo@ipn.mx] \\
+        \ifcsvoid{asesorBNombre}{}{%
+            \midrule
+            2 & \asesorBNombre & Teléfono: [Teléfono de contacto] \newline Correo: [correo@ipn.mx] \\
+        }%
+        \ifcsvoid{asesorCNombre}{}{%
+            \midrule
+            3 & \asesorCNombre & Teléfono: [Teléfono de contacto] \newline Correo: [correo@ipn.mx] \\
+        }%
+        \bottomrule
+    \end{tabularx}
+\end{table}
 
 % ------------------------------------------------------------------------------
 \section{Equipo e instalaciones necesarias}
@@ -93,18 +91,18 @@
 % Especifique en la siguiente tabla los recursos necesarios, la actividad en la que
 % intervienen y su condición (disponible en UPIIZ, compra requerida o arrendamiento):
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
-    \caption{Relación de equipo, dispositivos, herramientas e instalaciones requeridas.}
+    \caption{Equipo e instalaciones.}
     \label{tab:proto-recursos-materiales}
-    \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.8cm} >{\raggedright\arraybackslash}p{3.2cm} >{\raggedright\arraybackslash}X >{\centering\arraybackslash}p{3.6cm}}
+    \begin{tabularx}{\textwidth}{c >{\raggedright\arraybackslash}p{4.2cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.8cm}}
         \toprule
-        \textbf{Equipo / Instalación} & \textbf{Tipo de recurso} & \textbf{Actividad asociada} & \textbf{Condición} \\
+        \textbf{No.} & \textbf{Equipo o laboratorio} & \textbf{Actividades por realizar} & \textbf{Disponibilidad} \\
         \midrule
-        {[Nombre del laboratorio]} & Instalación & [Pruebas o ensamble del sistema] & Disponible en UPIIZ \\
-        {[Equipo o maquinaria]} & Equipo principal & [Maquinado o caracterización] & Disponible en UPIIZ \\
-        {[Dispositivo / Sensor]} & Componente & [Medición de variables del proceso] & Compra requerida \\
-        {[Herramienta específica]} & Herramienta & [Ensamble o ajuste mecánico] & Compra / Arrendamiento \\
+        1 & [Nombre del laboratorio] & [Pruebas o ensamble del sistema] & Sujeto a disponibilidad del semestre \\
+        2 & [Equipo o maquinaria] & [Maquinado o caracterización] & Sujeto a disponibilidad del semestre \\
+        3 & [Dispositivo / Sensor] & [Medición de variables del proceso] & Compra requerida \\
+        4 & [Herramienta específica] & [Ensamble o ajuste mecánico] & Compra / Arrendamiento \\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -117,73 +115,77 @@
 % Presente el desglose presupuestal estimado por etapas, especificando el costo
 % mínimo aproximado y el costo máximo aproximado:
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
-    \caption{Presupuesto estimado por etapas del proyecto.}
+    \caption{Costo estimado.}
     \label{tab:proto-presupuesto-etapas}
-    \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X c c}
+    \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X c c >{\raggedright\arraybackslash}p{4.2cm}}
         \toprule
-        \textbf{Etapa del Proyecto} & \textbf{Costo mínimo aprox. (MXN)} & \textbf{Costo máximo aprox. (MXN)} \\
+        \textbf{Descripción / Etapa} & \textbf{Costo mín. (MXN)} & \textbf{Costo máx. (MXN)} & \textbf{Fuente de financiamiento} \\
         \midrule
-        Etapa 1: Componentes y materiales de diseño & [\$ 0.00] & [\$ 0.00] \\
-        Etapa 2: Fabricación, maquinado e insumos & [\$ 0.00] & [\$ 0.00] \\
-        Etapa 3: Integración de circuitos y sensores & [\$ 0.00] & [\$ 0.00] \\
-        Etapa 4: Pruebas y validación experimental & [\$ 0.00] & [\$ 0.00] \\
+        Etapa 1: Componentes y materiales de diseño & [\$ 0.00] & [\$ 0.00] & Recursos propios / SIP \\
+        Etapa 2: Fabricación, maquinado e insumos   & [\$ 0.00] & [\$ 0.00] & Recursos propios / SIP \\
+        Etapa 3: Integración de circuitos y sensores & [\$ 0.00] & [\$ 0.00] & Recursos propios / SIP \\
+        Etapa 4: Pruebas y validación experimental & [\$ 0.00] & [\$ 0.00] & Recursos propios / SIP \\
         \midrule
-        \textbf{Costo total estimado del proyecto:} & \textbf{[\$ 0.00]} & \textbf{[\$ 0.00]} \\
+        \textbf{Total estimado del proyecto:} & \textbf{[\$ 0.00]} & \textbf{[\$ 0.00]} & Financiamiento propio / Apoyo institucional \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-\noindent\textbf{Fuente de financiamiento y disponibilidad:}\\[0.3em]
-[Especifique la fuente de financiamiento prevista (recursos propios, proyectos de investigación institucional SIP-IPN, apoyos de vinculación o fondos externos), indicando si el recurso se encuentra actualmente disponible o la forma prevista de obtenerlo].
+\noindent\textbf{Detalle de fuente de financiamiento y disponibilidad:}\\[0.3em]
+[Especifique con precisión la procedencia de los fondos: recursos propios de los alumnos, proyecto de investigación institucional SIP-IPN con número de registro, vinculación externa o becas, indicando si los recursos ya están disponibles o la vía programada para obtenerlos].
 
 % ------------------------------------------------------------------------------
-\section{Cronograma de actividades de Trabajo Terminal I y II}
+\section{Cronograma de actividades}
 \label{sec:proto-cronograma-actividades}
 
 % [INSTRUCCIÓN PARA EL ALUMNO]:
 % El cronograma debe contemplar un calendario semanal detallando las actividades
 % específicas asignadas a cada alumno para TT I y TT II.
-% Puede incluirse mediante tablas estructuradas o figuras externas de gráficas de Gantt
-% generadas con herramientas de gestión de proyectos mediante \includegraphics.
 
-\subsection{Cronograma semanal de actividades de Trabajo Terminal I}
+\subsection{Trabajo Terminal 1}
+\label{subsec:proto-cronograma-tt1}
 
-[Describa la planificación semanal de TT I, indicando la distribución de tareas entre los alumnos del equipo].
+[Describa la planificación semanal de TT 1, indicando la distribución de tareas entre los alumnos del equipo].
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     % Inserte aquí su gráfica de Gantt exportada en PDF o PNG:
     % \includegraphics[width=0.95\textwidth]{figuras/proyecto/gantt-semanal-tt1.pdf}
-    \fbox{\parbox[c][5cm][c]{0.9\textwidth}{\centering\textbf{[Espacio para Gráfica de Gantt Semanal de Trabajo Terminal I]}\\[0.5em]
+    \fbox{\parbox[c][4.5cm][c]{0.9\textwidth}{\centering\textbf{[Espacio para Diagrama de GANTT TT1]}\\[0.5em]
     \small Inserte aquí el cronograma gráfico generado externamente mediante:\\
     \texttt{\textbackslash includegraphics[width=0.9\textbackslash textwidth]\{figuras/proyecto/gantt-semanal-tt1.pdf\}}}}
-    \caption{Gráfica de Gantt semanal con actividades por alumno para Trabajo Terminal I.}
+    \caption{Diagrama de GANTT TT1.}
     \label{fig:proto-gantt-semanal-tt1}
 \end{figure}
 
-\subsection{Cronograma semanal de actividades de Trabajo Terminal II}
+\subsection{Trabajo Terminal 2}
+\label{subsec:proto-cronograma-tt2}
 
-[Describa la planificación semanal de TT II, indicando la distribución de tareas entre los alumnos del equipo].
+[Describa la planificación semanal de TT 2, indicando la distribución de tareas entre los alumnos del equipo].
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     % Inserte aquí su gráfica de Gantt exportada en PDF o PNG:
     % \includegraphics[width=0.95\textwidth]{figuras/proyecto/gantt-semanal-tt2.pdf}
-    \fbox{\parbox[c][5cm][c]{0.9\textwidth}{\centering\textbf{[Espacio para Gráfica de Gantt Semanal de Trabajo Terminal II]}\\[0.5em]
+    \fbox{\parbox[c][4.5cm][c]{0.9\textwidth}{\centering\textbf{[Espacio para Diagrama de GANTT TT2]}\\[0.5em]
     \small Inserte aquí el cronograma gráfico generado externamente mediante:\\
     \texttt{\textbackslash includegraphics[width=0.9\textbackslash textwidth]\{figuras/proyecto/gantt-semanal-tt2.pdf\}}}}
-    \caption{Gráfica de Gantt semanal con actividades por alumno para Trabajo Terminal II.}
+    \caption{Diagrama de GANTT TT2.}
     \label{fig:proto-gantt-semanal-tt2}
 \end{figure}
 
 % ------------------------------------------------------------------------------
 % CONFORMIDAD DEL CRONOGRAMA DE ACTIVIDADES (FIRMAS DE ALUMNOS Y ASESORES)
 % ------------------------------------------------------------------------------
-\vspace{1.5cm}
-\begin{center}
-    {\fontsize{11}{13}\bfseries\sffamily Conformidad del Cronograma de Actividades}\\[0.3em]
-    {\fontsize{9}{11}\sffamily Con la firma de esta sección, los alumnos y asesores avalan el calendario de actividades y la viabilidad del proyecto.}\\[1.0em]
-    \bloqueFirmasProtocolo[0.8cm]
-\end{center}
+% Conforme al punto 16 del Anexo 1: Las firmas de alumnos y asesores son requeridas
+% expresamente en el cronograma de actividades.
+\vspace{0.6cm}
+\noindent
+\begin{minipage}{\textwidth}
+    \centering
+    {\fontsize{10.5}{12}\bfseries\sffamily Conformidad del Cronograma de Actividades}\\[0.2em]
+    {\fontsize{8.5}{10}\sffamily Con la firma de esta sección, los alumnos y asesores avalan formalmente el calendario y la viabilidad del proyecto.}\\[0.3em]
+    \bloqueFirmasProtocolo[0.2cm]
+\end{minipage}
