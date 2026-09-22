@@ -8,7 +8,7 @@
 
 Bienvenido al repositorio oficial de la **Plantilla Institucional de Trabajo Terminal** para la carrera de **Ingeniería Mecatrónica** de la **Unidad Profesional Interdisciplinaria de Ingeniería Campus Zacatecas (UPIIZ)** del **Instituto Politécnico Nacional (IPN)**.
 
-Esta plantilla ha sido diseñada para ser **modular, robusta, fácil de usar y 100% conforme a los lineamientos normativos institucionales**.
+Esta plantilla ha sido diseñada para ser **modular, robusta, fácil de usar y alineada con el Reglamento Interno de Trabajo Terminal de Ingeniería Mecatrónica UPIIZ-IPN, sus anexos aplicables y los formatos institucionales disponibles**.
 
 ---
 
@@ -20,7 +20,7 @@ Esta plantilla ha sido diseñada para ser **modular, robusta, fácil de usar y 1
 
 > ⚠️ **IMPORTANTE:** Este repositorio es la **plantilla maestra** oficial de Trabajo Terminal. **NO trabajes directamente sobre este repositorio ni solicites acceso de escritura.**
 >
-> Crear un repositorio a partir de esta plantilla genera una **copia 100% independiente**. Los cambios realizados por los estudiantes en sus repositorios **NO** modifican la plantilla maestra.
+> Crear un repositorio a partir de esta plantilla genera una **copia independiente**. Los cambios realizados por los estudiantes en sus repositorios **NO** modifican la plantilla maestra.
 
 ### ¿Cómo comenzar tu proyecto en 5 pasos?
 1. Haz clic en el botón verde superior **`Use this template`** $\rightarrow$ **`Create a new repository`**.
@@ -37,15 +37,48 @@ Esta plantilla ha sido diseñada para ser **modular, robusta, fácil de usar y 1
 ## 🎯 Propósito y Documentos Soportados
 
 La plantilla cubre todo el ciclo formal de titulación curricular de Trabajo Terminal en la UPIIZ:
-- **1. Protocolo de Trabajo Terminal (`PROTOCOLO`):** Registro formal del proyecto con área de ubicación, línea de trabajo e intención de titulación.
+- **1. Protocolo de Trabajo Terminal (`PROTOCOLO`):** Registro formal de la propuesta de proyecto.
 - **2. Trabajo Terminal I (`TTI`):** Reporte de diseño mecatrónico detallado (cálculos, selección de componentes, planos mecánicos, esquemáticos electrónicos, algoritmos, simulaciones y cronograma hacia TT II).
 - **3. Trabajo Terminal II (`TTII`):** Reporte final con manufactura, integración física, programación de firmware, validación experimental, resultados, conclusiones y trabajo a futuro.
 
-La selección se realiza configurando una sola línea en `config/datos.tex`:
+La selección se realiza configurando una sola macro en `config/datos.tex`:
 ```latex
-\TipoDocumento{PROTOCOLO} % o TTI o TTII
+\TipoDocumento{PROTOCOLO} % Para Protocolo de Trabajo Terminal
+% \TipoDocumento{TTI}       % Para Trabajo Terminal I
+% \TipoDocumento{TTII}      % Para Trabajo Terminal II / Reporte Final
 ```
-La plantilla adapta automáticamente la portada correspondiente, la inclusión de portada interna de firmas, agradecimientos, dedicatorias, títulos de validación y apéndices.
+
+### Características del modo PROTOCOLO
+Para la etapa de registro, el modo `PROTOCOLO` activa automáticamente una arquitectura documental homologada con el formato institucional de referencia:
+- **Portada específica:** Composición asimétrica oficial con cintillo institucional izquierdo, área de ubicación, línea de trabajo, bloque de alumnos e intención de titulación curricular en dos columnas, asesores centrados y fecha.
+- **Orden de preliminares:** Índices generales al inicio (Índice de contenido, figuras y tablas con folios limpios) seguidos del Resumen y Abstract con numeración romana (`I` y `II`).
+- **Capítulos 1 a 9:** Estructura completa alineada con el Anexo 1 (Objetivos del proyecto con máximo 4 objetivos específicos, Justificación, Antecedentes, Marco Teórico, Estado del Arte, Descripción con diagramas funcionales IDEF-0, Metodología de trabajo, Productos esperados y Viabilidad).
+- **Tablas de Viabilidad detalladas:** Desglose independiente de Recursos Humanos (9.1.1 Alumnos y 9.1.2 Asesores), Equipo e instalaciones necesarias (9.2), Costo estimado (9.3) y Cronogramas de actividades para TT 1 y TT 2 (9.4).
+- **Firmas institucionales intermedias:** Bloques de conformidad avalados por alumnos y asesores en Objetivos y Cronograma de actividades.
+- **Capítulo 10: Bibliografía:** Formalmente numerado en el cuerpo y en el Índice general con referencias en formato IEEE.
+- **Capítulo 11: Firmas:** Capítulo final numerado con secciones específicas para firmas de Alumnos (11.1) y Asesores (11.2).
+- **Anexos normativos:** Apartado para Currículum Vitae (CV) resumido de los asesores con inclusión automática de archivos PDF y mecanismo para la última hoja reglamentaria del Instrumento de Evaluación (Anexo 2).
+
+---
+
+## ⚡ Uso rápido para Protocolo
+
+Para comenzar la redacción de tu Protocolo de Trabajo Terminal:
+
+1. **Clonar o descargar el repositorio** (o crear tu copia con `Use this template`).
+2. **Abrir `config/datos.tex`**.
+3. **Seleccionar el tipo de documento:**
+   ```latex
+   \TipoDocumento{PROTOCOLO}
+   ```
+4. **Completar los datos del proyecto:** Título, Línea de Trabajo (I a VI), Área de ubicación, Alumnos, Asesores y fecha.
+5. **Editar los archivos de contenido** dentro de la carpeta `capitulos/protocolo/`.
+6. **Colocar los archivos PDF de CV y anexos** en la carpeta `anexos/` cuando corresponda (`cv-asesor-1.pdf`, `anexo-2-evaluacion.pdf`, etc.).
+7. **Compilar `main.tex`** con LuaLaTeX / `latexmk`:
+   ```bash
+   latexmk main.tex
+   ```
+   El documento resultante será **`main.pdf`**.
 
 ---
 
@@ -92,8 +125,9 @@ Plantilla_Trabajo_Terminal/
 │   ├── formato.tex          <- Parámetros institucionales (Arial, 1.5, márgenes)
 │   └── comandos.tex         <- Macros, validaciones y comandos mecatrónicos auxiliares
 ├── frontmatter/             <- Portada, portada interna, resumen, abstract
-├── capitulos/               <- Capítulos 01 al 10 (un archivo .tex por sección)
-├── apendices/               <- Cálculos, planos, esquemáticos y cronograma
+├── capitulos/               <- Capítulos modulares para TTI/TTII y subcarpeta protocolo/ para PROTOCOLO
+├── apendices/               <- Cálculos, planos, esquemáticos y anexos institucionales
+├── anexos/                  <- Archivos PDF complementarios (CV de asesores y Anexo 2 de evaluación)
 ├── bibliografia/            <- Base de datos bibliográfica IEEE (referencias.bib)
 ├── figuras/                 <- Logotipos institucionales e imágenes del proyecto
 ├── ejemplos/                <- Bloques de ejemplo listos para copiar (tablas, figuras, código)

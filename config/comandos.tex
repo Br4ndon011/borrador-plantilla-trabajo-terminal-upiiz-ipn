@@ -18,52 +18,56 @@
 \newif\ifTTII
 
 % Macro principal de configuración de tipo de documento
+\makeatletter
 \newcommand{\TipoDocumento}[1]{%
-  \edef\tipoDocParam{\detokenize{#1}}%
+  % Normalización de espacios: Se emplea \zap@space del núcleo de LaTeX para eliminar
+  % espacios accidentales al inicio, en medio o al final de la entrada (ej. " PROTOCOLO ").
+  % Dado que las opciones válidas no contienen espacios internos legítimos, este mecanismo
+  % previene errores de captura sin generar ambigüedades respecto a opciones no reconocidas.
+  \edef\tipoDocParam{\zap@space#1 \@empty}%
   \Protocolofalse
   \TTIfalse
   \TTIIfalse
-  % Comparación normalizada
-  \ifstrequal{#1}{PROTOCOLO}{%
+  \def\TipoDocCodigo{DESCONOCIDO}%
+  % Comparación normalizada y exhaustiva
+  \ifboolexpr{
+    test {\ifdefstring{\tipoDocParam}{PROTOCOLO}} or
+    test {\ifdefstring{\tipoDocParam}{protocolo}} or
+    test {\ifdefstring{\tipoDocParam}{Protocolo}}
+  }{%
     \Protocolotrue
     \def\TipoDocCodigo{PROTOCOLO}%
   }{%
-  \ifstrequal{#1}{protocolo}{%
-    \Protocolotrue
-    \def\TipoDocCodigo{PROTOCOLO}%
+  \ifboolexpr{
+    test {\ifdefstring{\tipoDocParam}{TTI}} or
+    test {\ifdefstring{\tipoDocParam}{tti}} or
+    test {\ifdefstring{\tipoDocParam}{TT1}} or
+    test {\ifdefstring{\tipoDocParam}{tt1}}
   }{%
-  \ifstrequal{#1}{TTI}{%
     \TTItrue
     \def\TipoDocCodigo{TTI}%
   }{%
-  \ifstrequal{#1}{tti}{%
-    \TTItrue
-    \def\TipoDocCodigo{TTI}%
+  \ifboolexpr{
+    test {\ifdefstring{\tipoDocParam}{TTII}} or
+    test {\ifdefstring{\tipoDocParam}{ttii}} or
+    test {\ifdefstring{\tipoDocParam}{TT2}} or
+    test {\ifdefstring{\tipoDocParam}{tt2}}
   }{%
-  \ifstrequal{#1}{TT1}{%
-    \TTItrue
-    \def\TipoDocCodigo{TTI}%
-  }{%
-  \ifstrequal{#1}{TTII}{%
     \TTIItrue
     \def\TipoDocCodigo{TTII}%
   }{%
-  \ifstrequal{#1}{ttii}{%
-    \TTIItrue
-    \def\TipoDocCodigo{TTII}%
-  }{%
-  \ifstrequal{#1}{TT2}{%
-    \TTIItrue
-    \def\TipoDocCodigo{TTII}%
-  }{%
-    \PackageWarning{PlantillaUPIIZ}{%
-      Tipo de documento '#1' no reconocido. Opciones validas: PROTOCOLO, TTI, TTII. %
-      Se usara TTI por defecto.%
+    \PackageError{PlantillaUPIIZ}{%
+      Tipo de documento '#1' no valido.\MessageBreak
+      Opciones permitidas:\MessageBreak
+      \space\space- PROTOCOLO (o protocolo, Protocolo)\MessageBreak
+      \space\space- TTI (o tti, TT1, tt1)\MessageBreak
+      \space\space- TTII (o ttii, TT2, tt2)%
+    }{%
+      Configure \protect\TipoDocumento{...} en config/datos.tex con una de las opciones validas.%
     }%
-    \TTItrue
-    \def\TipoDocCodigo{TTI}%
-  }}}}}}}}%
+  }}}%
 }
+\makeatother
 
 % Macros auxiliares para consulta de estado
 \newcommand{\EsProtocolo}[1]{\ifProtocolo #1\fi}
@@ -90,7 +94,19 @@
 }
 
 \newcommand{\tituloValidacion}{%
-  \ifTTI Análisis y validación del diseño\else Análisis y validación de resultados\fi%
+  \ifTTI
+    Análisis y validación del diseño%
+  \else
+    \ifTTII
+      Análisis y validación de resultados%
+    \else
+      \PackageWarning{PlantillaUPIIZ}{%
+        \protect\tituloValidacion\space no debe ser utilizado en modo PROTOCOLO %
+        ni con tipos de documento no reconocidos.%
+      }%
+      Análisis y validación%
+    \fi
+  \fi%
 }
 
 % ------------------------------------------------------------------------------
@@ -178,6 +194,17 @@
   \end{minipage}%
 }
 
+% Helper macros para intención de titulación en la portada de Protocolo
+\newcommand{\obtenerIntencionA}{%
+  \ifcsvoid{intencionTitulacionA}{\intencionTitulacion}{\intencionTitulacionA}%
+}
+\newcommand{\obtenerIntencionB}{%
+  \ifcsvoid{intencionTitulacionB}{\intencionTitulacion}{\intencionTitulacionB}%
+}
+\newcommand{\obtenerIntencionC}{%
+  \ifcsvoid{intencionTitulacionC}{\intencionTitulacion}{\intencionTitulacionC}%
+}
+
 % Línea para firmas en la Portada Interna
 \newcommand{\lineaFirma}[2]{%
   \begin{minipage}[t]{0.45\textwidth}
@@ -187,6 +214,50 @@
     {\fontsize{10}{12}\bfseries\sffamily #1}\\[0.2em]
     {\fontsize{9}{11}\sffamily #2}
   \end{minipage}%
+}
+
+% Firmas de alumnos para Protocolo
+\newcommand{\firmasAlumnosProtocolo}{%
+  \noindent
+  \begin{minipage}{\textwidth}
+    \centering
+    \lineaFirma{\alumnoANombre}{Alumno(a) - Boleta: \alumnoABoleta}%
+    \ifcsvoid{alumnoBNombre}{}{%
+      \hfill
+      \lineaFirma{\alumnoBNombre}{Alumno(a) - Boleta: \alumnoBBoleta}%
+    }%
+    \ifcsvoid{alumnoCNombre}{}{%
+      \\[0.6cm]
+      \lineaFirma{\alumnoCNombre}{Alumno(a) - Boleta: \alumnoCBoleta}%
+    }%
+  \end{minipage}%
+}
+
+% Firmas de asesores para Protocolo
+\newcommand{\firmasAsesoresProtocolo}{%
+  \noindent
+  \begin{minipage}{\textwidth}
+    \centering
+    \lineaFirma{\asesorANombre}{Asesor(a) Principal}%
+    \ifcsvoid{asesorBNombre}{}{%
+      \hfill
+      \lineaFirma{\asesorBNombre}{Asesor(a)}%
+    }%
+    \ifcsvoid{asesorCNombre}{}{%
+      \\[0.6cm]
+      \lineaFirma{\asesorCNombre}{Asesor(a)}%
+    }%
+  \end{minipage}%
+}
+
+% Bloque institucional de firmas de conformidad para Protocolo (Alumnos y Asesores)
+\newcommand{\bloqueFirmasProtocolo}[1][0.6cm]{%
+  \begin{center}
+    {\fontsize{11}{14}\bfseries\sffamily Alumnos:}\\[0.2em]
+    \firmasAlumnosProtocolo\\[#1]
+    {\fontsize{11}{14}\bfseries\sffamily Asesores:}\\[0.2em]
+    \firmasAsesoresProtocolo
+  \end{center}%
 }
 
 % ------------------------------------------------------------------------------
