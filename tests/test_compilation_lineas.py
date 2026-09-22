@@ -52,6 +52,11 @@ def run_all_tests():
     if not test_line("VI", "TTII"):
         return False
 
+    # Recompilar con la configuración original restaurada
+    print("Recompilando con la configuración original...")
+    repo_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    subprocess.run(["latexmk", "-silent", "main.tex"], cwd=repo_dir, capture_output=True, text=True)
+
     print("\n[OK] Todas las pruebas de compilacion de Lineas de Trabajo concluyeron exitosamente.")
     return True
 
