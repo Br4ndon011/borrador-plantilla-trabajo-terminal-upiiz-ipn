@@ -51,67 +51,141 @@
     \input{frontmatter/portada-interna.tex}
 \fi
 
-% Numeración romana para páginas preliminares
-\pagenumbering{roman}
-\setcounter{page}{1}
+\ifProtocolo
+    % ==========================================================================
+    % ORDEN DE PRELIMINARES PARA PROTOCOLO (Conforme a referencia real)
+    % 1. Portada
+    % 2. Índice general (ÍNDICE)
+    % 3. Índice de figuras
+    % 4. Índice de tablas
+    % 5. Resumen + Palabras clave (página I)
+    % 6. Abstract + Keywords (página II)
+    % ==========================================================================
+    \renewcommand{\contentsname}{ÍNDICE}
 
-% Agradecimientos y Dedicatorias (EXCLUSIVO para TT II / Reporte Final)
-\ifTTII
-    \input{frontmatter/agradecimientos.tex}
-    \input{frontmatter/dedicatorias.tex}
+    % Índices generados automáticamente sin número de página visible
+    \begingroup
+    \renewcommand{\thispagestyle}[1]{}%
+    \pagestyle{empty}
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \clearpage
+    \listoftables
+    \clearpage
+    \endgroup
+
+    % Numeración romana mayúscula a partir de Resumen
+    \pagestyle{plain}
+    \pagenumbering{Roman}
+    \setcounter{page}{1}
+
+    \input{frontmatter/resumen.tex}
+    \clearpage
+    \input{frontmatter/abstract.tex}
+    \clearpage
+
+\else
+    % ==========================================================================
+    % ORDEN DE PRELIMINARES PARA REPORTE FINAL (TT I Y TT II)
+    % Se conserva exactamente el orden institucional reglamentario
+    % ==========================================================================
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+
+    % Agradecimientos y Dedicatorias (EXCLUSIVO para TT II / Reporte Final)
+    \ifTTII
+        \input{frontmatter/agradecimientos.tex}
+        \input{frontmatter/dedicatorias.tex}
+    \fi
+
+    % Resumen en español y Abstract en inglés
+    \input{frontmatter/resumen.tex}
+    \input{frontmatter/abstract.tex}
+
+    % Índices generados automáticamente
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \clearpage
+    \listoftables
+    \clearpage
 \fi
 
-% Resumen en español y Abstract en inglés
-\input{frontmatter/resumen.tex}
-\input{frontmatter/abstract.tex}
-
-% Índices generados automáticamente
-\tableofcontents
-\clearpage
-\listoffigures
-\clearpage
-\listoftables
-\clearpage
-
 % ------------------------------------------------------------------------------
-% CUERPO PRINCIPAL DEL TRABAJO TERMINAL (MAINMATTER)
+% CUERPO PRINCIPAL DEL DOCUMENTO (MAINMATTER)
 % ------------------------------------------------------------------------------
-% La numeración arábiga (1, 2, 3...) inicia formalmente en la Introducción
+% La numeración arábiga (1, 2, 3...) inicia formalmente en el primer capítulo
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\input{capitulos/01-introduccion.tex}
-\input{capitulos/02-justificacion.tex}
-\input{capitulos/03-antecedentes.tex}
-\input{capitulos/04-marco-teorico.tex}
-\input{capitulos/05-estado-del-arte.tex}
-\input{capitulos/06-planteamiento-problema.tex}
-\input{capitulos/07-desarrollo.tex}
-\input{capitulos/08-validacion.tex}
-\input{capitulos/09-conclusiones.tex}
+\ifProtocolo
+    % ==========================================================================
+    % ESTRUCTURA INSTITUCIONAL: PROTOCOLO DE TRABAJO TERMINAL (ANEXO 1)
+    % ==========================================================================
+    \input{capitulos/protocolo/01-objetivos.tex}
+    \input{capitulos/protocolo/02-justificacion.tex}
+    \input{capitulos/protocolo/03-antecedentes.tex}
+    \input{capitulos/protocolo/04-marco-teorico.tex}
+    \input{capitulos/protocolo/05-estado-del-arte.tex}
+    \input{capitulos/protocolo/06-descripcion-trabajo-propuesto.tex}
+    \input{capitulos/protocolo/07-metodologia-trabajo.tex}
+    \input{capitulos/protocolo/08-productos-resultados-esperados.tex}
+    \input{capitulos/protocolo/09-viabilidad.tex}
 
-% Trabajo a Futuro (EXCLUSIVO para TT II / Reporte Final)
-\ifTTII
-    \input{capitulos/10-trabajo-futuro.tex}
-\fi
+    % Capítulo 10: Bibliografía (numerado en PROTOCOLO como en la referencia)
+    \clearpage
+    \chapter{Bibliografía}
+    \label{cap:proto-bibliografia}
+    \begingroup
+    \makeatletter
+    \def\chapter{\@ifstar{\@gobble}{\@gobble}}%
+    \makeatother
+    \bibliographystyle{IEEEtran}
+    \bibliography{bibliografia/referencias}%
+    \endgroup
 
-% ------------------------------------------------------------------------------
-% BIBLIOGRAFÍA EN FORMATO IEEE
-% ------------------------------------------------------------------------------
-\clearpage
-\addcontentsline{toc}{chapter}{Bibliografía}
-\bibliographystyle{IEEEtran}
-\bibliography{bibliografia/referencias}
+    % Capítulo 11: Firmas (Alumnos y Asesores)
+    \clearpage
+    \input{capitulos/protocolo/11-firmas.tex}
 
-% ------------------------------------------------------------------------------
-% APÉNDICES
-% ------------------------------------------------------------------------------
-\clearpage
-\input{apendices/apendices.tex}
+    % Anexo institucional: CV de Asesores y Anexo 2
+    \clearpage
+    \input{apendices/protocolo-anexo.tex}
 
-% Cronograma de TT II (EXCLUSIVO para el Reporte de TT I)
-\ifTTI
-    \input{apendices/cronograma-tt2.tex}
+\else
+    % ==========================================================================
+    % ESTRUCTURA DE REPORTE TÉCNICO (TRABAJO TERMINAL I Y TRABAJO TERMINAL II)
+    % ==========================================================================
+    \input{capitulos/01-introduccion.tex}
+    \input{capitulos/02-justificacion.tex}
+    \input{capitulos/03-antecedentes.tex}
+    \input{capitulos/04-marco-teorico.tex}
+    \input{capitulos/05-estado-del-arte.tex}
+    \input{capitulos/06-planteamiento-problema.tex}
+    \input{capitulos/07-desarrollo.tex}
+    \input{capitulos/08-validacion.tex}
+    \input{capitulos/09-conclusiones.tex}
+
+    % Trabajo a Futuro (EXCLUSIVO para TT II / Reporte Final)
+    \ifTTII
+        \input{capitulos/10-trabajo-futuro.tex}
+    \fi
+
+    % Bibliografía en formato IEEE
+    \clearpage
+    \addcontentsline{toc}{chapter}{Bibliografía}
+    \bibliographystyle{IEEEtran}
+    \bibliography{bibliografia/referencias}
+
+    % Apéndices
+    \clearpage
+    \input{apendices/apendices.tex}
+
+    % Cronograma de TT II (EXCLUSIVO para el Reporte de TT I)
+    \ifTTI
+        \input{apendices/cronograma-tt2.tex}
+    \fi
 \fi
 
 \end{document}
