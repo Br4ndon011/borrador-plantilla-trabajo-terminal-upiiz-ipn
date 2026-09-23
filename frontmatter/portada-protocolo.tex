@@ -54,15 +54,15 @@
     % Presentan e Intención de Titulación (dos columnas conforme al protocolo de referencia)
     \begin{minipage}{0.96\linewidth}
         \begin{tabular}{@{}p{0.52\linewidth}@{\hspace{0.03\linewidth}}p{0.45\linewidth}@{}}
-            {\fontsize{10.5}{13}\bfseries\sffamily Presentan:} & {\fontsize{10.5}{13}\bfseries\sffamily Intención de Titulación:}\\[0.4em]
-            {\fontsize{9.5}{12.5}\sffamily \alumnoANombre} & {\fontsize{9}{12}\sffamily $\checkmark$\,Curricular \quad Otro: \underline{\hspace{1.1cm}}}%
+            {\fontsize{10.5}{13}\bfseries\sffamily Presentan:} & \makebox[\linewidth][c]{{\fontsize{10.5}{13}\bfseries\sffamily Intención de Titulación:}}\\[0.4em]
+            {\fontsize{9.5}{12.5}\sffamily \alumnoANombre} & \makebox[\linewidth][c]{{\fontsize{9}{12}\sffamily $\checkmark$\,Curricular}}%
             \ifcsvoid{alumnoBNombre}{}{%
                 \tabularnewline[0.35em]
-                {\fontsize{9.5}{12.5}\sffamily \alumnoBNombre} & {\fontsize{9}{12}\sffamily $\checkmark$\,Curricular \quad Otro: \underline{\hspace{1.1cm}}}%
+                {\fontsize{9.5}{12.5}\sffamily \alumnoBNombre} & \makebox[\linewidth][c]{{\fontsize{9}{12}\sffamily $\checkmark$\,Curricular}}%
             }%
             \ifcsvoid{alumnoCNombre}{}{%
                 \tabularnewline[0.35em]
-                {\fontsize{9.5}{12.5}\sffamily \alumnoCNombre} & {\fontsize{9}{12}\sffamily $\checkmark$\,Curricular \quad Otro: \underline{\hspace{1.1cm}}}%
+                {\fontsize{9.5}{12.5}\sffamily \alumnoCNombre} & \makebox[\linewidth][c]{{\fontsize{9}{12}\sffamily $\checkmark$\,Curricular}}%
             }%
         \end{tabular}
     \end{minipage}\\[1.4em]
