@@ -34,8 +34,8 @@
 % - anexos/cv-asesor-3.pdf (si existe tercer asesor)
 % Si los archivos existen físicamente, se insertan automáticamente con \includepdf.
 
-\IfFileExists{anexos/cv-asesor-1.pdf}{%
-    \includepdf[pages=1-2,pagecommand={\thispagestyle{empty}}]{anexos/cv-asesor-1.pdf}%
+\IfFileExists{anexos/cv_rafa.pdf}{%
+    \includepdf[pages=1-2,pagecommand={\thispagestyle{empty}}]{anexos/cv_rafa.pdf}%
 }{%
     \begin{center}
         \fbox{\parbox{0.88\textwidth}{%
@@ -48,8 +48,8 @@
 }
 
 \ifcsvoid{asesorBNombre}{}{%
-    \IfFileExists{anexos/cv-asesor-2.pdf}{%
-        \includepdf[pages=1-2,pagecommand={\thispagestyle{empty}}]{anexos/cv-asesor-2.pdf}%
+    \IfFileExists{anexos/cv_sergio.pdf}{%
+        \includepdf[pages=1-2,pagecommand={\thispagestyle{empty}}]{anexos/cv_sergio.pdf}%
     }{%
         \begin{center}
             \fbox{\parbox{0.88\textwidth}{%
@@ -63,8 +63,8 @@
 }
 
 \ifcsvoid{asesorCNombre}{}{%
-    \IfFileExists{anexos/cv-asesor-3.pdf}{%
-        \includepdf[pages=1-2,pagecommand={\thispagestyle{empty}}]{anexos/cv-asesor-3.pdf}%
+    \IfFileExists{anexos/cv_tala.pdf}{%
+            \includepdf[pages=1-2,pagecommand={\thispagestyle{empty}}]{anexos/cv_tala.pdf}%
     }{%
         \begin{center}
             \fbox{\parbox{0.88\textwidth}{%
@@ -84,8 +84,8 @@
 % al Anexo 2 del Reglamento para la evaluación de la Comisión Evaluadora.
 % Coloque el archivo en "anexos/anexo-2-evaluacion.pdf" para su inclusión automática.
 
-\IfFileExists{anexos/anexo-2-evaluacion.pdf}{%
-    \includepdf[pages=1,pagecommand={\thispagestyle{empty}}]{anexos/anexo-2-evaluacion.pdf}%
+\IfFileExists{anexos/anexo_2.pdf}{%
+    \includepdf[pages=1,pagecommand={\thispagestyle{empty}}]{anexos/anexo_2.pdf}%
 }{%
     \vfill
     \begin{center}
