@@ -73,7 +73,7 @@
         1 & \asesorANombre & Teléfono: 492 250 4428 \newline Correo: rrevelesm@ipn.mx \\
         \ifcsvoid{asesorBNombre}{}{%
             \midrule
-            2 & \asesorBNombre & Teléfono: [Teléfono de contacto] \newline Correo: sdominguez@ipn.mx \\
+            2 & \asesorBNombre & Teléfono: 55 3447 1355 \newline Correo: sdominguez@ipn.mx \\
         }%
         \ifcsvoid{asesorCNombre}{}{%
             \midrule
@@ -124,18 +124,18 @@
         \toprule
         \textbf{Descripción / Etapa} & \textbf{Costo mín. (MXN)} & \textbf{Costo máx. (MXN)} & \textbf{Fuente de financiamiento} \\
         \midrule
-        Etapa 1: Componentes y materiales de diseño & [\$ 0.00] & [\$ 0.00] & Recursos propios / SIP \\
-        Etapa 2: Fabricación, maquinado e insumos   & [\$ 0.00] & [\$ 0.00] & Recursos propios / SIP \\
-        Etapa 3: Integración de circuitos y sensores & [\$ 0.00] & [\$ 0.00] & Recursos propios / SIP \\
-        Etapa 4: Pruebas y validación experimental & [\$ 0.00] & [\$ 0.00] & Recursos propios / SIP \\
+        Actuadores & [\$ 500.00] & [\$ 1000.00] & Recursos propios / SIP \\
+        Circuitos y sensores   & [\$ 1000.00] & [\$ 3500.00] & Recursos propios / SIP \\
+        Comunicación y conectividad   & [\$ 300.00] & [\$ 1000.00] & Recursos propios / SIP \\
+        Fabricación, maquinado e insumos   & [\$ 1000.00] & [\$ 2000.00] & Recursos propios / SIP \\
+        Materiales estructurales & [\$ 1000.00] & [\$ 4000.00] & Recursos propios / SIP \\
+        Placa controladora & [\$ 4000.00] & [\$ 8000.00] & Recursos propios / SIP \\
+        Sistema de alimentación & [\$ 400.00] & [\$ 1000.00] & Recursos propios / SIP \\
         \midrule
-        \textbf{Total estimado del proyecto:} & \textbf{[\$ 0.00]} & \textbf{[\$ 0.00]} & Financiamiento propio / Apoyo institucional \\
+        \textbf{Total estimado del proyecto:} & \textbf{[\$ 8200.00]} & \textbf{[\$ 20500.00]} & Financiamiento propio / Apoyo institucional \\
         \bottomrule
     \end{tabularx}
 \end{table}
-
-\noindent\textbf{Detalle de fuente de financiamiento y disponibilidad:}\\[0.3em]
-[Especifique con precisión la procedencia de los fondos: recursos propios de los alumnos, proyecto de investigación institucional SIP-IPN con número de registro, vinculación externa o becas, indicando si los recursos ya están disponibles o la vía programada para obtenerlos].
 
 % ------------------------------------------------------------------------------
 \section{Cronograma de actividades}
@@ -152,41 +152,32 @@
 
 \begin{figure}[H]
     \centering
-    % Inserte aquí su gráfica de Gantt exportada en PDF o PNG:
-    % \includegraphics[width=0.95\textwidth]{figuras/proyecto/gantt-semanal-tt1.pdf}
-    \fbox{\parbox[c][4.5cm][c]{0.9\textwidth}{\centering\textbf{[Espacio para Diagrama de GANTT TT1]}\\[0.5em]
-    \small Inserte aquí el cronograma gráfico generado externamente mediante:\\
-    \texttt{\textbackslash includegraphics[width=0.9\textbackslash textwidth]\{figuras/proyecto/gantt-semanal-tt1.pdf\}}}}
+    \includegraphics[width=0.6\textwidth]{figuras/proyecto/crono_tt1.png}
     \caption{Diagrama de GANTT TT1.}
-    \label{fig:proto-gantt-semanal-tt1}
+    \label{fig:D_A0}
 \end{figure}
 
 \subsection{Trabajo Terminal 2}
 \label{subsec:proto-cronograma-tt2}
 
-[Describa la planificación semanal de TT 2, indicando la distribución de tareas entre los alumnos del equipo].
-
 \begin{figure}[H]
     \centering
-    % Inserte aquí su gráfica de Gantt exportada en PDF o PNG:
-    % \includegraphics[width=0.95\textwidth]{figuras/proyecto/gantt-semanal-tt2.pdf}
-    \fbox{\parbox[c][4.5cm][c]{0.9\textwidth}{\centering\textbf{[Espacio para Diagrama de GANTT TT2]}\\[0.5em]
-    \small Inserte aquí el cronograma gráfico generado externamente mediante:\\
-    \texttt{\textbackslash includegraphics[width=0.9\textbackslash textwidth]\{figuras/proyecto/gantt-semanal-tt2.pdf\}}}}
+    \includegraphics[width=0.6\textwidth]{figuras/proyecto/crono_tt2.png}
     \caption{Diagrama de GANTT TT2.}
-    \label{fig:proto-gantt-semanal-tt2}
+    \label{fig:D_A0}
 \end{figure}
+
 
 % ------------------------------------------------------------------------------
 % CONFORMIDAD DEL CRONOGRAMA DE ACTIVIDADES (FIRMAS DE ALUMNOS Y ASESORES)
 % ------------------------------------------------------------------------------
 % Conforme al punto 16 del Anexo 1: Las firmas de alumnos y asesores son requeridas
 % expresamente en el cronograma de actividades.
-\vspace{0.6cm}
-\noindent
-\begin{minipage}{\textwidth}
-    \centering
-    {\fontsize{10.5}{12}\bfseries\sffamily Conformidad del Cronograma de Actividades}\\[0.2em]
-    {\fontsize{8.5}{10}\sffamily Con la firma de esta sección, los alumnos y asesores avalan formalmente el calendario y la viabilidad del proyecto.}\\[0.3em]
-    \bloqueFirmasProtocolo[0.2cm]
-\end{minipage}
+%\vspace{0.6cm}
+%%\noindent
+%\begin{minipage}{\textwidth}
+%    \centering
+%    {\fontsize{10.5}{12}\bfseries\sffamily Conformidad del Cronograma de Actividades}\\[0.2em]
+%    {\fontsize{8.5}{10}\sffamily Con la firma de esta sección, los alumnos y asesores avalan formalmente el calendario y la viabilidad del proyecto.}\\[0.3em]
+%   \bloqueFirmasProtocolo[0.2cm]
+%\end{minipage}
