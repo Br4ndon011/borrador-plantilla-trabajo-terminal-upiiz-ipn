@@ -33,15 +33,15 @@ Para la realización de este proyecto, se empleará la metodología de diseño m
 
 El presente trabajo propone el diseño y desarrollo de un robot móvil autónomo para el transporte de objetos dentro de un entorno cubierto, con superficie plana y un área de desplazamiento de hasta 5×5 m. El sistema estará diseñado para trasladar una carga de hasta 1.0 kg desde un punto base hasta un punto definido por el usuario. Para realizar está tarea, contará con un sistema de navegación que le permita reconocer el entorno, determinar su posición y establecer de manera autónoma la trayectoria necesaria para llegar al punto indicado. Se contempla un tiempo de funcionamiento de hasta 15 minutos, con el propósito de disminuir la intervención del usuario durante el traslado.
 
-Debido a los requerimientos y las funciones que se deben de cumplir en el sistema robótico, se han identificado  una lista de necesidades del diseño (\tabref{tab:necesidades}), que se relacionan principalmente con la navegación autónoma, los costos, interacción con el usuario, entre otras necesidades. La tabla fue realizada a base de las exigencias operativas de un sistema de navegación autónoma y se toma un nivel de importancia en donde 1 es el más importante y el 5 es el menos importante:
+Debido a los requerimientos y las funciones que se deben de cumplir en el sistema robótico, se ha identificado una lista de necesidades del diseño, resumida en la tabla de necesidades (\tabref{tab:necesidades}), que se relacionan principalmente con la navegación autónoma, los costos, interacción con el usuario, entre otras necesidades. La tabla fue realizada a base de las exigencias operativas de un sistema de navegación autónoma y se toma un nivel de importancia en donde 1 es el más importante y el 5 es el menos importante:
 
 \begin{table}[htbp]
     \centering
-    \caption{Tabla de necesidades.}
+    \caption{Necesidades del proyecto.}
     \label{tab:necesidades}
     \begin{tabularx}{\textwidth}{
         >{\centering\arraybackslash}p{2cm}
-        >{\centering\arraybackslash}X
+        Y
         >{\centering\arraybackslash}p{2cm}
         }
         \toprule
@@ -59,23 +59,23 @@ Debido a los requerimientos y las funciones que se deben de cumplir en el sistem
     \end{tabularx}
 \end{table}
 
-\section{Análisis del Problema}
+\section{Análisis del problema}
 \label{sec:ana-problema}
 El problema que existe se presenta debido a los altos costos de los robots autónomos comerciales y a las limitaciones de los sistemas AGV que dependen de trayectorias ya definidas para su desplazamiento. Esta problemática puede solucionarse mediante el desarrollo de un prototipo de robot móvil con navegación autónoma que mantenga costos de fabricación bajos sin sacrificar su funcionamiento y estabilidad. Es por eso que se plantea la descripción de un prototipo AMR mediante los diagramas funcionales IDEF-0 presentados en el capítulo anterior.
 
 \section{Preparación de especificaciones}
 \label{sec:prep_espec}
 
-Después de plantear las necesidades en \secref{sec:id-necesidades}, se procede a crear una tabla de posibles especificaciones del proyecto (\tabref{tab:metricas}). Se debe tener en cuenta que ésta puede ser modificada durante el transcurso de la unidad de aprendizaje de Trabajo Terminal I.
+Después de plantear las necesidades en \secref{sec:id-necesidades}, se procede a crear la tabla de métricas del proyecto (\tabref{tab:metricas}). Se debe tener en cuenta que ésta puede ser modificada durante el transcurso de la unidad de aprendizaje de Trabajo Terminal I.
 
 \begin{table}[htbp]
     \centering
-    \caption{Tabla de métricas.}
+    \caption{Métricas del proyecto.}
     \label{tab:metricas}
     \begin{tabularx}{\textwidth}{
         >{\centering\arraybackslash}p{1.5cm}
         >{\centering\arraybackslash}p{2.5cm}
-        >{\centering\arraybackslash}X
+        Y
         >{\centering\arraybackslash}p{1.5cm}
         >{\centering\arraybackslash}p{1.5cm}
         }
@@ -83,7 +83,7 @@ Después de plantear las necesidades en \secref{sec:id-necesidades}, se procede 
         \textbf{No. de métrica} & \textbf{No. de necesidad relacionada} & \textbf{Métrica} & \textbf{Importancia} & \textbf{Unidades} \\
         \midrule
         1 & 2 & Capacidad de Carga & 1 & Kg \\
-        2 & 7 & Área en la que va a trabajar el robot  & 2 & m^2 \\
+        2 & 7 & Área en la que va a trabajar el robot  & 2 & $m^2$ \\
         3 & 5 & Tiempo de funcionamiento continuo & 1 & minutos \\
         4 & 1,4 & Velocidad de desplazamiento & 3 & m/s \\
         5 & 1,4 & Margen de error & 1 & cm \\
@@ -119,7 +119,7 @@ Con el diseño definido, se dará paso a desarrollar los planos y diagramas nece
 A partir del diseño y los planos realizados, se procederá a la construcción del prototipo durante la unidad de aprendizaje de Trabajo Terminal 2. En esta etapa se realizará la fabricación y ensamble de la estructura, así como la incorporación del sistema de control y visión artificial.
 
 
-\section{Pruebas y Ajustes}
+\section{Pruebas y ajustes}
 \label{sec:Pruebas_Ajustes}
 
 Una vez construido el prototipo, se realizarán las pruebas de funcionamiento en el área de trabajo establecida, considerando diferentes rutas y puntos de destino. Se comprobará el traslado del robot, el transporte de la carga, la detección y evasión de obstáculos, así como la interfaz del usuario. A partir de los resultados obtenidos se realizarán los ajustes necesarios hasta obtener el funcionamiento propuesto del prototipo. 
