@@ -113,6 +113,9 @@
 % ------------------------------------------------------------------------------
 % Requisito institucional: Arial 10 pt para pies de figura y encabezados de tabla.
 \usepackage{caption}
+\usepackage{chngcntr}
+\usepackage{ragged2e}
+\usepackage{etoolbox}
 \captionsetup{
     font={small},           % 10 pt
     labelfont={bf,small},   % Etiqueta en negrita
@@ -121,12 +124,23 @@
     justification=justified
 }
 
+\renewcommand{\tablename}{TABLA}
+\AtBeginDocument{\renewcommand{\tablename}{TABLA}}
+\counterwithout{table}{chapter}
+\renewcommand{\thetable}{\Roman{table}}
+\captionsetup[table]{font=footnotesize,labelfont=bf,labelsep=period,justification=centering}
+\AtBeginEnvironment{tabular}{\fontsize{10}{12}\selectfont}
+\AtBeginEnvironment{tabularx}{\fontsize{10}{12}\selectfont}
+\AtBeginEnvironment{longtable}{\fontsize{10}{12}\selectfont}
+
 \usepackage{subcaption}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{array}
+\newcolumntype{J}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{pdfpages}

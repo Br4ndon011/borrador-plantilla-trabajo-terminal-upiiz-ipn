@@ -18,7 +18,7 @@ Para la realización de este proyecto, se empleará la metodología de diseño m
 \section{Identificación de necesidades}
 \label{sec:id-necesidades}
 
-El presente trabajo propone el diseño y desarrollo de un robot móvil autónomo para el transporte de objetos dentro de un entorno cubierto, con superficie plana y un área de desplazamiento de hasta 5×5 m. El sistema estará diseñado para trasladar una carga de hasta 1.5 kg desde un punto base hasta un punto definido por el usuario. Para realizar está tarea, contará con un sistema de navegación que le permita reconocer el entorno, determinar su posición y establecer de manera autónoma la trayectoria necesaria para llegar al punto indicado. Se contempla un tiempo de funcionamiento de hasta 15 minutos, con el propósito de disminuir la intervención del usuario durante el traslado.
+El presente trabajo propone el diseño y desarrollo de un robot móvil autónomo para el transporte de objetos dentro de un entorno cubierto, con superficie plana y un área de desplazamiento de hasta 5×5 m. El sistema estará diseñado para trasladar una carga de hasta 1.0 kg desde un punto base hasta un punto definido por el usuario. Para realizar esta tarea, contará con un sistema de navegación que le permita reconocer el entorno, determinar su posición y establecer de manera autónoma la trayectoria necesaria para llegar al punto indicado. Se contempla un tiempo de funcionamiento de al menos 1 hora, con el propósito de disminuir la intervención del usuario durante el traslado.
 
 Debido a los requerimientos y las funciones que se deben de cumplir en el sistema robótico, se han identificado  una lista de necesidades del diseño (\tabref{tab:necesidades}), que se relacionan principalmente con la navegación autónoma, los costos, interacción con el usuario, entre otras necesidades. La tabla fue realizada a base de las exigencias operativas de un sistema de navegación autónoma y se toma un nivel de importancia en donde 1 es el más importante y el 5 es el menos importante:
 
@@ -32,13 +32,13 @@ Debido a los requerimientos y las funciones que se deben de cumplir en el sistem
         >{\centering\arraybackslash}p{2cm}
         }
         \toprule
-        \textbf{No. de necesidad} & \textbf{Necesidad} & \textbf{importancia} \\
+        \textbf{No. de necesidad} & \textbf{Necesidad} & \textbf{Importancia} \\
         \midrule
         1 & Navegar de forma autónoma desde un punto base a un destino definido por el usuario & 1 \\
-        2 & Soportar una carga útil de hasta 1.5 kg sin perder estabilidad & 1 \\
+        2 & Soportar una carga útil de hasta 1.0 kg sin perder estabilidad & 1 \\
         3 & Que sea de bajo costo & 2 \\
         4 & Que implemente estrategias de control para que su desplazamiento sea estable & 1 \\
-        5 & Que tenga una autonomía de hasta 15 min & 1 \\
+        5 & Que tenga una autonomía mínima de 1 hora & 1 \\
         6 & Facilitar la interacción del usuario mediante la interfaz humano - máquina (HMI) & 2 \\
         7 & Cubrir un área total de hasta 5x5m & 2 \\
         8 & Prototipo ligero, capaz de ser transportado por un operador & 4 \\
@@ -52,14 +52,14 @@ El problema que existe se presenta debido a los altos costos de los robots autó
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\textwidth]{figuras/proyecto/idef0_a0.jpeg}
+    \includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{figuras/proyecto/idef0_a0.jpeg}
     \caption{Diagrama A0.}
     \label{fig:D_A0}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\textwidth]{figuras/proyecto/idef0_a0.png}
+    \includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{figuras/proyecto/idef0_a0.png}
     \caption{Diagrama A-0.}
     \label{fig:D_A0}
 \end{figure}
@@ -99,16 +99,16 @@ Después de plantear las necesidades en \secref{sec:id-necesidades}, se procede 
 \section{Generación de posibles soluciones}
 \label{sec:soluciones}
 
-A partir de las especificaciones determinadas, se plantean diferentes propuestas para el diseño del robot, considerando las alternativas disponibles para la estructura, sistema de locomoción, sensores, motores y componentes electrónicos. Se analizarán las características de cada diseño propuesto para determinar cuáles pueden cumplir con las necesidades y condiciones que se establecieron para el proyecto.   
+A partir de las especificaciones determinadas, se generarán diferentes propuestas para el diseño del robot, considerando las alternativas disponibles para la estructura, sistema de locomoción, sensores, motores y componentes electrónicos. Se analizarán las características de cada diseño propuesto para determinar cuáles pueden cumplir con las necesidades y condiciones que se establecieron para el proyecto.
 
 \section{Selección de la propuesta}
 \label{sec:propuesta}
 
-Una vez planteadas las diferentes propuestas, se realizará una comparación entre ellas tomando en cuenta aspectos como el funcionamiento, costo, facilidad de construcción, disponibilidad de componentes y cumplimiento de las especificaciones establecidas. A partir de esta comparación se descartaran diseños para seleccionar la propuesta que se utilizara para continuar con el desarrollo del proyecto.
+Una vez planteadas las diferentes propuestas, se realizará una comparación entre ellas tomando en cuenta aspectos como el funcionamiento, costo, facilidad de construcción, disponibilidad de componentes y cumplimiento de las especificaciones establecidas. A partir de esta comparación se descartarán diseños para seleccionar la propuesta que se utilizará para continuar con el desarrollo del proyecto.
 
 \section{Diseño detallado}
 \label{sec:diseño_detallado}
-Una vez seleccionada la propuesta, se realizará el diseño de los diferentes elementos que conforman el robot. Por la parte mecánica se definirá la estructura y el sistema de locomoción, considerando la carga que deberá trasladar. En la parte electrónica se seleccionan los componentes necesarios para el funcionamiento del robot y la alimentación de los diferentes elementos. También se  implementará el sistema de control para el desplazamiento y la evasión de obstáculos, así como la interfaz que permitirá al usuario definir el punto de destino y finalmente, se desarrollará la HMI, destinada para que exista una interacción con el usuario.
+Una vez seleccionada la propuesta, se realizará el diseño de los diferentes elementos que conforman el robot. Por la parte mecánica se definirá la estructura y el sistema de locomoción, considerando la carga que deberá trasladar. En la parte electrónica se seleccionarán los componentes necesarios para el funcionamiento del robot y la alimentación de los diferentes elementos. También se  implementará el sistema de control para el desplazamiento y la evasión de obstáculos, así como la interfaz que permitirá al usuario definir el punto de destino y finalmente, se desarrollará la HMI, destinada para que exista una interacción con el usuario.
 
 \section{Elaboración de planos y documentación}
 \label{sec:Planos_documentacion}

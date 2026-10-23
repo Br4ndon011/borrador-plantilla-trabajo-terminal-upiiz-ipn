@@ -41,7 +41,7 @@
     \centering
     \caption{Alumnos.}
     \label{tab:proto-alumnos}
-    \begin{tabularx}{\textwidth}{c >{\raggedright\arraybackslash}p{6.0cm} >{\raggedright\arraybackslash}X}
+    \begin{tabularx}{\textwidth}{c J{6.0cm} Y}
         \toprule
         \textbf{No.} & \textbf{Nombres de los Alumnos} & \textbf{Datos de contacto} \\
         \midrule
@@ -66,7 +66,7 @@
     \centering
     \caption{Asesores.}
     \label{tab:proto-asesores}
-    \begin{tabularx}{\textwidth}{c >{\raggedright\arraybackslash}p{6.0cm} >{\raggedright\arraybackslash}X}
+    \begin{tabularx}{\textwidth}{c J{6.0cm} Y}
         \toprule
         \textbf{No.} & \textbf{Nombres de los Asesores} & \textbf{Datos de contacto} \\
         \midrule
@@ -95,15 +95,14 @@
     \centering
     \caption{Equipo e instalaciones.}
     \label{tab:proto-recursos-materiales}
-    \begin{tabularx}{\textwidth}{c >{\raggedright\arraybackslash}p{4.2cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.8cm}}
+    \begin{tabularx}{\textwidth}{c J{4.2cm} Y J{3.8cm}}
         \toprule
         \textbf{No.} & \textbf{Equipo o laboratorio} & \textbf{Actividades por realizar} & \textbf{Disponibilidad} \\
         \midrule
         1 & Equipo de cómputo & Programación, diseño y simulación & Equipo propio, sujeto a disponibilidad \\
         2 & Laboratorio de Control y Automatización & Pruebas y programación de control & Sujeto a disponibilidad del semestre \\
         3 & Laboratorio de Manufactura & Fabricación y ensamble del prototipo & Disponible en la Unidad Académica, sujeto a horarios \\
-        4 & Materiales y componentes electrónicos & Integración de los sistemas electrónicos & Se adquirirán según las necesidades del proyecto \\
-        5 & Área para pruebas & Pruebas de navegación y transporte de carga & Espacio de la Unidad Académica, sujeto a disponibilidad \\
+        4 & Área para pruebas & Pruebas de navegación y transporte de carga & Espacio de la Unidad Académica, sujeto a disponibilidad \\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -120,19 +119,19 @@
     \centering
     \caption{Costo estimado.}
     \label{tab:proto-presupuesto-etapas}
-    \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X c c >{\raggedright\arraybackslash}p{4.2cm}}
+    \begin{tabularx}{\textwidth}{Y c c J{4.2cm}}
         \toprule
         \textbf{Descripción / Etapa} & \textbf{Costo mín. (MXN)} & \textbf{Costo máx. (MXN)} & \textbf{Fuente de financiamiento} \\
         \midrule
-        Actuadores & [\$ 500.00] & [\$ 1000.00] & Recursos propios / SIP \\
-        Circuitos y sensores   & [\$ 1000.00] & [\$ 3500.00] & Recursos propios / SIP \\
-        Comunicación y conectividad   & [\$ 300.00] & [\$ 1000.00] & Recursos propios / SIP \\
-        Fabricación, maquinado e insumos   & [\$ 1000.00] & [\$ 2000.00] & Recursos propios / SIP \\
-        Materiales estructurales & [\$ 1000.00] & [\$ 4000.00] & Recursos propios / SIP \\
-        Placa controladora & [\$ 4000.00] & [\$ 8000.00] & Recursos propios / SIP \\
-        Sistema de alimentación & [\$ 400.00] & [\$ 1000.00] & Recursos propios / SIP \\
+        Actuadores & \$ 500.00 & \$ 1,000.00 & Recursos propios / SIP \\
+        Circuitos y sensores   & \$ 1,000.00 & \$ 3,500.00 & Recursos propios / SIP \\
+        Comunicación y conectividad   & \$ 300.00 & \$ 1,000.00 & Recursos propios / SIP \\
+        Fabricación, maquinado e insumos   & \$ 1,000.00 & \$ 2,000.00 & Recursos propios / SIP \\
+        Materiales estructurales & \$ 1,000.00 & \$ 4,000.00 & Recursos propios / SIP \\
+        Placa controladora & \$ 4,000.00 & \$ 8,000.00 & Recursos propios / SIP \\
+        Sistema de alimentación & \$ 400.00 & \$ 1,000.00 & Recursos propios / SIP \\
         \midrule
-        \textbf{Total estimado del proyecto:} & \textbf{[\$ 8200.00]} & \textbf{[\$ 20500.00]} & Financiamiento propio / Apoyo institucional \\
+        \textbf{Total estimado del proyecto:} & \textbf{\$ 8,200.00} & \textbf{\$ 20,500.00} & Financiamiento propio / Apoyo institucional \\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -150,7 +149,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{figuras/proyecto/crono_tt1.png}
+    \includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{figuras/proyecto/crono_tt1.png}
     \caption{Diagrama de GANTT TT1.}
     \label{fig:D_A0}
 \end{figure}
@@ -160,7 +159,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{figuras/proyecto/crono_tt2.png}
+    \includegraphics[width=\textwidth,height=0.78\textheight,keepaspectratio]{figuras/proyecto/crono_tt2.png}
     \caption{Diagrama de GANTT TT2.}
     \label{fig:D_A0}
 \end{figure}

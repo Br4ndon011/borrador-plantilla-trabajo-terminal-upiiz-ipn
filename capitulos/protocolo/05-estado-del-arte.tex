@@ -15,7 +15,7 @@
 % - Sintetizar las soluciones o enfoques en una tabla comparativa opcional.
 % ==============================================================================
 
-\chapter{Estado del Arte}
+\chapter{Estado del arte}
 \label{cap:proto-estado-del-arte}
 
 Actualmente, la implementación de robots móviles autónomos ha comenzado a utilizarse cada vez más en tareas donde se necesita transportar o entregar objetos dentro de diferentes espacios. Algunas de las aplicaciones que más se han encontrado están relacionadas con restaurantes, hospitales, almacenes, hoteles y otros lugares interiores. Con el objetivo de mostrar el panorama tecnológico de robots autónomos en el mercado, se presentarán algunos de los sistemas ofertados en la actualidad.
@@ -24,7 +24,7 @@ Actualmente, la implementación de robots móviles autónomos ha comenzado a uti
 \section{Robot de entregas y limpieza: AutoXing AX1612 MARS}
 \label{sec:EDA_1}
 
-El robot AutoXing AX1612 MARS es un robot móvil autónomo (AMR) de servicio, diseñado específicamente para la entrega y logística en escenarios de fábricas, hospitales, y grandes espacios comerciales sin la necesidad de algún marcador físico para su navegación \cite{EDA1}. Capaz de transportar hasta 80 kg a 1.2 m/s, que garantiza la estabilidad de la carga incluso en superficies irregulares mediante su suspensión independiente. Su sistema de evasión 3D fusiona LiDAR, cámaras RGBD y sensores ultrasónicos, permitiendo calcular trayectorias y esquivar obstáculos de apenas 3 cm en tiempo real \cite{EDA2}.
+El robot AutoXing AX1612 MARS (\figref{fig:AX1612}) es un robot móvil autónomo (AMR) de servicio, diseñado específicamente para la entrega y logística en escenarios de fábricas, hospitales, y grandes espacios comerciales sin la necesidad de algún marcador físico para su navegación \cite{EDA1}. Capaz de transportar hasta 80 kg a 1.2 m/s, que garantiza la estabilidad de la carga incluso en superficies irregulares mediante su suspensión independiente. Su sistema de evasión 3D fusiona LiDAR, cámaras RGBD y sensores ultrasónicos, permitiendo calcular trayectorias y esquivar obstáculos de apenas 3 cm en tiempo real \cite{EDA2}.
 
 \begin{figure}[htbp]
     \centering
@@ -43,7 +43,7 @@ Un grupo de investigadores del Instituto Universitario en Ingeniería Mecatróni
 \section{Robot móvil autónomo para entrega PUDU SwiftBot}
 \label{sec:EDA_3}
 
-El PUDU SwiftBot es un robot móvil autónomo de servicio desarrollado para realizar tareas de entrega en espacios comerciales, principalmente en restaurantes y establecimientos donde existe circulación constante de personas. El sistema está diseñado para transportar productos mediante bandejas y realizar diferentes modos de servicio, entre ellos entrega de alimentos, entrega general, recorridos e interacción con los usuarios. Cuenta con una capacidad de carga de hasta 35 kg, puede incorporar de tres a cinco bandejas y alcanza una velocidad ajustable de entre 0.5 y 1.2 m/s. Además, cuenta con recarga automática, lo que permite que el robot regrese a su estación cuando requiere energía \cite{EDA4}.
+El PUDU SwiftBot (\figref{fig:SwiftBot}) es un robot móvil autónomo de servicio desarrollado para realizar tareas de entrega en espacios comerciales, principalmente en restaurantes y establecimientos donde existe circulación constante de personas. El sistema está diseñado para transportar productos mediante bandejas y realizar diferentes modos de servicio, entre ellos entrega de alimentos, entrega general, recorridos e interacción con los usuarios. Cuenta con una capacidad de carga de hasta 35 kg, puede incorporar de tres a cinco bandejas y alcanza una velocidad ajustable de entre 0.5 y 1.2 m/s. Además, cuenta con recarga automática, lo que permite que el robot regrese a su estación cuando requiere energía \cite{EDA4}.
 
 \begin{figure}[htbp]
     \centering
@@ -55,7 +55,7 @@ El PUDU SwiftBot es un robot móvil autónomo de servicio desarrollado para real
 \section{PUDU BellaBot}
 \label{sec:EDA_4}
 
-El PUDU BellaBot es un robot de servicio diseñado principalmente para realizar entregas dentro de restaurantes y establecimientos de alimentos. Su estructura incorpora bandejas para transportar productos y está orientada a facilitar el traslado de alimentos desde un punto determinado hasta diferentes zonas del establecimiento. PUDU Robotics lo clasifica como un robot de entrega de alimentos dentro de su línea de robots comerciales \cite{EDA5}.
+El PUDU BellaBot (\figref{fig:BellaBot}) es un robot de servicio diseñado principalmente para realizar entregas dentro de restaurantes y establecimientos de alimentos. Su estructura incorpora bandejas para transportar productos y está orientada a facilitar el traslado de alimentos desde un punto determinado hasta diferentes zonas del establecimiento. PUDU Robotics lo clasifica como un robot de entrega de alimentos dentro de su línea de robots comerciales \cite{EDA5}.
 
 El sistema integra diferentes elementos destinados a la navegación y detección de su entorno, permitiendo que el robot se desplace en espacios donde existan personas, mesas y otros obstáculos. Además del desplazamiento, BellaBot incorpora elementos de interacción con los usuarios, por lo que su función no se limita únicamente al transporte.
 
@@ -69,18 +69,16 @@ El sistema integra diferentes elementos destinados a la navegación y detección
 \section{Sistema de gestión y control de entrega de paquetes — ESPOL}
 \label{sec:EDA_5}
 
-En 2023, Párraga Guerrero y Valladarez González desarrollaron en la Escuela Superior Politécnica del Litoral (ESPOL) el proyecto “Desarrollo y diseño de un sistema de gestión y control de entrega de paquetes en entornos interiores para un robot móvil de servicio”. El proyecto plantea el uso de un robot móvil para realizar entregas de paquetes dentro de espacios cerrados, tomando como referencia lugares como restaurantes, hoteles y eventos.
+En 2023, Párraga Guerrero y Valladarez González desarrollaron en la Escuela Superior Politécnica del Litoral (ESPOL) el proyecto “Desarrollo y diseño de un sistema de gestión y control de entrega de paquetes en entornos interiores para un robot móvil de servicio”. El proyecto plantea el uso de un robot móvil para realizar entregas de paquetes dentro de espacios cerrados, tomando como referencia lugares como restaurantes, hoteles y eventos \cite{EDA6}.
 
-El trabajo no considera únicamente el movimiento del robot, sino también la organización y el control de las entregas. Para esto, se toman en cuenta aspectos como la navegación, la odometría, el control y la comunicación entre los diferentes elementos del sistema. Este proyecto se relaciona con la propuesta planteada, ya que también se contempla que el usuario indique un destino y que el robot realice el recorrido de manera autónoma \cite{EDA6}.
+El trabajo no considera únicamente el movimiento del robot, sino también la organización y el control de las entregas. Para esto, se toman en cuenta aspectos como la navegación, la odometría, el control y la comunicación entre los diferentes elementos del sistema. Este proyecto se relaciona con la propuesta planteada, ya que también se contempla que el usuario indique un destino y que el robot realice el recorrido de manera autónoma \cite{EDA6}. En la tabla comparativa de sistemas existentes (\tabref{tab:comparativa_eda}) se sintetiza la comparación técnica entre las soluciones existentes.
 
-
-En la \tabref{tab:comparativa_eda} se sintetiza la comparación técnica entre las soluciones existentes.
 
 \begin{table}[htbp]
     \centering
     \caption{Comparación entre los distintos sistemas existentes investigados.}
     \label{tab:comparativa_eda}
-    \begin{tabularx}{\textwidth}{p{2.5cm} p{1.8cm} X p{1.8cm} X p{2.0cm}}
+    \begin{tabularx}{\textwidth}{J{2.5cm} J{1.8cm} Y J{1.8cm} Y J{2.0cm}}
         \toprule
         \textbf{Sistema} & \textbf{Tipo} & \textbf{Aplicación} & \textbf{Capacidad} & \textbf{Navegación / Percepción} & \textbf{Entorno} \\
         \midrule
