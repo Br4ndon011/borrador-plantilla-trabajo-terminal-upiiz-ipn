@@ -41,6 +41,7 @@
 \setlength{\cftfignumwidth}{5.5em}
 \renewcommand{\cfttabpresnum}{TABLA~}
 \setlength{\cfttabnumwidth}{5.5em}
+\renewcommand{\cftchapaftersnum}{.}
 
 % ==============================================================================
 % INICIO DEL DOCUMENTO
@@ -150,7 +151,7 @@
     \makeatletter
     \def\chapter{\@ifstar{\@gobble}{\@gobble}}%
     \makeatother
-    \bibliographystyle{IEEEtran}
+    \bibliographystyle{IEEEtran-es}
     \bibliography{bibliografia/referencias}%
     \endgroup
 
@@ -184,7 +185,7 @@
     % Bibliografía en formato IEEE
     \clearpage
     \addcontentsline{toc}{chapter}{Bibliografía}
-    \bibliographystyle{IEEEtran}
+    \bibliographystyle{IEEEtran-es}
     \bibliography{bibliografia/referencias}
 
     % Apéndices
