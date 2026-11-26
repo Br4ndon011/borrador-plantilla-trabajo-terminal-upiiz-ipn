@@ -39,7 +39,6 @@ El robot AutoXing AX1612 MARS (\figref{fig:AX1612}) es un robot móvil autónomo
 
 Un grupo de investigadores del Instituto Universitario en Ingeniería Mecatrónica y Sistemas Ciber Físicos (IMECH.UMA) presentó un sistema avanzado de navegación y comunicación para un robot de servicios. El objetivo es lograr que el robot se desplace por lugares concurridos evitando chocar contra personas y comportándose de manera socialmente aceptable y respetuosa. Para lograrlo, los investigadores equiparon al robot con láser de navegación y un sistema de cámaras 3D instalados en una cabeza móvil. El software que desarrollaron utiliza inteligencia artificial para detectar la postura de las personas y agruparlas. Con estos datos recolectados, el sistema de navegación crea zonas de confort invisibles alrededor de los usuarios. Esto permite que el robot pueda recalcular las trayectorias para no invadir el espacio personal de la gente alrededor, esquivando con naturalidad como lo haría un humano \cite{EDA3}.
 
-
 \section{Robot móvil autónomo para entrega PUDU SwiftBot}
 \label{sec:EDA_3}
 
@@ -52,30 +51,20 @@ El PUDU SwiftBot (\figref{fig:SwiftBot}) es un robot móvil autónomo de servici
     \label{fig:SwiftBot}
 \end{figure}
 
-\section{PUDU BellaBot}
-\label{sec:EDA_4}
-
-El PUDU BellaBot (\figref{fig:BellaBot}) es un robot de servicio diseñado principalmente para realizar entregas dentro de restaurantes y establecimientos de alimentos. Su estructura incorpora bandejas para transportar productos y está orientada a facilitar el traslado de alimentos desde un punto determinado hasta diferentes zonas del establecimiento. PUDU Robotics lo clasifica como un robot de entrega de alimentos dentro de su línea de robots comerciales \cite{EDA5}.
-
-El sistema integra diferentes elementos destinados a la navegación y detección de su entorno, permitiendo que el robot se desplace en espacios donde existan personas, mesas y otros obstáculos. Además del desplazamiento, BellaBot incorpora elementos de interacción con los usuarios, por lo que su función no se limita únicamente al transporte.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.3\textwidth]{figuras/proyecto/PUDU_BellaBot.png}
-    \caption{Robot de servicio PUDU BellaBot.  (Recuperado PUDU Robotics, 2026.).}
-    \label{fig:BellaBot}
-\end{figure}
-
 \section{Sistema de gestión y control de entrega de paquetes — ESPOL}
-\label{sec:EDA_5}
+\label{sec:EDA_4}
 
 En 2023, Párraga Guerrero y Valladarez González desarrollaron en la Escuela Superior Politécnica del Litoral (ESPOL) el proyecto “Desarrollo y diseño de un sistema de gestión y control de entrega de paquetes en entornos interiores para un robot móvil de servicio”. El proyecto plantea el uso de un robot móvil para realizar entregas de paquetes dentro de espacios cerrados, tomando como referencia lugares como restaurantes, hoteles y eventos \cite{EDA6}.
 
 El trabajo no considera únicamente el movimiento del robot, sino también la organización y el control de las entregas. Para esto, se toman en cuenta aspectos como la navegación, la odometría, el control y la comunicación entre los diferentes elementos del sistema. Este proyecto se relaciona con la propuesta planteada, ya que también se contempla que el usuario indique un destino y que el robot realice el recorrido de manera autónoma \cite{EDA6}. 
 
 \section{Robot TIAGo para servicio en cafetería}
-\label{sec:EDA_6}
-En 2024, Naranjo-Campos et al. desarrollaron una implementación de un sistema de servicio en cafetería utilizando el robot móvil manipulador TIAGo, como parte de la Smart City Competition 2023. El proyecto se enfocó en el reconocimiento del entorno, la atención a clientes y la interacción del robot con las personas, mediante tareas como identificar el estado de las mesas, tomar pedidos, entregar productos y guiar a nuevos clientes hacia una mesa disponible. Para ello, se utilizaron técnicas de visión artificial mediante YOLOv5 para la detección de objetos, reconocimiento de voz para la comunicación con los usuarios y ROS para la navegación dentro del espacio de trabajo. El robot contaba con un mapa previamente generado de la cafetería, en el cual se establecieron las coordenadas de las mesas, el mostrador y el punto de inicio. Los resultados de las pruebas mostraron un porcentaje de éxito del 93.7\% en la ejecución completa de las tareas. Este trabajo se toma como referencia debido a la integración de sistemas de percepción, navegación e interacción con el usuario, así como al uso de un robot móvil para realizar tareas de servicio en un entorno interior \cite{EDA8}. En la tabla comparativa de sistemas existentes (\tabref{tab:comparativa_eda}) se sintetiza la comparación técnica entre las soluciones existentes.
+\label{sec:EDA_5}
+
+En 2024, Naranjo-Campos et al. desarrollaron una implementación de un sistema de servicio en cafetería utilizando el robot móvil manipulador TIAGo, como parte de la Smart City Competition 2023. El proyecto se enfocó en el reconocimiento del entorno, la atención a clientes y la interacción del robot con las personas, mediante tareas como identificar el estado de las mesas, tomar pedidos, entregar productos y guiar a nuevos clientes hacia una mesa disponible. Para ello, se utilizaron técnicas de visión artificial mediante YOLOv5 para la detección de objetos, reconocimiento de voz para la comunicación con los usuarios y ROS para la navegación dentro del espacio de trabajo. El robot contaba con un mapa previamente generado de la cafetería, en el cual se establecieron las coordenadas de las mesas, el mostrador y el punto de inicio. 
+
+Los resultados de las pruebas mostraron un porcentaje de éxito del 93.7\% en la ejecución completa de las tareas. Este trabajo se toma como referencia debido a la integración de sistemas de percepción, navegación e interacción con el usuario, así como al uso de un robot móvil para realizar tareas de servicio en un entorno interior \cite{EDA8}. En la tabla comparativa de sistemas existentes (\tabref{tab:comparativa_eda}) se sintetiza la comparación técnica entre las soluciones existentes.
+
 
 \begin{table}[htbp]
     \centering
@@ -85,10 +74,13 @@ En 2024, Naranjo-Campos et al. desarrollaron una implementación de un sistema d
         \toprule
         \textbf{Sistema} & \textbf{Tipo} & \textbf{Aplicación} & \textbf{Capacidad} & \textbf{Navegación / Percepción} & \textbf{Entorno} \\
         \midrule
-        AutoXing AX1612 MARS & Comercial & Transporte y entrega & 40 kg & Percepción 3D y evasión de obstáculos & Restaurantes, hospitales, almacenes \\
-        PUDU BellaBot & Comercial & Entrega de alimentos & 40 kg & LiDAR + visión & Restaurantes \\
-        PUDU BellaBot & Comercial & Entrega de alimentos & 40 kg & LiDAR + visión & Restaurantes \\
-        ESPOL 2023 & Académico & Entrega de paquetes & — & SLAM + LiDAR + cámaras & Interiores \\        
+        AutoXing AX1612 MARS & Comercial & Transporte y entrega & 80 kg & Percepción 3D y evasión de obstáculos & Restaurantes, hospitales, almacenes \\
+
+        Robot TIAGo & Académico & Servicio y atención a usuarios & No especificada & ROS, YOLOv5 y mapa previamente generado & Cafetería \\
+
+        PUDU SwiftBot & Comercial & Transporte y entrega de productos & 35 kg & Navegación autónoma & Espacios comerciales interiores \\
+
+        ESPOL 2023 & Académico & Entrega de paquetes & -- & SLAM + LiDAR + cámaras & Interiores \\
         \bottomrule
     \end{tabularx}
 \end{table}
